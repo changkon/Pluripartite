@@ -10,11 +10,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import net.miginfocom.swing.MigLayout;
 import se206.a03.MediaIcon.DisplayIcon;
@@ -42,6 +46,12 @@ public class MediaFrame extends JFrame implements ActionListener {
 	private JButton toggleVolumeButton = new JButton(MediaIcon.getIcon(DisplayIcon.TOGGLEVOLUME));
 	private JButton maxVolumeButton = new JButton(MediaIcon.getIcon(DisplayIcon.MAXVOLUME));
 	private JButton openButton = new JButton(MediaIcon.getIcon(DisplayIcon.OPEN));
+	
+	private final static int minVolume = 0;
+	private final static int maxVolume = 100;
+	private final static int intVolume = 40;
+	
+	private JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, minVolume, maxVolume, intVolume);
 	
 	private EmbeddedMediaPlayerComponent mediaPlayerComponent;
 	private EmbeddedMediaPlayer mediaPlayer;
@@ -71,6 +81,20 @@ public class MediaFrame extends JFrame implements ActionListener {
 		fastforwardButton.addActionListener(this);
 		muteButton.addActionListener(this);
 		toggleVolumeButton.addActionListener(this);
+		volumeSlider.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider)e.getSource();
+				if(!source.getValueIsAdjusting()){
+					int volumeTemp = (int)source.getValue();
+					mediaPlayer.setVolume(volumeTemp);
+					System.out.println(mediaPlayer.getVolume());
+				}
+			}
+			
+			
+		});
 		maxVolumeButton.addActionListener(this);
 		openButton.addActionListener(this);
 		
@@ -108,27 +132,142 @@ public class MediaFrame extends JFrame implements ActionListener {
 	// Places buttons on buttonPanel and sets its tooltip.
 	private void setButtonPanel() {
 		playButton.setToolTipText("Play/Pause media file");
+		playButton.setBorderPainted(false);
+		playButton.setFocusPainted(false);
+		playButton.setContentAreaFilled(false);
+		playButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	playButton.setBorderPainted(true);
+	            } else {
+	            	playButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(playButton);
 		
 		stopButton.setToolTipText("Stop media");
+		stopButton.setBorderPainted(false);
+		stopButton.setFocusPainted(false);
+		stopButton.setContentAreaFilled(false);
+		stopButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	stopButton.setBorderPainted(true);
+	            } else {
+	            	stopButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(stopButton);
 		
 		rewindButton.setToolTipText("Rewind some time");
+		rewindButton.setBorderPainted(false);
+		rewindButton.setFocusPainted(false);
+		rewindButton.setContentAreaFilled(false);
+		rewindButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	rewindButton.setBorderPainted(true);
+	            } else {
+	            	rewindButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(rewindButton, "gapleft 15");
 		
 		fastforwardButton.setToolTipText("Fast forward some time");
+		fastforwardButton.setBorderPainted(false);
+		fastforwardButton.setFocusPainted(false);
+		fastforwardButton.setContentAreaFilled(false);
+		fastforwardButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	fastforwardButton.setBorderPainted(true);
+	            } else {
+	            	fastforwardButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(fastforwardButton);
 		
 		muteButton.setToolTipText("Mute/unmute media file");
+		muteButton.setBorderPainted(false);
+		muteButton.setFocusPainted(false);
+		muteButton.setContentAreaFilled(false);
+		muteButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	muteButton.setBorderPainted(true);
+	            } else {
+	            	muteButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(muteButton, "gapleft 15");
 		
 		toggleVolumeButton.setToolTipText("Toggle volume");
+		toggleVolumeButton.setBorderPainted(false);
+		toggleVolumeButton.setFocusPainted(false);
+		toggleVolumeButton.setContentAreaFilled(false);
+		toggleVolumeButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	toggleVolumeButton.setBorderPainted(true);
+	            } else {
+	            	toggleVolumeButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(toggleVolumeButton);
 		
+		volumeSlider.setToolTipText("Adjust Volume");
+		buttonPanel.add(volumeSlider);
+		
 		maxVolumeButton.setToolTipText("Set to max volume");
+		maxVolumeButton.setBorderPainted(false);
+		maxVolumeButton.setFocusPainted(false);
+		maxVolumeButton.setContentAreaFilled(false);
+		maxVolumeButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	maxVolumeButton.setBorderPainted(true);
+	            } else {
+	            	maxVolumeButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(maxVolumeButton);
 		
 		openButton.setToolTipText("Open media file");
+		openButton.setBorderPainted(false);
+		openButton.setFocusPainted(false);
+		openButton.setContentAreaFilled(false);
+		openButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	openButton.setBorderPainted(true);
+	            } else {
+	            	openButton.setBorderPainted(false);
+	            }
+	        }
+	    });
 		buttonPanel.add(openButton, "push, align right");
 	}
 	
@@ -143,13 +282,17 @@ public class MediaFrame extends JFrame implements ActionListener {
 			// Automatically pauses and plays when pressed.
 			mediaPlayer.pause();
 		} else if (e.getSource() == stopButton) {
-			mediaPlayer.stop();
+			mediaPlayer.setTime(1);
+			mediaPlayer.pause();
+			//mediaPlayer.stop();
 			playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PLAY));
 		} else if (e.getSource() == fastforwardButton) {
 			// time in milliseconds
+			fastforwardButton.setSelected(true);
 			mediaPlayer.skip(mediaSetting.getSkipTime());
 		} else if (e.getSource() == rewindButton) {
 			// time in milliseconds
+			rewindButton.setSelected(true);
 			mediaPlayer.skip(-mediaSetting.getSkipTime());
 		} else if (e.getSource() == muteButton) {
 			if (mediaPlayer.isMute()) {
