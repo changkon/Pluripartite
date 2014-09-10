@@ -14,9 +14,11 @@ import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -34,29 +36,38 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  */
 
 @SuppressWarnings("serial")
-public class MediaFrame extends JFrame implements ActionListener {
+public class MediaFrame extends JFrame implements ActionListener, ChangeListener {
+	private MediaSetting mediaSetting = MediaSetting.getInstance();
+
+	public static final String initialTimeDisplay = "--:--";
+	
 	private JPanel mediaPanel = new JPanel(new BorderLayout());
+	private JPanel playbackPanel = new JPanel(new MigLayout());
+	private JPanel timePanel = new JPanel(new MigLayout());
 	private JPanel buttonPanel = new JPanel(new MigLayout());
 	
-	private JButton playButton = new JButton(MediaIcon.getIcon(DisplayIcon.PLAY));
-	private JButton stopButton = new JButton(MediaIcon.getIcon(DisplayIcon.STOP));
-	private JButton fastforwardButton = new JButton(MediaIcon.getIcon(DisplayIcon.FASTFORWARD));
-	private JButton rewindButton = new JButton(MediaIcon.getIcon(DisplayIcon.REWIND));
-	private JButton muteButton = new JButton(MediaIcon.getIcon(DisplayIcon.UNMUTE));
-	private JButton toggleVolumeButton = new JButton(MediaIcon.getIcon(DisplayIcon.TOGGLEVOLUME));
-	private JButton maxVolumeButton = new JButton(MediaIcon.getIcon(DisplayIcon.MAXVOLUME));
-	private JButton openButton = new JButton(MediaIcon.getIcon(DisplayIcon.OPEN));
+	public JButton playButton = new JButton(MediaIcon.getIcon(DisplayIcon.PLAY));
+	public JButton stopButton = new JButton(MediaIcon.getIcon(DisplayIcon.STOP));
+	public JButton fastforwardButton = new JButton(MediaIcon.getIcon(DisplayIcon.FASTFORWARD));
+	public JButton rewindButton = new JButton(MediaIcon.getIcon(DisplayIcon.REWIND));
+	public JButton muteButton = new JButton(MediaIcon.getIcon(DisplayIcon.UNMUTE));
+	public JButton maxVolumeButton = new JButton(MediaIcon.getIcon(DisplayIcon.MAXVOLUME));
+	public JButton openButton = new JButton(MediaIcon.getIcon(DisplayIcon.OPEN));
+	
+	public JLabel startTimeLabel = new JLabel(initialTimeDisplay); // Initial labels
+	public JLabel finishTimeLabel = new JLabel(initialTimeDisplay);
+	
+	public JSlider timeSlider = new JSlider();
 	
 	private final static int minVolume = 0;
-	private final static int maxVolume = 100;
-	private final static int intVolume = 40;
+	private final static int maxVolume = 200; // The max volume of VLC
 	
-	private JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, minVolume, maxVolume, intVolume);
+	public JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, minVolume, maxVolume, 100); // 100 is arbitrary value.
+	
+	public Timer t;
 	
 	private EmbeddedMediaPlayerComponent mediaPlayerComponent;
 	private EmbeddedMediaPlayer mediaPlayer;
-	
-	private MediaSetting mediaSetting = MediaSetting.getInstance();
 	
 	public MediaFrame() {
 		super("VAMIX");
@@ -65,14 +76,24 @@ public class MediaFrame extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		
 		mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
+		
 		mediaPlayer = mediaPlayerComponent.getMediaPlayer();
 		
 		mediaPanel.add(mediaPlayerComponent);
 		
+		// Initially set value to 0
+		timeSlider.setValue(0);
+		
+		timePanel.add(startTimeLabel);
+		timePanel.add(timeSlider, "pushx, growx");
+		timePanel.add(finishTimeLabel);
 		setButtonPanel();
 		
-		add(mediaPanel, BorderLayout.CENTER);
-		add(buttonPanel, BorderLayout.SOUTH);
+		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
+		playbackPanel.add(buttonPanel, "pushx, growx");
+		
+		add(mediaPlayerComponent, BorderLayout.CENTER);
+		add(playbackPanel, BorderLayout.SOUTH);
 
 		// Add button listeners
 		playButton.addActionListener(this);
@@ -80,21 +101,10 @@ public class MediaFrame extends JFrame implements ActionListener {
 		rewindButton.addActionListener(this);
 		fastforwardButton.addActionListener(this);
 		muteButton.addActionListener(this);
-		toggleVolumeButton.addActionListener(this);
-		volumeSlider.addChangeListener(new ChangeListener(){
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				JSlider source = (JSlider)e.getSource();
-				if(!source.getValueIsAdjusting()){
-					int volumeTemp = (int)source.getValue();
-					mediaPlayer.setVolume(volumeTemp);
-					System.out.println(mediaPlayer.getVolume());
-				}
-			}
-			
-			
-		});
+		
+		volumeSlider.addChangeListener(this);
+		timeSlider.addChangeListener(this);
+		
 		maxVolumeButton.addActionListener(this);
 		openButton.addActionListener(this);
 		
@@ -105,6 +115,7 @@ public class MediaFrame extends JFrame implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				// Double click.
 				if (e.getClickCount() == 2) {
+					// Gets what "state" the JFrame is in. State is if the screen is maximised or not etc.
 					int state = getExtendedState();
 					switch(state) {
 						case JFrame.MAXIMIZED_BOTH:
@@ -118,6 +129,7 @@ public class MediaFrame extends JFrame implements ActionListener {
 			}
 		});
 		
+		// Makes sure when window closes, it releases the mediaPlayer.
 		addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -127,9 +139,16 @@ public class MediaFrame extends JFrame implements ActionListener {
 			}
 			
 		});
+		
+		mediaPlayer.addMediaPlayerEventListener(new MediaPlayerListener(this));
+		
+		// Initialise timer. Update nearly every third a second.
+		t = new Timer(300, this);
 	}
 	
-	// Places buttons on buttonPanel and sets its tooltip.
+	/*
+	 * Places buttons onto the button panel. Adds change listeners.
+	 */
 	private void setButtonPanel() {
 		playButton.setToolTipText("Play/Pause media file");
 		playButton.setBorderPainted(false);
@@ -216,23 +235,6 @@ public class MediaFrame extends JFrame implements ActionListener {
 	    });
 		buttonPanel.add(muteButton, "gapleft 15");
 		
-		toggleVolumeButton.setToolTipText("Toggle volume");
-		toggleVolumeButton.setBorderPainted(false);
-		toggleVolumeButton.setFocusPainted(false);
-		toggleVolumeButton.setContentAreaFilled(false);
-		toggleVolumeButton.getModel().addChangeListener(new ChangeListener() {
-	        @Override
-	        public void stateChanged(ChangeEvent e) {
-	            ButtonModel model = (ButtonModel) e.getSource();
-	            if (model.isRollover()) {
-	            	toggleVolumeButton.setBorderPainted(true);
-	            } else {
-	            	toggleVolumeButton.setBorderPainted(false);
-	            }
-	        }
-	    });
-		buttonPanel.add(toggleVolumeButton);
-		
 		volumeSlider.setToolTipText("Adjust Volume");
 		buttonPanel.add(volumeSlider);
 		
@@ -274,18 +276,15 @@ public class MediaFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == playButton) {
+			// Pause if current media is playing or play if it can be played and is currently paused.
 			if (mediaPlayer.isPlaying()) {
-				playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PLAY));
+				mediaPlayer.pause();
 			} else {
-				playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PAUSE));
+				mediaPlayer.play();
 			}
-			// Automatically pauses and plays when pressed.
-			mediaPlayer.pause();
 		} else if (e.getSource() == stopButton) {
-			mediaPlayer.setTime(1);
-			mediaPlayer.pause();
-			//mediaPlayer.stop();
-			playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PLAY));
+			// Need to edit.
+			mediaPlayer.stop();
 		} else if (e.getSource() == fastforwardButton) {
 			// time in milliseconds
 			fastforwardButton.setSelected(true);
@@ -295,41 +294,51 @@ public class MediaFrame extends JFrame implements ActionListener {
 			rewindButton.setSelected(true);
 			mediaPlayer.skip(-mediaSetting.getSkipTime());
 		} else if (e.getSource() == muteButton) {
+			
+			// Toggles mute. Cannot update in event listener because mute doesn't toggle event listener.
 			if (mediaPlayer.isMute()) {
 				muteButton.setIcon(MediaIcon.getIcon(DisplayIcon.UNMUTE));
+				mediaPlayer.mute(false);
 			} else {
 				muteButton.setIcon(MediaIcon.getIcon(DisplayIcon.MUTE));
+				mediaPlayer.mute(true);
 			}
-			// Toggles mute
-			mediaPlayer.mute();
-		} else if (e.getSource() == toggleVolumeButton){
-			System.out.println(mediaPlayer.getVolume());
+			
 		} else if (e.getSource() == maxVolumeButton) {
 			// 200 is the max volume setting.
 			mediaPlayer.setVolume(200);
 		} else if (e.getSource() == openButton) {
 			playFile();
+		} else {
+			// If it is in this branch, it must have been called from timer.
+			startTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getTime()));
+		}
+	}
+	
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		JSlider source = (JSlider)e.getSource();
+		if (e.getSource() == volumeSlider) {
+			if(!source.getValueIsAdjusting()){
+				int volumeTemp = source.getValue();
+				mediaPlayer.setVolume(volumeTemp);
+			}
+		} else if (e.getSource() == timeSlider) {
+			if(!source.getValueIsAdjusting()){
+				int time = source.getValue();
+				mediaPlayer.setTime(time);
+			}
 		}
 	}
 	
 	private void playFile() {
 		JFileChooser chooser = new JFileChooser();
 		int selection = chooser.showOpenDialog(null);
-		String inputFilename = "";
 		
 		if (selection == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = chooser.getSelectedFile();
-			inputFilename = selectedFile.getPath();
-
-			mediaPlayer.playMedia(inputFilename);
-			setInitialSettings();
-			playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PAUSE));
+			mediaPlayer.playMedia(selectedFile.getPath());
 		}
-	}
-	
-	private void setInitialSettings() {
-		mediaPlayer.setVolume(mediaSetting.getInitialVolume());
-		mediaPlayer.mute(mediaSetting.getStartMuted());
 	}
 	
 	public static void main(String[] args) {

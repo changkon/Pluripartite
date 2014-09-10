@@ -1,7 +1,6 @@
 package se206.a03;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
@@ -24,7 +23,6 @@ public class MediaIcon {
 		REWIND(path + "/res/rewind.png"),
 		MUTE(path + "/res/mute.png"),
 		UNMUTE(path + "/res/unmute.png"),
-		TOGGLEVOLUME(path + "/res/togglevolume.png"),
 		MAXVOLUME(path + "/res/maxvolume.png"),
 		OPEN(path + "/res/open.png");
 		
