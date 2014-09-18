@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
@@ -23,6 +26,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import net.miginfocom.swing.MigLayout;
+
+import org.java.ayatana.ApplicationMenu;
+import org.java.ayatana.AyatanaDesktop;
+
 import se206.a03.MediaIcon.DisplayIcon;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
@@ -45,6 +52,11 @@ public class MediaFrame extends JFrame implements ActionListener, ChangeListener
 	private JPanel playbackPanel = new JPanel(new MigLayout());
 	private JPanel timePanel = new JPanel(new MigLayout());
 	private JPanel buttonPanel = new JPanel(new MigLayout());
+	
+	private JMenuBar menuBar = new JMenuBar();
+	private JMenu mediaMenu = new JMenu("Media");
+	private JMenuItem openMenuItem = new JMenuItem("Open..");
+	private JMenuItem blah = new JMenuItem("BLAH");
 	
 	public JButton playButton = new JButton(MediaIcon.getIcon(DisplayIcon.PLAY));
 	public JButton stopButton = new JButton(MediaIcon.getIcon(DisplayIcon.STOP));
@@ -144,6 +156,11 @@ public class MediaFrame extends JFrame implements ActionListener, ChangeListener
 		
 		// Initialise timer. Update nearly every third a second.
 		t = new Timer(300, this);
+		
+		setJMenuBar(menuBar);
+		menuBar.add(mediaMenu);
+		mediaMenu.add(openMenuItem);
+//		mediaMenu.add(blah);
 	}
 	
 	/*
@@ -348,6 +365,10 @@ public class MediaFrame extends JFrame implements ActionListener, ChangeListener
 			public void run() {
 				MediaFrame mediaFrame = new MediaFrame();
 				mediaFrame.setVisible(true);
+				
+				if (AyatanaDesktop.isSupported()) {
+					ApplicationMenu.tryInstall(mediaFrame);
+				}
 			}
 			
 		});
