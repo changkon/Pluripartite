@@ -16,7 +16,7 @@ public class MediaSetting {
 	}
 	
 	private MediaSetting() {
-		skipTime = 10000;
+		skipTime = 5000;
 	}
 	
 	public long getSkipTime() {

@@ -15,33 +15,52 @@ import javax.swing.ImageIcon;
  */
 
 public class MediaIcon {
-	public enum DisplayIcon {
-		PLAY(path + "/res/play.png"),
-		PAUSE(path + "/res/pause.png"),
-		STOP(path + "/res/stop.png"),
-		FASTFORWARD(path + "/res/fastforward.png"),
-		REWIND(path + "/res/rewind.png"),
-		MUTE(path + "/res/mute.png"),
-		UNMUTE(path + "/res/unmute.png"),
-		MAXVOLUME(path + "/res/maxvolume.png"),
-		OPEN(path + "/res/open.png");
-		
-		private ImageIcon i;
-		
-		private DisplayIcon(String file) {
-			i = new ImageIcon(file);
-		}
-		
-		public ImageIcon getValue() {
-			return i;
-		}
-	}
-	
 	private static final int pixel = 20;
 	private static String path = System.getProperty("user.dir");
 	
-	public static Icon getIcon(DisplayIcon i) {
-		ImageIcon icon = i.getValue();
+	private static ImageIcon play = new ImageIcon(path + "/res/play.png");
+	private static ImageIcon pause = new ImageIcon(path + "/res/pause.png");
+	private static ImageIcon stop = new ImageIcon(path + "/res/stop.png");
+	private static ImageIcon fastforward = new ImageIcon(path + "/res/fastforward.png");
+	private static ImageIcon rewind = new ImageIcon(path + "/res/rewind.png");
+	private static ImageIcon mute = new ImageIcon(path + "/res/mute.png");
+	private static ImageIcon unmute = new ImageIcon(path + "/res/unmute.png");
+	private static ImageIcon maxVolume = new ImageIcon(path + "/res/maxvolume.png");
+	private static ImageIcon open = new ImageIcon(path + "/res/open.png");
+	
+	public static Icon getIcon(Playback option) {
+		ImageIcon icon = null;
+		
+		switch(option) {
+			case PLAY:
+				icon = play;
+				break;
+			case PAUSE:
+				icon = pause;
+				break;
+			case STOP:
+				icon = stop;
+				break;
+			case FASTFORWARD:
+				icon = fastforward;
+				break;
+			case REWIND:
+				icon = rewind;
+				break;
+			case MUTE:
+				icon = mute;
+				break;
+			case UNMUTE:
+				icon = unmute;
+				break;
+			case MAXVOLUME:
+				icon = maxVolume;
+				break;
+			case OPEN:
+				icon = open;
+				break;
+		}
+		
 		BufferedImage bi = resizeImage(icon);
 		icon.setImage(bi);
 		return icon;

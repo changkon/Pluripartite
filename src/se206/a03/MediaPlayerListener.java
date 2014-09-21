@@ -1,8 +1,9 @@
 package se206.a03;
 
 import java.lang.reflect.InvocationTargetException;
+
 import javax.swing.SwingUtilities;
-import se206.a03.MediaIcon.DisplayIcon;
+
 import uk.co.caprica.vlcj.player.MediaPlayer;
 import uk.co.caprica.vlcj.player.MediaPlayerEventAdapter;
 
@@ -13,10 +14,10 @@ import uk.co.caprica.vlcj.player.MediaPlayerEventAdapter;
  */
 
 public class MediaPlayerListener extends MediaPlayerEventAdapter {
-	private MediaFrame mediaFrame;
+	private MediaPanel mediaPanel;
 	
-	public MediaPlayerListener(MediaFrame mediaFrame) {
-		this.mediaFrame = mediaFrame;
+	public MediaPlayerListener(MediaPanel mediaPanel) {
+		this.mediaPanel = mediaPanel;
 	}
 	
 	// executed synchronously on the AWT event dispatching thread. Call is blocked until all processing AWT events have been
@@ -31,10 +32,10 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaFrame.finishTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getLength()));
-					mediaFrame.timeSlider.setMinimum(0);
-					mediaFrame.timeSlider.setMaximum((int)mediaPlayer.getLength());
-					mediaFrame.startTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getTime()));
+					mediaPanel.finishTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getLength()));
+					mediaPanel.timeSlider.setMinimum(0);
+					mediaPanel.timeSlider.setMaximum((int)mediaPlayer.getLength());
+					mediaPanel.startTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getTime()));
 				}
 				
 			});
@@ -52,8 +53,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaFrame.playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PLAY));
-					mediaFrame.t.stop();
+					mediaPanel.playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
 				}
 				
 			});
@@ -71,8 +71,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaFrame.t.start();
-					mediaFrame.playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PAUSE));
+					mediaPanel.playButton.setIcon(MediaIcon.getIcon(Playback.PAUSE));
 				}
 				
 			});
@@ -91,10 +90,9 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaFrame.t.stop();
-					mediaFrame.playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PLAY));
-					mediaFrame.startTimeLabel.setText(MediaFrame.initialTimeDisplay);
-					mediaFrame.finishTimeLabel.setText(MediaFrame.initialTimeDisplay);
+					mediaPanel.playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+					mediaPanel.startTimeLabel.setText(MediaPanel.initialTimeDisplay);
+					mediaPanel.finishTimeLabel.setText(MediaPanel.initialTimeDisplay);
 				}
 				
 			});
@@ -113,10 +111,29 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaFrame.t.stop();
-					mediaFrame.playButton.setIcon(MediaIcon.getIcon(DisplayIcon.PLAY));
-					mediaFrame.startTimeLabel.setText(MediaFrame.initialTimeDisplay);
-					mediaFrame.finishTimeLabel.setText(MediaFrame.initialTimeDisplay);
+					mediaPanel.playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+					mediaPanel.startTimeLabel.setText(MediaPanel.initialTimeDisplay);
+					mediaPanel.finishTimeLabel.setText(MediaPanel.initialTimeDisplay);
+				}
+				
+			});
+		} catch (InvocationTargetException | InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void timeChanged(MediaPlayer mediaPlayer, final long newTime) {
+		super.timeChanged(mediaPlayer, newTime);
+		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+
+				@Override
+				public void run() {
+					mediaPanel.startTimeLabel.setText(MediaTimer.getTime(newTime));
+					((TimeBoundedRangeModel)mediaPanel.timeSlider.getModel()).setActive(false);
+					mediaPanel.timeSlider.setValue((int)newTime);
 				}
 				
 			});
