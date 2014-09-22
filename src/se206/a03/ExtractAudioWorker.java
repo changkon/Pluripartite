@@ -13,6 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.ProgressMonitor;
 import javax.swing.SwingWorker;
 
+/**
+ * 
+ * Extracts audio from video file. Shows progress on progress monitor. Outputs different message dialog depending on how process terminated.
+ */
+
 public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	private String inputFile;
 	private String outputFile;

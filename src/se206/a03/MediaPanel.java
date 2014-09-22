@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.swing.BoundedRangeModel;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -27,9 +26,15 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.miginfocom.swing.MigLayout;
-import uk.co.caprica.vlcj.binding.internal.libvlc_audio_output_channel_t;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+
+/**
+ * 
+ * Singleton design pattern. Responsible for displaying anything media player related, such as the media player component
+ * and buttons, jsliders etc.
+ *
+ */
 
 @SuppressWarnings("serial")
 public class MediaPanel extends JPanel implements ActionListener, ChangeListener {
@@ -95,9 +100,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		addListeners();
 	}
 	
-	/*
-	 * Places buttons onto the button panel. Adds change listeners.
-	 */
+	// Places buttons onto the button panel.
 	private void setButtonPanel() {
 		playButton.setToolTipText("Play/Pause media file");
 		playButton.setBorderPainted(false);
@@ -152,6 +155,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		buttonPanel.add(openButton, "push, align right");
 	}
 	
+	// Adds any listeners onto component.
 	private void addListeners() {
 		// Add button listeners
 		playButton.addActionListener(this);
@@ -162,7 +166,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		maxVolumeButton.addActionListener(this);
 		openButton.addActionListener(this);
 		
-		// Volume slider change listeners
+		// Jslider change listeners
 		volumeSlider.addChangeListener(this);
 		timeSlider.addChangeListener(this);
 		
@@ -277,17 +281,21 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			}
 		});
 		
+		// Add media player event listener.
 		mediaPlayer.addMediaPlayerEventListener(new MediaPlayerListener(this));
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == playButton) {
+			
+			// Possible states: PENDING, STARTED, DONE
+			
 			switch(skipWorker.getState()) {
 				case STARTED:
 					skipWorker.cancel(true);
 					break;
-				default:
+				default: // PENDING, DONE
 					break;
 			}
 			
@@ -303,16 +311,18 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			// time in milliseconds
 			fastforwardButton.setSelected(true);
 			
-			switch(skipWorker.getState()) {
-				case PENDING:
-					skipWorker = new SkipWorker(Playback.FASTFORWARD);
-					skipWorker.execute();
-					break;
-				default:
-					skipWorker.cancel(true);
-					skipWorker = new SkipWorker(Playback.FASTFORWARD);
-					skipWorker.execute();
-					break;
+			if (mediaPlayer.isPlayable()) {
+				switch(skipWorker.getState()) {
+					case PENDING:
+						skipWorker = new SkipWorker(Playback.FASTFORWARD);
+						skipWorker.execute();
+						break;
+					default: // STARTED, DONE
+						skipWorker.cancel(true);
+						skipWorker = new SkipWorker(Playback.FASTFORWARD);
+						skipWorker.execute();
+						break;
+				}
 			}
 			
 
@@ -320,16 +330,18 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			// time in milliseconds
 			rewindButton.setSelected(true);
 			
-			switch(skipWorker.getState()) {
-				case PENDING:
-					skipWorker = new SkipWorker(Playback.REWIND);
-					skipWorker.execute();
-					break;
-				default:
-					skipWorker.cancel(true);
-					skipWorker = new SkipWorker(Playback.REWIND);
-					skipWorker.execute();
-					break;
+			if (mediaPlayer.isPlayable()) {
+				switch(skipWorker.getState()) {
+					case PENDING:
+						skipWorker = new SkipWorker(Playback.REWIND);
+						skipWorker.execute();
+						break;
+					default:
+						skipWorker.cancel(true);
+						skipWorker = new SkipWorker(Playback.REWIND);
+						skipWorker.execute();
+						break;
+				}
 			}
 		} else if (e.getSource() == muteButton) {
 			
@@ -360,12 +372,15 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			}
 		} else if (e.getSource() == timeSlider  && ((TimeBoundedRangeModel)timeSlider.getModel()).getActive()) {
 			if(!source.getValueIsAdjusting()){
-				System.out.println("received");
 				int time = source.getValue();
 				mediaPlayer.setTime(time);
 			}
 		}
 	}
+	
+	/**
+	 * Plays the media file selected by user from JFileChooser.
+	 */
 	
 	public void playFile() {
 		JFileChooser chooser = new JFileChooser();
@@ -445,6 +460,13 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			JOptionPane.showMessageDialog(null, "No media recognized");
 		}
 	}
+	
+	/**
+	 * {@link se206.a03.ExtractAudioWorker }
+	 * 
+	 * @param inputFilename
+	 * @param outputFilename
+	 */
 	
 	private void executeExtract(String inputFilename, String outputFilename) {
 		int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);

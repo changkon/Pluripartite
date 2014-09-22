@@ -7,6 +7,7 @@ package se206.a03;
 public class MediaSetting {
 	private static MediaSetting theInstance = null;
 	private long skipTime;
+	private int openingClosingFilterLength;
 	
 	public static MediaSetting getInstance() {
 		if (theInstance == null) {
@@ -17,6 +18,7 @@ public class MediaSetting {
 	
 	private MediaSetting() {
 		skipTime = 5000;
+		openingClosingFilterLength = 10;
 	}
 	
 	public long getSkipTime() {
@@ -25,5 +27,13 @@ public class MediaSetting {
 	
 	public void setSkipTime(long time) {
 		skipTime = time;
+	}
+	
+	public int getOpeningClosingFilterLength() {
+		return openingClosingFilterLength;
+	}
+	
+	public void setOpeningClosingFilterLength(int value) {
+		openingClosingFilterLength = value;
 	}
 }

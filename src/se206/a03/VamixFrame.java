@@ -17,10 +17,9 @@ import javax.swing.SwingUtilities;
 
 /**
  * 
- * Currently hard coded but will update. Download Full HD (1920x1080) 60fps http link by right click save as.
+ * The JFrame which shows VAMIX program. The main JPanel uses card layout and panels are swapped when different
+ * selections are clicked in the Panel Menu tab.
  * 
- * @see http://bbb3d.renderfarming.net/download.html
- *
  */
 
 @SuppressWarnings("serial")

@@ -13,6 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.ProgressMonitor;
 import javax.swing.SwingWorker;
 
+/**
+ * 
+ * Encodes filter options to file. Progress is shown on progress monitor.
+ *
+ */
+
 public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 	private String inputFilename;
 	private String outputFilename;
@@ -41,7 +47,7 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 		
 		// Set openingX/openingY and closingX/closingY. If the value is empty, give it determined values.
 		if (openingX.equals("")) {
-			this.openingX = "(W/2)-(w/2)"; // Sets to middle of screen.
+			this.openingX = "(W/2)-(w/2)"; // Sets to middle of screen. W = main input width. w = text width.
 		} else {
 			this.openingX = openingX;
 		}
@@ -53,7 +59,7 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 		}
 		
 		if (openingY.equals("")) {
-			this.openingY = "(H/1.1)"; // Sets near the bottom of the screen.
+			this.openingY = "(H/1.1)"; // Sets near the bottom of the screen. H = main input height.
 		} else {
 			this.openingY = openingY;
 		}
@@ -78,23 +84,23 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 	@Override
 	protected Void doInBackground() throws Exception {
 		StringBuilder command = new StringBuilder("avconv -i " + inputFilename + " -c:a copy -vf ");
-		
-		int lastTenSeconds = lengthOfVideo - 10;
+		int filterLength = MediaSetting.getInstance().getOpeningClosingFilterLength();
+		int lastSeconds = lengthOfVideo - filterLength;
 		
 		boolean hasOpeningText = !openingText.equals("");
 		boolean hasClosingText = !closingText.equals("");
 		
 		if (hasOpeningText && hasClosingText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + ": y=" 
-					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t,10)\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
-					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastTenSeconds + ")\'\" "
+					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterLength + ")\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
+					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" "
 					+ outputFilename);
 		} else if (hasOpeningText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + 
-					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t,10)\'\" " + outputFilename);
+					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterLength + ")\'\" " + outputFilename);
 		} else {
 			command.append("drawtext=\"fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + ": fontcolor=" + closingFontColor.toString() + ": x=" + closingX + 
-					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastTenSeconds + ")\'\" " + outputFilename);
+					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" " + outputFilename);
 		}
 		
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", command.toString());

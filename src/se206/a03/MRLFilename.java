@@ -4,9 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Returns file path string from given mrl
+ * Returns file path string from given mrl.
  * 
- *
  */
 
 public class MRLFilename {

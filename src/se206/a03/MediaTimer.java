@@ -2,6 +2,12 @@ package se206.a03;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 
+ * Returns a formatted string for the time to display correct time in media player.
+ *
+ */
+
 public class MediaTimer {
 	public static String getTime(long time) {
 		int hours = (int)TimeUnit.MILLISECONDS.toHours(time) % 24;

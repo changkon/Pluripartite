@@ -2,6 +2,11 @@ package se206.a03;
 
 import java.awt.Color;
 
+/**
+ * Enum of colors used for filterPanel.
+ *
+ */
+
 public enum FilterColor {
 	BLACK(Color.BLACK),
 	RED(Color.RED),

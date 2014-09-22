@@ -18,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ProgressMonitor;
-import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -26,14 +25,12 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.DocumentFilter;
 
+import net.miginfocom.swing.MigLayout;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
-import net.miginfocom.swing.MigLayout;
-
 /**
+ * Singleton design pattern. Panel contains anything related to filter editing of video.
  * 
- * Filtering only numbers
- * @see http://stackoverflow.com/questions/9477354/how-to-allow-introducing-only-digits-in-jtextfield
  */
 
 @SuppressWarnings("serial")
@@ -294,6 +291,12 @@ public class FilterPanel extends JPanel implements ActionListener {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * Document which limits amount the amount of words in document. Words are recognised when they are separated by space
+	 *
+	 */
+	
 	private class MyStyledDocument extends DefaultStyledDocument {
 		private int maxWords;
 		
@@ -322,6 +325,13 @@ public class FilterPanel extends JPanel implements ActionListener {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * Filtering only numbers
+	 * @see http://stackoverflow.com/questions/9477354/how-to-allow-introducing-only-digits-in-jtextfield
+	 *
+	 */
 	
 	private class MyTextFieldFilter extends DocumentFilter {
 

@@ -70,9 +70,8 @@ public class MediaIcon {
 	 * Resizes a given image to desired size
 	 * 
 	 * @param icon
-	 * @param width
-	 * @param height
 	 * @return BufferedImage
+	 * @see http://www.javalobby.org/articles/ultimate-image/#11
 	 */
 	private static BufferedImage resizeImage(ImageIcon icon) {
 		BufferedImage bi = new BufferedImage(pixel, pixel, BufferedImage.TYPE_INT_ARGB);

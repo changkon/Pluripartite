@@ -5,6 +5,11 @@ import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 
+ * Contains a directory to the font file.
+ */
+
 public enum FilterFont {
 	FREESERIF(System.getProperty("user.dir") + "/res/FreeSerif.ttf"),
 	UBUNTU_LIGHT(System.getProperty("user.dir") + "/res/Ubuntu-L.ttf"),
@@ -18,7 +23,7 @@ public enum FilterFont {
 	private FilterFont(String path) {
 		try {
 			this.path = path;
-			font = Font.createFont(Font.TRUETYPE_FONT, new File(path));
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(path)); // may need to edit.
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -9,8 +9,8 @@ import uk.co.caprica.vlcj.player.MediaPlayerEventAdapter;
 
 /**
  * Updates media frame when media frame state has changed. Because this is not in the EDT, it must call on invokeAndWait
- * to get GUI to be updated thread safe.
- * 
+ * to get GUI to be updated thread safe. Updates the GUI components when media is being played, such as button icons and label.
+ * Extends MediaPlayerEventAdapter
  */
 
 public class MediaPlayerListener extends MediaPlayerEventAdapter {
@@ -34,8 +34,11 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 				public void run() {
 					mediaPanel.finishTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getLength()));
 					mediaPanel.timeSlider.setMinimum(0);
-					mediaPanel.timeSlider.setMaximum((int)mediaPlayer.getLength());
+					mediaPanel.timeSlider.setMaximum((int)mediaPlayer.getLength()); // only accepts int.
 					mediaPanel.startTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getTime()));
+					mediaPanel.muteButton.setIcon(MediaIcon.getIcon(Playback.UNMUTE));
+					mediaPlayer.setTime(0);
+					mediaPlayer.mute(false);
 				}
 				
 			});
@@ -65,7 +68,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 	@Override
 	public void playing(MediaPlayer mediaPlayer) {
 		super.playing(mediaPlayer);
-		
+
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -83,6 +86,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 	@Override
 	public void stopped(MediaPlayer mediaPlayer) {
 		super.stopped(mediaPlayer);
+		
 		// Prepares media to be played when play button is pressed.
 		mediaPlayer.prepareMedia(mediaPlayer.mrl());
 		try {
@@ -105,6 +109,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 	public void finished(MediaPlayer mediaPlayer) {
 		super.finished(mediaPlayer);
 		
+		// Prepares media to be played when play button is pressed.
 		mediaPlayer.prepareMedia(mediaPlayer.mrl());
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -132,8 +137,10 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 				@Override
 				public void run() {
 					mediaPanel.startTimeLabel.setText(MediaTimer.getTime(newTime));
+					
+					// Turn "off" the change listener. So that when it calls statechanged, it does set time because the boolean is set to false.
 					((TimeBoundedRangeModel)mediaPanel.timeSlider.getModel()).setActive(false);
-					mediaPanel.timeSlider.setValue((int)newTime);
+					mediaPanel.timeSlider.setValue((int)newTime); // only accepts int.
 				}
 				
 			});
@@ -141,5 +148,4 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 			e.printStackTrace();
 		}
 	}
-	
 }
