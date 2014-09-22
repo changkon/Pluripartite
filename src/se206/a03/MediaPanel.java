@@ -331,7 +331,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == fastforwardButton) {
 			// time in milliseconds
 			fastforwardButton.setSelected(true);
-			
+			playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+			mediaPlayer.pause();
 			if (mediaPlayer.isPlayable()) {
 				switch(skipWorker.getState()) {
 					case PENDING:
@@ -350,7 +351,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == rewindButton) {
 			// time in milliseconds
 			rewindButton.setSelected(true);
-			
+			playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+			mediaPlayer.pause();
 			if (mediaPlayer.isPlayable()) {
 				switch(skipWorker.getState()) {
 					case PENDING:
