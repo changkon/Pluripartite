@@ -110,6 +110,8 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 		InputStream stdout = process.getInputStream();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(stdout));
 		
+		System.out.println(command.toString());
+		
 		Pattern p = Pattern.compile("\\btime=\\b\\d+.\\d+");
 		Matcher m;
 		String line = "";

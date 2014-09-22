@@ -24,4 +24,23 @@ public enum FilterColor {
 	public Color getColor() {
 		return color;
 	}
+	
+	public static FilterColor toFilterColor(String str){
+		switch(str) {
+		case "BLACK":
+			return FilterColor.BLACK;
+		case "RED":
+			return FilterColor.RED;
+		case "BLUE":
+			return FilterColor.BLUE;
+		case "GREEN":
+			return FilterColor.GREEN;
+		case "YELLOW":
+			return FilterColor.YELLOW;
+		case "ORANGE":
+			return FilterColor.ORANGE;
+		default:
+			return null;
+		}
+	}
 }

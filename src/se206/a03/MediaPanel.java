@@ -65,8 +65,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	
 	public JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, minVolume, maxVolume, 100); // 100 is arbitrary value.
 	
-	private EmbeddedMediaPlayerComponent mediaPlayerComponent;
-	private EmbeddedMediaPlayer mediaPlayer;
+	public EmbeddedMediaPlayerComponent mediaPlayerComponent;
+	public EmbeddedMediaPlayer mediaPlayer;
 	
 	private SkipWorker skipWorker = new SkipWorker(Playback.FASTFORWARD); // arbitrary. value doesn't matter.
 	
@@ -328,6 +328,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			}
 		} else if (e.getSource() == stopButton) {
 			mediaPlayer.stop();
+			timeSlider.setValue(0);
 		} else if (e.getSource() == fastforwardButton) {
 			// time in milliseconds
 			fastforwardButton.setSelected(true);
@@ -415,6 +416,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		if (selection == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = chooser.getSelectedFile();
 			mediaPlayer.playMedia(selectedFile.getPath());
+			FilterPanel.getInstance().checkLog(selectedFile.toString());
 		}
 	}
 	

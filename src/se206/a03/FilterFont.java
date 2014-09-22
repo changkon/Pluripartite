@@ -56,4 +56,22 @@ public enum FilterFont {
 				return "";
 		}
 	}
+	
+	public static FilterFont toFilterFont(String str){
+		switch(str) {
+		case "Freeserif":
+			return FilterFont.FREESERIF;
+		case "Ubuntu Light":
+			return FilterFont.UBUNTU_LIGHT;
+		case "Ubuntu Regular":
+			return FilterFont.UBUNTU_REGULAR;
+		case "Ubuntu Medium":
+			return FilterFont.UBUNTU_MEDIUM;
+		case "Ubuntu Condensed":
+			return FilterFont.UBUNTU_CONDENSED;
+		default:
+			return null;
+	}
+		
+	}
 }

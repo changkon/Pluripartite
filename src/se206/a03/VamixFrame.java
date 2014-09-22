@@ -114,6 +114,7 @@ public class VamixFrame extends JFrame implements ActionListener {
 			public void run() {
 				VamixFrame vamixFrame = new VamixFrame();
 				vamixFrame.setVisible(true);
+				//vamixFrame.setLocationRelativeTo(null);
 			}
 			
 		});

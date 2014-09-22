@@ -89,6 +89,8 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", command.toString());
 		
+		System.out.println(command.toString());
+		
 		Process process = builder.start();
 		process.waitFor();
 		

@@ -4,7 +4,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -26,6 +31,7 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.DocumentFilter;
 
 import net.miginfocom.swing.MigLayout;
+import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
@@ -60,8 +66,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer> openingFontSizeCombo = new JComboBox<Integer>(fontSizeSelection);
 	private JComboBox<FilterColor> openingFontColorCombo = new JComboBox<FilterColor>(FilterColor.values());
 	
-	private JLabel openingXLabel = new JLabel("x");
-	private JLabel openingYLabel = new JLabel("y");
+	private JLabel openingXLabel = new JLabel("x:");
+	private JLabel openingYLabel = new JLabel("y:");
 	
 	private JTextField openingXTextField = new JTextField(5);
 	private JTextField openingYTextField = new JTextField(5);
@@ -70,14 +76,20 @@ public class FilterPanel extends JPanel implements ActionListener {
 	private JComboBox<Integer> closingFontSizeCombo = new JComboBox<Integer>(fontSizeSelection);
 	private JComboBox<FilterColor> closingFontColorCombo = new JComboBox<FilterColor>(FilterColor.values());
 	
-	private JLabel closingXLabel = new JLabel("x");
-	private JLabel closingYLabel = new JLabel("y");
+	private JLabel closingXLabel = new JLabel("x:");
+	private JLabel closingYLabel = new JLabel("y:");
 	
 	private JTextField closingXTextField = new JTextField(5);
 	private JTextField closingYTextField = new JTextField(5);
 	
-	private JButton saveButton = new JButton("Save");
+	private JButton saveButton = new JButton("Save Video");
 	private JButton previewButton = new JButton("Preview");
+	private JButton saveWorkButton = new JButton("Save current work");
+	
+	//private MediaPanel mp = MediaPanel.getInstance();
+	//private EmbeddedMediaPlayerComponent mpc = mp.mediaPlayerComponent;
+	
+	private String currentFileName = "";
 	
 	public static FilterPanel getInstance() {
 		if (theInstance == null) {
@@ -87,24 +99,86 @@ public class FilterPanel extends JPanel implements ActionListener {
 	}
 	
 	private FilterPanel() {
-		setLayout(new MigLayout());
-		
+		setLayout(new MigLayout("gap rel 0" , "grow"));
 		setOpeningTextPanel();
 		setClosingTextPanel();
-		addListeners();
-
+		addListeners();		
+		
 		add(textLabel, "wrap");
-		add(openingTextPanel, "wrap");
-		add(closingTextPanel, "wrap");
-		add(saveButton, "split 2");
+			
+		add(openingTextPanel, "left");
+		add(closingTextPanel, "right");
+
+		add(saveButton);
 		add(previewButton);
+		add(saveWorkButton);
+	}
+
+	public void checkLog(String fileName) {
+		//set up the folder if it doesnt exist
+		currentFileName = fileName;
+		File home = new File(System.getProperty("user.home"));
+		File vamixdir = new File(home + "/.vamix");
+				if (!vamixdir.exists()) {
+					try{
+						vamixdir.mkdir();
+					}catch(SecurityException se){
+					
+					}
+				}
+		//set up the file if it doesnt exist
+		File log = new File(home + "/.vamix/log.txt");
+				try{
+					if(!log.exists()){
+						log.createNewFile();
+					}
+					}catch(IOException e){
+				}
+		try{
+			BufferedReader in = new BufferedReader(new FileReader(log));
+					String line = in.readLine();
+					while(line != null && line.length() != 0){
+					  String[] words = line.split(",");
+					  if(words[0].equals(fileName)){							
+							openingTextArea.setText(words[1]);
+							closingTextArea.setText(words[2]);
+							openingXTextField.setText(words[3]);
+							closingXTextField.setText(words[4]);
+							openingYTextField.setText(words[5]);
+							closingYTextField.setText(words[6]);
+							openingFontCombo.setSelectedItem(FilterFont.toFilterFont(words[7]));
+							closingFontCombo.setSelectedItem(FilterFont.toFilterFont(words[8]));
+							openingFontSizeCombo.setSelectedItem(Integer.parseInt(words[9]));
+							closingFontSizeCombo.setSelectedItem(Integer.parseInt(words[10]));
+							openingFontColorCombo.setSelectedItem(FilterColor.toFilterColor(words[11]));
+							closingFontColorCombo.setSelectedItem(FilterColor.toFilterColor(words[12]));
+							
+							/*System.out.println(openingTextArea.getText());
+							System.out.println(closingTextArea.getText());
+							System.out.println(openingXTextField.getText());
+							System.out.println(closingXTextField.getText());
+							System.out.println(openingYTextField.getText());
+							System.out.println(closingYTextField.getText());
+							System.out.println(openingFontCombo.getSelectedItem());
+							System.out.println(closingFontCombo.getSelectedItem());
+							System.out.println(openingFontSizeCombo.getSelectedItem());
+							System.out.println(closingFontSizeCombo.getSelectedItem());
+							System.out.println(openingFontColorCombo.getSelectedItem());
+							System.out.println(closingFontColorCombo.getSelectedItem());
+							*/
+					  }
+					  line = in.readLine();
+					}
+				}catch(Exception eeeee){
+					eeeee.printStackTrace();
+				}
 	}
 
 	private void setOpeningTextPanel() {
 		// Sets filter for textfields.
 		((AbstractDocument)openingXTextField.getDocument()).setDocumentFilter(new MyTextFieldFilter());
 		((AbstractDocument)openingYTextField.getDocument()).setDocumentFilter(new MyTextFieldFilter());
-		
+
 		openingOptionPanel.add(openingFontCombo, "split 3"); // split the cell in 3. this so 3 components go into same cell
 		openingOptionPanel.add(openingFontSizeCombo);
 		openingOptionPanel.add(openingFontColorCombo, "wrap");
@@ -117,6 +191,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 		
 		openingTextArea.setLineWrap(true);
 		openingTextArea.setWrapStyleWord(true);
+		openingTextArea.setText("Opening Scene Text");
 		
 		openingTextPanel.add(openingOptionPanel, "wrap");
 		openingTextPanel.add(openingTextScroll);
@@ -139,7 +214,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 		
 		closingTextArea.setLineWrap(true);
 		closingTextArea.setWrapStyleWord(true);
-
+		closingTextArea.setText("Closing Scene Text");
+		
 		closingTextPanel.add(closingOptionPanel, "wrap");
 		closingTextPanel.add(closingTextScroll);
 	}
@@ -159,6 +235,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 		
 		saveButton.addActionListener(this);
 		previewButton.addActionListener(this);
+		saveWorkButton.addActionListener(this);
 	}
 
 	@Override
@@ -238,6 +315,28 @@ public class FilterPanel extends JPanel implements ActionListener {
 				
 				
 				worker.execute();
+			}
+		} else if (e.getSource() == saveWorkButton){
+			if(verifyInput()){
+				PrintWriter writer = null;
+				try {
+					File home = new File(System.getProperty("user.home"));
+					File logFile = new File(home + "/.vamix/log.txt");
+					writer = new PrintWriter(new FileWriter(logFile, true));
+					String txtline = currentFileName + "," + openingTextArea.getText() + "," +closingTextArea.getText() + "," +
+									 openingXTextField.getText() + "," + closingXTextField.getText()+ "," + openingYTextField.getText() + ","
+									 + closingYTextField.getText() + ","+ openingFontCombo.getSelectedItem() + "," + closingFontCombo.getSelectedItem() + ","
+									 + openingFontSizeCombo.getSelectedItem()+ "," + closingFontSizeCombo.getSelectedItem() + "," +
+									 openingFontColorCombo.getSelectedItem()+ "," + closingFontColorCombo.getSelectedItem();
+					writer.println(txtline);
+				} catch (Exception eee) {
+					eee.printStackTrace();
+				} finally {
+					try {
+						writer.close();
+					} catch (Exception ssse) {
+					}
+				}
 			}
 		}
 	}
