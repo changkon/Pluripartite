@@ -7,7 +7,11 @@ package se206.a03;
 public class MediaSetting {
 	private static MediaSetting theInstance = null;
 	private long skipTime;
-	private int openingClosingFilterLength;
+	
+	private final static int DEFAULT_OPENING_CLOSING_LENGTH = 10;
+	
+	private int openingFilterLength;
+	private int closingFilterLength;
 	
 	public static MediaSetting getInstance() {
 		if (theInstance == null) {
@@ -18,7 +22,8 @@ public class MediaSetting {
 	
 	private MediaSetting() {
 		skipTime = 5000;
-		openingClosingFilterLength = 10;
+		openingFilterLength = 10;
+		closingFilterLength = 10;
 	}
 	
 	public long getSkipTime() {
@@ -29,11 +34,75 @@ public class MediaSetting {
 		skipTime = time;
 	}
 	
-	public int getOpeningClosingFilterLength() {
-		return openingClosingFilterLength;
+	//public int getOpeningClosingFilterLength() {
+		//return DEFAULT_OPENING_CLOSING_LENGTH;
+	//}
+	
+	public int getOpeningFilterLength(){
+		if(openingFilterLength < 1 || openingFilterLength > 10){
+			return DEFAULT_OPENING_CLOSING_LENGTH;
+		}
+		else{
+
+			System.out.println("HIIIIII");
+			return openingFilterLength;
+		}
 	}
 	
-	public void setOpeningClosingFilterLength(int value) {
-		openingClosingFilterLength = value;
+	public int getClosingFilterLength(){
+		if(closingFilterLength < 1 || closingFilterLength > 10){
+			return DEFAULT_OPENING_CLOSING_LENGTH;
+		}
+		else{
+			return closingFilterLength;
+		}
 	}
+	
+	public void setOpeningFilterLength(String str){
+		openingFilterLength = MediaSetting.stringToInt(str);
+	}
+	
+	public void setClosingFilterLength(String str){
+		closingFilterLength = MediaSetting.stringToInt(str);
+	}
+	
+	private static int stringToInt(String temp){
+		int seconds = 0;
+		
+		switch(temp){
+			case "1 second":
+				seconds = 1;
+				break;
+			case "2 seconds":
+				seconds = 2;
+				break;
+			case "3 seconds":
+				seconds = 3;
+				break;
+			case "4 seconds":
+				seconds = 4;
+				break;
+			case "5 seconds":
+				seconds = 5;
+				break;
+			case "6 seconds":
+				seconds = 6;
+				break;
+			case "7 seconds":
+				seconds = 7;
+				break;
+			case "8 seconds":
+				seconds = 8;
+				break;
+			case "9 sceonds":
+				seconds = 9;
+				break;
+			case "10 seconds":
+				seconds = 10;
+				break;
+		}
+		return seconds;
+		
+	}
+	
 }

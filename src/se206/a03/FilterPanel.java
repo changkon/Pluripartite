@@ -69,6 +69,11 @@ public class FilterPanel extends JPanel implements ActionListener {
 	private JLabel openingXLabel = new JLabel("x:");
 	private JLabel openingYLabel = new JLabel("y:");
 	
+	private String[] timeLengthSelection = {"1 second","2 seconds","3 seconds","4 seconds","5 seconds",
+											"6 seconds", "7 seconds", "8 seconds", "9 seconds", "10 seconds"};
+	private JComboBox<String> openingTimeLength = new JComboBox<String>(timeLengthSelection);
+	private JComboBox<String> closingTimeLength = new JComboBox<String>(timeLengthSelection);
+	
 	private JTextField openingXTextField = new JTextField(5);
 	private JTextField openingYTextField = new JTextField(5);
 	
@@ -182,10 +187,11 @@ public class FilterPanel extends JPanel implements ActionListener {
 		openingOptionPanel.add(openingFontCombo, "split 3"); // split the cell in 3. this so 3 components go into same cell
 		openingOptionPanel.add(openingFontSizeCombo);
 		openingOptionPanel.add(openingFontColorCombo, "wrap");
-		openingOptionPanel.add(openingXLabel, "split 4"); // split the cell in 4. this is so 4 components go into same cell
+		openingOptionPanel.add(openingXLabel, "split 5"); // split the cell in 4. this is so 4 components go into same cell
 		openingOptionPanel.add(openingXTextField);
 		openingOptionPanel.add(openingYLabel);
 		openingOptionPanel.add(openingYTextField);
+		openingOptionPanel.add(openingTimeLength);
 		
 		openingTextScroll.setPreferredSize(new Dimension(400, 200)); // arbitrary value.
 		
@@ -205,10 +211,11 @@ public class FilterPanel extends JPanel implements ActionListener {
 		closingOptionPanel.add(closingFontCombo, "split 3"); // split the cell in 3. this so 3 components go into same cell
 		closingOptionPanel.add(closingFontSizeCombo);
 		closingOptionPanel.add(closingFontColorCombo, "wrap");
-		closingOptionPanel.add(closingXLabel, "split 4"); // split the cell in 4. this is so 4 components go into same cell
+		closingOptionPanel.add(closingXLabel, "split 5"); // split the cell in 4. this is so 4 components go into same cell
 		closingOptionPanel.add(closingXTextField);
 		closingOptionPanel.add(closingYLabel);
 		closingOptionPanel.add(closingYTextField);
+		closingOptionPanel.add(closingTimeLength);
 		
 		closingTextScroll.setPreferredSize(new Dimension(400, 200));
 		
@@ -224,10 +231,13 @@ public class FilterPanel extends JPanel implements ActionListener {
 		openingFontCombo.addActionListener(this);
 		openingFontSizeCombo.addActionListener(this);
 		openingFontColorCombo.addActionListener(this);
+		openingTimeLength.addActionListener(this);
 		
 		closingFontCombo.addActionListener(this);
 		closingFontSizeCombo.addActionListener(this);
 		closingFontColorCombo.addActionListener(this);
+		closingTimeLength.addActionListener(this);
+		
 		
 		// Sets the preferred index of font size. It also calls event listener which is important for displaying correct font.
 		openingFontSizeCombo.setSelectedIndex(3);
@@ -327,7 +337,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 									 openingXTextField.getText() + "," + closingXTextField.getText()+ "," + openingYTextField.getText() + ","
 									 + closingYTextField.getText() + ","+ openingFontCombo.getSelectedItem() + "," + closingFontCombo.getSelectedItem() + ","
 									 + openingFontSizeCombo.getSelectedItem()+ "," + closingFontSizeCombo.getSelectedItem() + "," +
-									 openingFontColorCombo.getSelectedItem()+ "," + closingFontColorCombo.getSelectedItem();
+									 openingFontColorCombo.getSelectedItem()+ "," + closingFontColorCombo.getSelectedItem() + "," + 
+									 openingTimeLength.getSelectedItem() + "," + closingTimeLength.getSelectedItem();
 					writer.println(txtline);
 				} catch (Exception eee) {
 					eee.printStackTrace();
@@ -338,6 +349,10 @@ public class FilterPanel extends JPanel implements ActionListener {
 					}
 				}
 			}
+		} else if (e.getSource() == openingTimeLength ){
+			MediaSetting.getInstance().setOpeningFilterLength((String)openingTimeLength.getSelectedItem());
+		} else if (e.getSource() == closingTimeLength ){
+			MediaSetting.getInstance().setClosingFilterLength((String)closingTimeLength.getSelectedItem());
 		}
 	}
 	

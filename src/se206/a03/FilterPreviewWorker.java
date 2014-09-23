@@ -69,19 +69,20 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 	@Override
 	protected Void doInBackground() throws Exception {
 		StringBuilder command = new StringBuilder("avplay -i " + inputFilename + " -vf ");
-		int filterLength = MediaSetting.getInstance().getOpeningClosingFilterLength();
-		int lastSeconds = lengthOfVideo - filterLength;
+		int filterOpeningLength = MediaSetting.getInstance().getOpeningFilterLength();
+		int filterClosingLength = MediaSetting.getInstance().getClosingFilterLength();
+		int lastSeconds = lengthOfVideo - filterClosingLength;
 		
 		boolean hasOpeningText = !openingText.equals("");
 		boolean hasClosingText = !closingText.equals("");
 		
 		if (hasOpeningText && hasClosingText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + ": y=" 
-					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterLength + ")\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
+					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
 					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\"");
 		} else if (hasOpeningText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + 
-					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterLength + ")\'\"");
+					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\'\"");
 		} else {
 			command.append("drawtext=\"fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + ": fontcolor=" + closingFontColor.toString() + ": x=" + closingX + 
 					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\"");
