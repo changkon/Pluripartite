@@ -157,6 +157,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 							closingFontSizeCombo.setSelectedItem(Integer.parseInt(words[10]));
 							openingFontColorCombo.setSelectedItem(FilterColor.toFilterColor(words[11]));
 							closingFontColorCombo.setSelectedItem(FilterColor.toFilterColor(words[12]));
+							openingTimeLength.setSelectedItem(words[13]);
+							closingTimeLength.setSelectedItem(words[14]);
 							
 							/*System.out.println(openingTextArea.getText());
 							System.out.println(closingTextArea.getText());
@@ -340,6 +342,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 									 openingFontColorCombo.getSelectedItem()+ "," + closingFontColorCombo.getSelectedItem() + "," + 
 									 openingTimeLength.getSelectedItem() + "," + closingTimeLength.getSelectedItem();
 					writer.println(txtline);
+					JOptionPane.showMessageDialog(null, "Saved session for this video. Press okay!");
 				} catch (Exception eee) {
 					eee.printStackTrace();
 				} finally {

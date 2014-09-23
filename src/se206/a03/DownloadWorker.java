@@ -77,11 +77,8 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 	@Override
 	protected void done(){
 		monitor.close();
-		System.out.println("hi");
 		try{//if successful, log it
 			if(get() == 0){
-
-				System.out.println("hieee");
 				JOptionPane.showMessageDialog(null, "Successful Download! Please press okay!");
 				//PrintWriter writer = null;
 				try {
@@ -102,29 +99,27 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 					}
 				}
 			}
-			else{
-				JOptionPane.showMessageDialog(null, "Download did not complete! Type the same URL to resume download!");
-			}
-			/*else{//if not successful, return the error code decomposition
+			else{//if not successful, return the error code decomposition
 				if(get() == 1){
-					_gui.setOutputText("Generic Error Code. Press okay!");
+					JOptionPane.showMessageDialog(null, "Generic Error Code. Press okay!");
 				}else if(get() == 2){
-					_gui.setOutputText("Prase Error. Press okay!");
+					JOptionPane.showMessageDialog(null, "Prase Error. Press okay!");
 				}else if(get() == 3){
-					_gui.setOutputText("File IO Error. Press okay!");
+					JOptionPane.showMessageDialog(null, "File IO Error. Press okay!");
 				}else if(get() == 4){
-					_gui.setOutputText("Network Failure. Press okay!");
+					JOptionPane.showMessageDialog(null, "Make sure your URL is correct. Press okay!");
 				}else if(get() == 5){
-					_gui.setOutputText("SSL verification failure. Press okay!");
+					JOptionPane.showMessageDialog(null, "SSL verification failure. Press okay!");
 				}else if(get() == 6){
-					_gui.setOutputText("Username/password authentication failure. Press okay!");
+					JOptionPane.showMessageDialog(null, "Username/password authentication failure. Press okay!");
 				}else if(get() == 7){
-					_gui.setOutputText("Protocol Errors. Press okay!");
+					JOptionPane.showMessageDialog(null, "Protocol Errors. Press okay!");
 				}else if(get() == 8){
-					_gui.setOutputText("Server issued an error response. Press okay!");
+					JOptionPane.showMessageDialog(null, "Server issued an error response. Press okay!");
+				}else{
+					JOptionPane.showMessageDialog(null, "Download did not complete! Type the same URL to resume download!");
 				}
-				_gui.setSystemState("finished state");
-			}*/
+			}
 		}catch(InterruptedException ie){
 			ie.printStackTrace();
 		}catch(ExecutionException ee){

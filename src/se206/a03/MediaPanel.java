@@ -1,16 +1,27 @@
 package se206.a03;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.LinearGradientPaint;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -19,11 +30,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.Painter;
 import javax.swing.ProgressMonitor;
 import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.basic.BasicSliderUI;
+import javax.swing.plaf.metal.MetalSliderUI;
+import javax.swing.plaf.synth.SynthLookAndFeel;
+import javax.swing.plaf.synth.SynthSliderUI;
 
 import net.miginfocom.swing.MigLayout;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
@@ -45,6 +64,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	private JPanel playbackPanel = new JPanel(new MigLayout());
 	private JPanel timePanel = new JPanel(new MigLayout());
 	private JPanel buttonPanel = new JPanel(new MigLayout());
+	
+	private DownloadPanel downloadPanel = new DownloadPanel();
 	
 	public JButton playButton = new JButton(MediaIcon.getIcon(Playback.PLAY));
 	public JButton stopButton = new JButton(MediaIcon.getIcon(Playback.STOP));
@@ -85,8 +106,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		
 		// Initially set value to 0
 		timeSlider.setValue(0);
-		
-		timePanel.add(startTimeLabel);
+        timePanel.add(startTimeLabel);
 		timePanel.add(timeSlider, "pushx, growx");
 		timePanel.add(finishTimeLabel);
 		
@@ -94,6 +114,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		
 		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
 		playbackPanel.add(buttonPanel, "pushx, growx");
+		playbackPanel.add(downloadPanel, "south, pushx, growx");
+		downloadPanel.setVisible(false);
 		
 		add(mediaPlayerComponent, BorderLayout.CENTER);
 		add(playbackPanel, BorderLayout.SOUTH);
@@ -384,8 +406,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == openButton) {
 			playFile();
 		} else if (e.getSource() == downloadButton){
-			DownloadPopup dp = new DownloadPopup();
-			dp.downloadExecute();
+			downloadPanel.setVisible(true);
 		}
 	}
 	

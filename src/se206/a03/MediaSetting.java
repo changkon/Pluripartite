@@ -102,7 +102,44 @@ public class MediaSetting {
 				break;
 		}
 		return seconds;
+	}
+	
+	public static String intToString(int temp){
+		String seconds = "";
 		
+		switch(temp){
+			case 1:
+				seconds = "1 second";
+				break;
+			case 2:
+				seconds = "2 seconds";
+				break;
+			case 3:
+				seconds = "3 seconds";
+				break;
+			case 4:
+				seconds = "4 seconds";
+				break;
+			case 5:
+				seconds = "5 seconds";
+				break;
+			case 6:
+				seconds = "6 seconds";
+				break;
+			case 7:
+				seconds = "7 seconds";
+				break;
+			case 8:
+				seconds = "8 seconds";
+				break;
+			case 9:
+				seconds = "9 sceonds";
+				break;
+			case 10:
+				seconds = "10 seconds";
+				break;
+		}
+		return seconds;
 	}
 	
 }
