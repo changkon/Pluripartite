@@ -161,6 +161,12 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		buttonPanel.add(muteButton, "gapleft 15");
 		
 		volumeSlider.setToolTipText("Adjust Volume");
+		volumeSlider.setUI(new MetalSliderUI(){
+			@Override
+			public void paintThumb(Graphics g){
+				
+			}
+		});
 		buttonPanel.add(volumeSlider);
 		
 		maxVolumeButton.setToolTipText("Set to max volume");
