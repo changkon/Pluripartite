@@ -1,5 +1,6 @@
 package se206.a03;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -122,12 +123,23 @@ public class FilterPanel extends JPanel implements ActionListener {
 		
 		add(textLabel, "wrap");
 			
+		previewButton1.setForeground(Color.WHITE);
+		previewButton1.setBackground(new Color(183, 183, 183));
+		
 		add(openingTextPanel, "wrap");
 		add(previewButton1, "wrap 30px, pushx, align center");
+		
+		previewButton2.setForeground(Color.WHITE);
+		previewButton2.setBackground(new Color(183, 183, 183));
 		
 		add(closingTextPanel, "wrap");
 		add(previewButton2, "wrap 50px, pushx, align center");
 		
+		saveButton.setForeground(Color.WHITE);
+		saveButton.setBackground(new Color(255, 106, 106));
+		
+		saveWorkButton.setForeground(Color.WHITE);
+		saveWorkButton.setBackground(new Color(255, 106, 106));
 		
 		add(saveButton, "split 2, pushx, align center");
 		add(saveWorkButton);

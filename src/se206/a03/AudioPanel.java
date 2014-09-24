@@ -1,5 +1,6 @@
 package se206.a03;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -69,7 +70,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 		}
 		return theInstance;
 	}
-
+	
 	private AudioPanel() {
 		setLayout(new MigLayout());
 
@@ -93,6 +94,12 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		extractionLabel.setFont(font);
 
+		extractButton.setForeground(Color.WHITE);
+		extractButton.setBackground(new Color(183, 183, 183));
+		
+		extractFullButton.setForeground(Color.WHITE);
+		extractFullButton.setBackground(new Color(183, 183, 183));
+		
 		audioExtractionPanel.add(extractionLabel, "wrap");
 		audioExtractionPanel.add(timeLabel, "wrap");
 		audioExtractionPanel.add(startTimeLabel, "split 4");
@@ -111,6 +118,13 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		replaceAudioLabel.setFont(font);
 
+		// Custom coloured button
+		selectAudioReplaceFileButton.setForeground(Color.WHITE);
+		selectAudioReplaceFileButton.setBackground(new Color(99, 184, 255));
+		
+		audioReplaceButton.setForeground(Color.WHITE);
+		audioReplaceButton.setBackground(new Color(183, 183, 183));
+		
 		audioReplacePanel.add(replaceAudioLabel, "wrap");
 		audioReplacePanel.add(selectAudioReplaceFileButton);
 		audioReplacePanel.add(selectedAudioReplaceFileTextField, "pushx, growx, wrap");
@@ -122,6 +136,12 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		audioOverlayLabel.setFont(font);
 
+		selectAudioOverlayFileButton.setForeground(Color.WHITE);
+		selectAudioOverlayFileButton.setBackground(new Color(99, 184, 255));
+		
+		audioOverlayButton.setForeground(Color.WHITE);
+		audioOverlayButton.setBackground(new Color(183, 183, 183));
+		
 		audioOverlayPanel.add(audioOverlayLabel, "wrap");
 		audioOverlayPanel.add(selectAudioOverlayFileButton);
 		audioOverlayPanel.add(selectedAudioOverlayFileTextField, "pushx, growx, wrap");
