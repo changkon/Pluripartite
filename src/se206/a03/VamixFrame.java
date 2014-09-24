@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -30,28 +29,32 @@ public class VamixFrame extends JFrame implements ActionListener {
 	private JMenuBar menuBar = new JMenuBar();
 	
 	private JMenu panelMenu = new JMenu("Panel");
-	private JMenuItem mediaPanelOption = new JMenuItem("Media Player"); 
+	private JMenuItem mainPanelOption = new JMenuItem("Main"); 
 	private JMenuItem filterPanelOption = new JMenuItem("Filters");
 	
 	private JMenu mediaMenu = new JMenu("Media");
 	private JMenuItem openMenuOption = new JMenuItem("Open..");
-	private JMenuItem extractAudioFromVideoOption = new JMenuItem("Extract Audio");
 	
-	private MediaPanel mediaPanel = MediaPanel.getInstance();
-	private final String MEDIA = "Media";
+	private MainPanel mainPanel = MainPanel.getInstance();
+	private final String MAIN = "Main";
 	
 	private FilterPanel filterPanel = FilterPanel.getInstance();
 	private final String FILTER = "Filter";
 	
+	private AudioPanel audioPanel = AudioPanel.getInstance();
+	private final String AUDIO = "Audio";
+	
 	public VamixFrame() {
 		super("VAMIX");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(1200, 700));
+		setMinimumSize(new Dimension(1350, 765));
+		setPreferredSize(new Dimension(1350, 765));
 		
 		setMenuBar();
 		setJMenuBar(menuBar);
 		
-		panels.add(mediaPanel, MEDIA);
+//		panels.add(audioPanel, AUDIO);
+		panels.add(mainPanel, MAIN);
 		panels.add(filterPanel, FILTER);
 		
 		add(panels);
@@ -60,11 +63,10 @@ public class VamixFrame extends JFrame implements ActionListener {
 	}
 	
 	private void setMenuBar() {
-		panelMenu.add(mediaPanelOption);
+		panelMenu.add(mainPanelOption);
 		panelMenu.add(filterPanelOption);
 		
 		mediaMenu.add(openMenuOption);
-		mediaMenu.add(extractAudioFromVideoOption);
 		
 		menuBar.add(panelMenu);
 		menuBar.add(mediaMenu);
@@ -72,8 +74,7 @@ public class VamixFrame extends JFrame implements ActionListener {
 	
 	private void addListeners() {
 		openMenuOption.addActionListener(this);
-		extractAudioFromVideoOption.addActionListener(this);
-		mediaPanelOption.addActionListener(this);
+		mainPanelOption.addActionListener(this);
 		filterPanelOption.addActionListener(this);
 		
 		// Makes sure when window closes, it releases the mediaPlayer.
@@ -82,7 +83,7 @@ public class VamixFrame extends JFrame implements ActionListener {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
-				mediaPanel.getMediaPlayer().release();
+				MediaPanel.getInstance().getMediaPlayer().release();
 			}
 			
 		});
@@ -91,16 +92,10 @@ public class VamixFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openMenuOption) {
-			mediaPanel.playFile();
-		} else if (e.getSource() == extractAudioFromVideoOption) {
-			try {
-				mediaPanel.extractAudio();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		} else if (e.getSource() == mediaPanelOption) {
+			MediaPanel.getInstance().playFile();
+		} else if (e.getSource() == mainPanelOption) {
 			CardLayout c = (CardLayout)panels.getLayout();
-			c.show(panels, MEDIA);
+			c.show(panels, MAIN);
 		} else if (e.getSource() == filterPanelOption) {
 			CardLayout c = (CardLayout)panels.getLayout();
 			c.show(panels, FILTER);

@@ -31,7 +31,6 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.DocumentFilter;
 
 import net.miginfocom.swing.MigLayout;
-import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 /**
@@ -88,7 +87,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 	private JTextField closingYTextField = new JTextField(5);
 	
 	private JButton saveButton = new JButton("Save Video");
-	private JButton previewButton = new JButton("Preview");
+	private JButton previewButton1 = new JButton("Preview Opening");
+	private JButton previewButton2 = new JButton("Preview Closing");
 	private JButton saveWorkButton = new JButton("Save current work");
 	
 	//private MediaPanel mp = MediaPanel.getInstance();
@@ -115,7 +115,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 		add(closingTextPanel, "right");
 
 		add(saveButton);
-		add(previewButton);
+		add(previewButton1);
+		add(previewButton2);
 		add(saveWorkButton);
 	}
 
@@ -246,7 +247,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 		closingFontSizeCombo.setSelectedIndex(3);
 		
 		saveButton.addActionListener(this);
-		previewButton.addActionListener(this);
+		previewButton1.addActionListener(this);
+		previewButton2.addActionListener(this);
 		saveWorkButton.addActionListener(this);
 	}
 
@@ -304,11 +306,14 @@ public class FilterPanel extends JPanel implements ActionListener {
 				}
 				
 			}
-		} else if (e.getSource() == previewButton) {
+		} else if (e.getSource() == previewButton1) {
 			if (verifyInput()) {
+				MediaSetting.getInstance().setClosingFilterLength((String)closingTimeLength.getSelectedItem());
+				MediaSetting.getInstance().setOpeningFilterLength((String)openingTimeLength.getSelectedItem());				
 				int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);
 				
 				FilterPreviewWorker worker = new FilterPreviewWorker(
+						"Opening",
 						MRLFilename.getFilename(mediaPlayer.mrl()),
 						openingTextArea.getText(),
 						closingTextArea.getText(),
@@ -328,7 +333,34 @@ public class FilterPanel extends JPanel implements ActionListener {
 				
 				worker.execute();
 			}
-		} else if (e.getSource() == saveWorkButton){
+		}else if (e.getSource() == previewButton2) {
+				if (verifyInput()) {
+					MediaSetting.getInstance().setClosingFilterLength((String)closingTimeLength.getSelectedItem());
+					MediaSetting.getInstance().setOpeningFilterLength((String)openingTimeLength.getSelectedItem());
+					int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);
+					
+					FilterPreviewWorker worker = new FilterPreviewWorker(
+							"Closing",
+							MRLFilename.getFilename(mediaPlayer.mrl()),
+							openingTextArea.getText(),
+							closingTextArea.getText(),
+							openingXTextField.getText(),
+							closingXTextField.getText(),
+							openingYTextField.getText(),
+							closingYTextField.getText(),
+							(FilterFont)openingFontCombo.getSelectedItem(),
+							(FilterFont)closingFontCombo.getSelectedItem(),
+							(Integer)openingFontSizeCombo.getSelectedItem(),
+							(Integer)closingFontSizeCombo.getSelectedItem(), 
+							(FilterColor)openingFontColorCombo.getSelectedItem(),
+							(FilterColor)closingFontColorCombo.getSelectedItem(),
+							lengthOfVideo
+							);
+					
+					
+					worker.execute();
+				}
+		}else if (e.getSource() == saveWorkButton){
 			if(verifyInput()){
 				PrintWriter writer = null;
 				try {
@@ -358,7 +390,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 			MediaSetting.getInstance().setClosingFilterLength((String)closingTimeLength.getSelectedItem());
 		}
 	}
-	
+
 	private void executeFilterSave(String outputFilename) {
 		
 		int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);
@@ -394,6 +426,21 @@ public class FilterPanel extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Please parse media");
 			return false;
 		}
+		
+		String inputFilename = MRLFilename.getFilename(mediaPlayer.mrl());
+		
+		try {
+			String type = Files.probeContentType(Paths.get(inputFilename));
+			
+			if (!type.contains("video")) {
+				JOptionPane.showMessageDialog(null, "This is not a video file");
+				return false;
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		String openingText = openingTextArea.getText();
 		String closingText = closingTextArea.getText();

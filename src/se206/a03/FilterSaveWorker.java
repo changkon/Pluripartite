@@ -121,7 +121,6 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 			
 			if (monitor.isCanceled()) {
 				process.destroy();
-				this.cancel(true);
 				break;
 			}
 			
@@ -133,8 +132,10 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 			}
 		}
 		
-		if (!isCancelled()) {
-			process.waitFor();
+		process.waitFor();
+		
+		if (monitor.isCanceled()) {
+			this.cancel(true);
 		}
 		
 		return null;

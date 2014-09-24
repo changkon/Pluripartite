@@ -32,10 +32,10 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaPanel.finishTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getLength()));
+					mediaPanel.finishTimeLabel.setText(MediaTimer.getFormattedTime(mediaPlayer.getLength()));
 					mediaPanel.timeSlider.setMinimum(0);
 					mediaPanel.timeSlider.setMaximum((int)mediaPlayer.getLength()); // only accepts int.
-					mediaPanel.startTimeLabel.setText(MediaTimer.getTime(mediaPlayer.getTime()));
+					mediaPanel.startTimeLabel.setText(MediaTimer.getFormattedTime(mediaPlayer.getTime()));
 					mediaPanel.muteButton.setIcon(MediaIcon.getIcon(Playback.UNMUTE));
 					mediaPlayer.setTime(0);
 					mediaPlayer.mute(false);
@@ -68,7 +68,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 	@Override
 	public void playing(MediaPlayer mediaPlayer) {
 		super.playing(mediaPlayer);
-
+		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 
@@ -97,6 +97,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 					mediaPanel.playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
 					mediaPanel.startTimeLabel.setText(MediaPanel.initialTimeDisplay);
 					mediaPanel.finishTimeLabel.setText(MediaPanel.initialTimeDisplay);
+					mediaPanel.timeSlider.setValue(0);
 				}
 				
 			});
@@ -119,6 +120,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 					mediaPanel.playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
 					mediaPanel.startTimeLabel.setText(MediaPanel.initialTimeDisplay);
 					mediaPanel.finishTimeLabel.setText(MediaPanel.initialTimeDisplay);
+					mediaPanel.timeSlider.setValue(0);
 				}
 				
 			});
@@ -136,7 +138,7 @@ public class MediaPlayerListener extends MediaPlayerEventAdapter {
 
 				@Override
 				public void run() {
-					mediaPanel.startTimeLabel.setText(MediaTimer.getTime(newTime));
+					mediaPanel.startTimeLabel.setText(MediaTimer.getFormattedTime(newTime));
 					
 					// Turn "off" the change listener. So that when it calls statechanged, it does set time because the boolean is set to false.
 					((TimeBoundedRangeModel)mediaPanel.timeSlider.getModel()).setActive(false);

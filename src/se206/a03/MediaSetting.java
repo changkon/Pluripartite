@@ -34,10 +34,6 @@ public class MediaSetting {
 		skipTime = time;
 	}
 	
-	//public int getOpeningClosingFilterLength() {
-		//return DEFAULT_OPENING_CLOSING_LENGTH;
-	//}
-	
 	public int getOpeningFilterLength(){
 		if(openingFilterLength < 1 || openingFilterLength > 10){
 			return DEFAULT_OPENING_CLOSING_LENGTH;

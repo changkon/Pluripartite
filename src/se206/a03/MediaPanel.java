@@ -1,48 +1,24 @@
 package se206.a03;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LinearGradientPaint;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Map;
 
-import javax.swing.JComponent;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.Painter;
-import javax.swing.ProgressMonitor;
 import javax.swing.SwingUtilities;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.basic.BasicSliderUI;
-import javax.swing.plaf.metal.MetalSliderUI;
-import javax.swing.plaf.synth.SynthLookAndFeel;
-import javax.swing.plaf.synth.SynthSliderUI;
 
 import net.miginfocom.swing.MigLayout;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
@@ -99,28 +75,31 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	}
 	
 	private MediaPanel() {
-		setLayout(new BorderLayout());
+		setLayout(new MigLayout());
 		
 		mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
 		mediaPlayer = mediaPlayerComponent.getMediaPlayer();
 		
-		// Initially set value to 0
-		timeSlider.setValue(0);
-        timePanel.add(startTimeLabel);
-		timePanel.add(timeSlider, "pushx, growx");
-		timePanel.add(finishTimeLabel);
-		
+		mediaPlayerComponent.setPreferredSize(new Dimension(800, 450)); // 16:9 ratio
+	
+		setTimePanel();
 		setButtonPanel();
+		setPlaybackPanel();
 		
-		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
-		playbackPanel.add(buttonPanel, "pushx, growx");
-		playbackPanel.add(downloadPanel, "south, pushx, growx");
-		downloadPanel.setVisible(false);
-		
-		add(mediaPlayerComponent, BorderLayout.CENTER);
-		add(playbackPanel, BorderLayout.SOUTH);
+		add(mediaPlayerComponent, "wrap");
+		add(playbackPanel, "pushx, growx");
 		
 		addListeners();
+	}
+	
+	private void setTimePanel() {
+		// Initially set value to 0
+		timeSlider.setValue(0);
+		
+		timeSlider.setToolTipText("Time Bar. Shows elapsed and total time");
+		timePanel.add(startTimeLabel);
+		timePanel.add(timeSlider, "pushx, growx");
+		timePanel.add(finishTimeLabel);
 	}
 	
 	// Places buttons onto the button panel.
@@ -160,13 +139,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 
 		buttonPanel.add(muteButton, "gapleft 15");
 		
-		volumeSlider.setToolTipText("Adjust Volume");
-		volumeSlider.setUI(new MetalSliderUI(){
-			@Override
-			public void paintThumb(Graphics g){
-				
-			}
-		});
+		volumeSlider.setToolTipText("Adjust Volume (100)");
 		buttonPanel.add(volumeSlider);
 		
 		maxVolumeButton.setToolTipText("Set to max volume");
@@ -181,7 +154,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		openButton.setFocusPainted(false);
 		openButton.setContentAreaFilled(false);
 
-		buttonPanel.add(openButton, "push, align right");
+		buttonPanel.add(openButton, "align right, pushx");
 		
 		downloadButton.setToolTipText("Download media file");
 		downloadButton.setBorderPainted(false);
@@ -189,6 +162,13 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		downloadButton.setContentAreaFilled(false);
 
 		buttonPanel.add(downloadButton);
+	}
+	
+	private void setPlaybackPanel() {
+		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
+		playbackPanel.add(buttonPanel, "pushx, growx");
+		playbackPanel.add(downloadPanel, "south, pushx, growx");
+		downloadPanel.setVisible(false);
 	}
 	
 	// Adds any listeners onto component.
@@ -412,7 +392,13 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == openButton) {
 			playFile();
 		} else if (e.getSource() == downloadButton){
-			downloadPanel.setVisible(true);
+				
+			if(!downloadPanel.isVisible()){
+				downloadPanel.setVisible(true);
+			}else{
+				downloadPanel.setVisible(false);
+			}
+		
 		}
 	}
 	
@@ -422,13 +408,13 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		if (e.getSource() == volumeSlider) {
 			if(!source.getValueIsAdjusting()){
 				int volumeTemp = source.getValue();
+				System.out.println(volumeTemp);
 				mediaPlayer.setVolume(volumeTemp);
+				volumeSlider.setToolTipText("Adjust Volume " + "(" + volumeTemp + ")");
 			}
 		} else if (e.getSource() == timeSlider  && ((TimeBoundedRangeModel)timeSlider.getModel()).getActive()) {
-			if(!source.getValueIsAdjusting()){
-				int time = source.getValue();
-				mediaPlayer.setTime(time);
-			}
+			int time = source.getValue();
+			mediaPlayer.setTime(time);
 		}
 	}
 	
@@ -451,84 +437,12 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		return mediaPlayer;
 	}
 	
-	public void extractAudio() throws IOException {
-		if (mediaPlayer.isPlayable()) {
-			String inputFilename = MRLFilename.getFilename(mediaPlayer.mrl());
-			
-			if (inputFilename == null) {
-				JOptionPane.showMessageDialog(null, "Incorrect file directory");
-				return;
-			}
-			
-			String type = Files.probeContentType(Paths.get(inputFilename));
-			
-			if (type.contains("video")) {
-
-				if (mediaPlayer.getAudioTrackCount() == 0) {
-					JOptionPane.showMessageDialog(null, "No audio track exists in video");
-					return;
-				}
-				
-				JFileChooser chooser = new JFileChooser();
-				
-				// Removes the accept all filter.
-				chooser.setAcceptAllFileFilterUsed(false);
-				// Adds mp3 as filter.
-				chooser.addChoosableFileFilter(new FileNameExtensionFilter("MPEG/mp3", "mp3"));
-				
-				int selection = chooser.showSaveDialog(this);
-				
-				if (selection == JFileChooser.APPROVE_OPTION) {
-					File saveFile = chooser.getSelectedFile();
-					
-					String extensionType = chooser.getFileFilter().getDescription();
-					String outputFilename = saveFile.getPath();
-					
-					/*
-					 * Even though the extension type is listed below, sometimes users still add .mp3 to the end of the file so this
-					 * makes sure that when I add extension type to the filename, I only add .mp3 if it's not already there.
-					 * 
-					 * At the moment, I only have .mp3 has possible extension.
-					 */
-					
-					if (extensionType.contains("MPEG/mp3") && !saveFile.getPath().contains(".mp3")) {
-						outputFilename = outputFilename + ".mp3";
-					}
-					
-					// Checks to see if the filename the user wants to save already exists so it asks if it wants to overwrite or not.
-					if (Files.exists(Paths.get(outputFilename))) {
-						int overwriteSelection = JOptionPane.showConfirmDialog(null, "File already exists, do you want to overwrite?",
-								"Select an option", JOptionPane.YES_NO_OPTION);
-						
-						// Overwrite if yes.
-						if (overwriteSelection == JOptionPane.OK_OPTION) {
-							executeExtract(inputFilename, outputFilename);
-						}
-					} else {
-						executeExtract(inputFilename, outputFilename);
-					}
-				}
-			} else {
-				JOptionPane.showMessageDialog(null, "Media is not video file");
-			}
+	public void checkMediaState(){
+		if (mediaPlayer.isPlaying()) {
+			playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
 		} else {
-			JOptionPane.showMessageDialog(null, "No media recognized");
+			playButton.setIcon(MediaIcon.getIcon(Playback.PAUSE));
 		}
 	}
 	
-	/**
-	 * {@link se206.a03.ExtractAudioWorker }
-	 * 
-	 * @param inputFilename
-	 * @param outputFilename
-	 */
-	
-	private void executeExtract(String inputFilename, String outputFilename) {
-		int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);
-		
-		ProgressMonitor monitor = new ProgressMonitor(null, "Extraction has started", "", 0, lengthOfVideo);
-		
-		ExtractAudioWorker worker = new ExtractAudioWorker(inputFilename, outputFilename, lengthOfVideo, monitor);
-		worker.execute();
-	}
 }
