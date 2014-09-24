@@ -1,0 +1,1580 @@
+[1mdiff --git a/bin/jayatana-1.2.4.jar-138.999.jar b/bin/jayatana-1.2.4.jar-138.999.jar[m
+[1mdeleted file mode 100644[m
+[1mindex e7ac9f3..0000000[m
+Binary files a/bin/jayatana-1.2.4.jar-138.999.jar and /dev/null differ
+[1mdiff --git a/bin/miglayout-4.0-swing.jar b/bin/miglayout-4.0-swing.jar[m
+[1mdeleted file mode 100644[m
+[1mindex 7b6a22c..0000000[m
+Binary files a/bin/miglayout-4.0-swing.jar and /dev/null differ
+[1mdiff --git a/bin/se206/a03/AudioPanel.class b/bin/se206/a03/AudioPanel.class[m
+[1mdeleted file mode 100644[m
+[1mindex 89de518..0000000[m
+Binary files a/bin/se206/a03/AudioPanel.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/AudioReplaceWorker.class b/bin/se206/a03/AudioReplaceWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex 096dc76..0000000[m
+Binary files a/bin/se206/a03/AudioReplaceWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/DownloadPanel$1.class b/bin/se206/a03/DownloadPanel$1.class[m
+[1mdeleted file mode 100644[m
+[1mindex 9d893fb..0000000[m
+Binary files a/bin/se206/a03/DownloadPanel$1.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/DownloadPanel$2.class b/bin/se206/a03/DownloadPanel$2.class[m
+[1mdeleted file mode 100644[m
+[1mindex d677c11..0000000[m
+Binary files a/bin/se206/a03/DownloadPanel$2.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/DownloadPanel.class b/bin/se206/a03/DownloadPanel.class[m
+[1mdeleted file mode 100644[m
+[1mindex f523f53..0000000[m
+Binary files a/bin/se206/a03/DownloadPanel.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/DownloadWorker.class b/bin/se206/a03/DownloadWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex e808d44..0000000[m
+Binary files a/bin/se206/a03/DownloadWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/ExtractAudioWorker.class b/bin/se206/a03/ExtractAudioWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex c49cc2f..0000000[m
+Binary files a/bin/se206/a03/ExtractAudioWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterColor.class b/bin/se206/a03/FilterColor.class[m
+[1mdeleted file mode 100644[m
+[1mindex a7f237e..0000000[m
+Binary files a/bin/se206/a03/FilterColor.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterFont.class b/bin/se206/a03/FilterFont.class[m
+[1mdeleted file mode 100644[m
+[1mindex ea85941..0000000[m
+Binary files a/bin/se206/a03/FilterFont.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterPanel$MyStyledDocument.class b/bin/se206/a03/FilterPanel$MyStyledDocument.class[m
+[1mdeleted file mode 100644[m
+[1mindex 733ee97..0000000[m
+Binary files a/bin/se206/a03/FilterPanel$MyStyledDocument.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterPanel$MyTextFieldFilter.class b/bin/se206/a03/FilterPanel$MyTextFieldFilter.class[m
+[1mdeleted file mode 100644[m
+[1mindex 2256527..0000000[m
+Binary files a/bin/se206/a03/FilterPanel$MyTextFieldFilter.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterPanel.class b/bin/se206/a03/FilterPanel.class[m
+[1mdeleted file mode 100644[m
+[1mindex 1260cfd..0000000[m
+Binary files a/bin/se206/a03/FilterPanel.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterPreviewWorker.class b/bin/se206/a03/FilterPreviewWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex e92d092..0000000[m
+Binary files a/bin/se206/a03/FilterPreviewWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/FilterSaveWorker.class b/bin/se206/a03/FilterSaveWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex de1c323..0000000[m
+Binary files a/bin/se206/a03/FilterSaveWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MRLFilename.class b/bin/se206/a03/MRLFilename.class[m
+[1mdeleted file mode 100644[m
+[1mindex e4e93c3..0000000[m
+Binary files a/bin/se206/a03/MRLFilename.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MainPanel.class b/bin/se206/a03/MainPanel.class[m
+[1mdeleted file mode 100644[m
+[1mindex c53ef22..0000000[m
+Binary files a/bin/se206/a03/MainPanel.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaIcon.class b/bin/se206/a03/MediaIcon.class[m
+[1mdeleted file mode 100644[m
+[1mindex c2c7034..0000000[m
+Binary files a/bin/se206/a03/MediaIcon.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$1.class b/bin/se206/a03/MediaPanel$1.class[m
+[1mdeleted file mode 100644[m
+[1mindex 7d2c01c..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$1.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$2.class b/bin/se206/a03/MediaPanel$2.class[m
+[1mdeleted file mode 100644[m
+[1mindex e00a3f9..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$2.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$3.class b/bin/se206/a03/MediaPanel$3.class[m
+[1mdeleted file mode 100644[m
+[1mindex 9b2ffda..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$3.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$4.class b/bin/se206/a03/MediaPanel$4.class[m
+[1mdeleted file mode 100644[m
+[1mindex 9e2671f..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$4.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$5.class b/bin/se206/a03/MediaPanel$5.class[m
+[1mdeleted file mode 100644[m
+[1mindex 03d7c05..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$5.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$6.class b/bin/se206/a03/MediaPanel$6.class[m
+[1mdeleted file mode 100644[m
+[1mindex a93ff2e..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$6.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$7.class b/bin/se206/a03/MediaPanel$7.class[m
+[1mdeleted file mode 100644[m
+[1mindex 8e3d28f..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$7.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$8.class b/bin/se206/a03/MediaPanel$8.class[m
+[1mdeleted file mode 100644[m
+[1mindex 775c25a..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$8.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel$9.class b/bin/se206/a03/MediaPanel$9.class[m
+[1mdeleted file mode 100644[m
+[1mindex 6a2cdd0..0000000[m
+Binary files a/bin/se206/a03/MediaPanel$9.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPanel.class b/bin/se206/a03/MediaPanel.class[m
+[1mdeleted file mode 100644[m
+[1mindex d7faa4b..0000000[m
+Binary files a/bin/se206/a03/MediaPanel.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener$1.class b/bin/se206/a03/MediaPlayerListener$1.class[m
+[1mdeleted file mode 100644[m
+[1mindex 9578ef4..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener$1.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener$2.class b/bin/se206/a03/MediaPlayerListener$2.class[m
+[1mdeleted file mode 100644[m
+[1mindex 15c9376..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener$2.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener$3.class b/bin/se206/a03/MediaPlayerListener$3.class[m
+[1mdeleted file mode 100644[m
+[1mindex f7004e9..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener$3.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener$4.class b/bin/se206/a03/MediaPlayerListener$4.class[m
+[1mdeleted file mode 100644[m
+[1mindex 2406647..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener$4.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener$5.class b/bin/se206/a03/MediaPlayerListener$5.class[m
+[1mdeleted file mode 100644[m
+[1mindex 50562ea..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener$5.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener$6.class b/bin/se206/a03/MediaPlayerListener$6.class[m
+[1mdeleted file mode 100644[m
+[1mindex bdb09ee..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener$6.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaPlayerListener.class b/bin/se206/a03/MediaPlayerListener.class[m
+[1mdeleted file mode 100644[m
+[1mindex c311652..0000000[m
+Binary files a/bin/se206/a03/MediaPlayerListener.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaSetting.class b/bin/se206/a03/MediaSetting.class[m
+[1mdeleted file mode 100644[m
+[1mindex 80ed6b1..0000000[m
+Binary files a/bin/se206/a03/MediaSetting.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/MediaTimer.class b/bin/se206/a03/MediaTimer.class[m
+[1mdeleted file mode 100644[m
+[1mindex ea69960..0000000[m
+Binary files a/bin/se206/a03/MediaTimer.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/OverlayWorker.class b/bin/se206/a03/OverlayWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex caae623..0000000[m
+Binary files a/bin/se206/a03/OverlayWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/Playback.class b/bin/se206/a03/Playback.class[m
+[1mdeleted file mode 100644[m
+[1mindex f4ae003..0000000[m
+Binary files a/bin/se206/a03/Playback.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/SkipWorker.class b/bin/se206/a03/SkipWorker.class[m
+[1mdeleted file mode 100644[m
+[1mindex a41fc87..0000000[m
+Binary files a/bin/se206/a03/SkipWorker.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/TimeBoundedRangeModel.class b/bin/se206/a03/TimeBoundedRangeModel.class[m
+[1mdeleted file mode 100644[m
+[1mindex 18a7536..0000000[m
+Binary files a/bin/se206/a03/TimeBoundedRangeModel.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/VamixFrame$1.class b/bin/se206/a03/VamixFrame$1.class[m
+[1mdeleted file mode 100644[m
+[1mindex 98af073..0000000[m
+Binary files a/bin/se206/a03/VamixFrame$1.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/VamixFrame$2.class b/bin/se206/a03/VamixFrame$2.class[m
+[1mdeleted file mode 100644[m
+[1mindex 510bae5..0000000[m
+Binary files a/bin/se206/a03/VamixFrame$2.class and /dev/null differ
+[1mdiff --git a/bin/se206/a03/VamixFrame.class b/bin/se206/a03/VamixFrame.class[m
+[1mdeleted file mode 100644[m
+[1mindex d471a3a..0000000[m
+Binary files a/bin/se206/a03/VamixFrame.class and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/README.md b/bin/vlcj-3.0.1/README.md[m
+[1mdeleted file mode 100644[m
+[1mindex 92ca0e1..0000000[m
+[1m--- a/bin/vlcj-3.0.1/README.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,94 +0,0 @@[m
+[31m-![vlcj](https://github.com/caprica/vlcj/raw/master/etc/vlcj-logo.png "vlcj")[m
+[31m-[m
+[31m-vlcj[m
+[31m-====[m
+[31m-[m
+[31m-The vlcj project provides a Java framework to allow an instance of a native[m
+[31m-[vlc](http://www.videolan.org/vlc "vlc") media player to be embedded in a Java[m
+[31m-AWT Window or Swing JFrame.[m
+[31m-[m
+[31m-You get more than just simple bindings, you also get a higher level framework[m
+[31m-that hides a lot of the complexities of working with LibVLC.[m
+[31m-[m
+[31m-vlcj is primarily developed and therefore extensively tested on Linux - it does[m
+[31m-also work just fine on Windows and MacOSX.[m
+[31m-[m
+[31m-At least JDK 1.6 is required, and it works without changes on JDK 1.7.[m
+[31m-[m
+[31m-This is the open source vlcj project page, see also the 'official'[m
+[31m-[home page](http://www.capricasoftware.co.uk/projects/vlcj/index.html "Official vlcj home page at Caprica Software")[m
+[31m-where you can find more information as well as some new simple tutorials.[m
+[31m-[m
+[31m-Version 3.0.0+ of vlcj requires version 2.1.0+ of vlc, earlier versions of vlc[m
+[31m-are *not* supported and will *not* work.[m
+[31m-[m
+[31m-Version 3.0.0+ of vlcj requires version 4.0.0+ of JNA.[m
+[31m-[m
+[31m-Some features of version 3.0.0+ of vlcj (such as the new audio equalizer API)[m
+[31m-require version 2.2.0+ of vlc (which has *not* yet been released).[m
+[31m-[m
+[31m-If you still need to use vlc 2.0.x then you must stay with vlcj 2.x.x instead[m
+[31m-of upgrading to the new vlcj 3.0.0 series.[m
+[31m-[m
+[31m-Maven Dependency[m
+[31m-----------------[m
+[31m-[m
+[31m-Add the following Maven dependency to your own project pom.xml:[m
+[31m-[m
+[31m-```[m
+[31m-<dependency>[m
+[31m-    <groupId>uk.co.caprica</groupId>[m
+[31m-    <artifactId>vlcj</artifactId>[m
+[31m-    <version>3.0.0</version>[m
+[31m-</dependency>[m
+[31m-```[m
+[31m-[m
+[31m-News[m
+[31m-----[m
+[31m-[m
+[31m-10/01/2014 Made new release 3.0.0 at [Maven Central](http://search.maven.org/#search|ga|1|vlcj),[m
+[31m-new audio equalizer API, new native full-screen implementation for Windows,[m
+[31m-some little-used deprecated features removed, minor bugs fixed.[m
+[31m-[m
+[31m-Version 3.0.0+ of vlcj requires version 2.1.0+ of vlc, earlier versions of vlc[m
+[31m-are *not* supported and will *not* work.[m
+[31m-[m
+[31m-You can also follow @capricasoftware on Twitter for more vlcj news.[m
+[31m-[m
+[31m-Documentation[m
+[31m--------------[m
+[31m-[m
+[31m-The vlcj project page is at [github](http://caprica.github.com/vlcj "vlcj at github").[m
+[31m-[m
+[31m-Online Javadoc is available:[m
+[31m-[m
+[31m-* [3.0.0 (current)](http://caprica.github.com/vlcj/javadoc/3.0.0/index.html "3.0.0 Javadoc")[m
+[31m-* [2.4.0](http://caprica.github.com/vlcj/javadoc/2.4.0/index.html "2.4.0 Javadoc")[m
+[31m-* [2.3.0](http://caprica.github.com/vlcj/javadoc/2.3.0/index.html "2.3.0 Javadoc")[m
+[31m-* [2.2.0](http://caprica.github.com/vlcj/javadoc/2.2.0/index.html "2.2.0 Javadoc")[m
+[31m-* [2.1.0](http://caprica.github.com/vlcj/javadoc/2.1.0/index.html "2.1.0 Javadoc")[m
+[31m-* [2.0.0](http://caprica.github.com/vlcj/javadoc/2.0.0/index.html "2.0.0 Javadoc")[m
+[31m-[m
+[31m-Documentation is being made available at [Caprica Software](http://www.capricasoftware.co.uk/projects/vlcj/index.html "Caprica Software").[m
+[31m-[m
+[31m-Support[m
+[31m--------[m
+[31m-[m
+[31m-Free support for Open Source and non-commercial projects is generally provided - you[m
+[31m-can use [github issues](https://github.com/caprica/vlcj/issues "vlcj github issues")[m
+[31m-for this purpose.[m
+[31m-[m
+[31m-Support for commercial projects is provided exclusively on commercial terms -[m
+[31m-send an email to the following address for more information:[m
+[31m-[m
+[31m-> mark [dot] lee [at] capricasoftware [dot] co [dot] uk[m
+[31m-[m
+[31m-License[m
+[31m--------[m
+[31m-[m
+[31m-The vlcj framework is provided under the GPL, version 3 or later.[m
+[31m-[m
+[31m-If you want to consider a commercial license for vlcj that allows you to use and[m
+[31m-redistribute vlcj without complying with the GPL then send your proposal to:[m
+[31m-[m
+[31m-> mark [dot] lee [at] capricasoftware [dot] co [dot] uk[m
+[1mdiff --git a/bin/vlcj-3.0.1/doc/INSTALL b/bin/vlcj-3.0.1/doc/INSTALL[m
+[1mdeleted file mode 100644[m
+[1mindex 219a8f2..0000000[m
+[1m--- a/bin/vlcj-3.0.1/doc/INSTALL[m
+[1m+++ /dev/null[m
+[36m@@ -1,67 +0,0 @@[m
+[31m-Installation for vlcj.[m
+[31m-[m
+[31m-0. Manual installation[m
+[31m-[m
+[31m-These instructions describe a manual installation of vlcj. You may choose [m
+[31m-instead to use maven to add vlcj to your project.[m
+[31m-[m
+[31m-1. Unpack the distribution archive to a local directory, for example:[m
+[31m-[m
+[31m-    $mkdir -p /home/java/vlcj[m
+[31m-    $cd /home/java/vlcj[m
+[31m-[m
+[31m-1.1 If using the gzipped package:[m
+[31m-[m
+[31m-    $tar -xzf vlcj-2.2.0-dist.tar.gz[m
+[31m-[m
+[31m-1.2 Or, if using the zipped package:[m
+[31m-[m
+[31m-    $unzip -x vlcj-2.2.0-dist.zip[m
+[31m-[m
+[31m-1.3 A new directory will be created, for example:[m
+[31m-[m
+[31m-    /home/java/vlcj/vlcj-2.2.0[m
+[31m-[m
+[31m-Inside this directory you will find all of the vlcj distribution artifacts and[m
+[31m-third-party library dependencies:[m
+[31m-[m
+[31m-    jna-3.4.0.jar                   - JNA binary jar file[m
+[31m-    platform-3.4.0.jar              - JNA platform binary jar file[m
+[31m-    [m
+[31m-    vlcj-2.2.0.jar                  - vlcj binary jar file[m
+[31m-    vlcj-2.2.0-javadoc.jar          - vlcj Javadoc archive[m
+[31m-    vlcj-2.2.0-sources.jar          - vlcj source code archive[m
+[31m-    vlcj-2.2.0-tests.jar            - vlcj tests binary jar file[m
+[31m-    vlcj-2.2.0-test-sources.jar     - vlcj test sources[m
+[31m-[m
+[31m-2. Using with Eclipse or some other IDE[m
+[31m-[m
+[31m-The vlcj binary jar file contains manifest classpath entries to set up the[m
+[31m-proper run-time classpath automatically. This means you only need add the vlcj[m
+[31m-binary jar to your project and the dependent jar files will be automatically[m
+[31m-included.[m
+[31m-[m
+[31m-This will work so long as you keep all of the jar files in the same directory.[m
+[31m-[m
+[31m-This works in Eclipse at least, other IDE's may have different behaviour.[m
+[31m-[m
+[31m-If it does not work automatically, then you will have to add the JNA and JNA[m
+[31m-platform jars explicitly.[m
+[31m-[m
+[31m-3. Run the test application.[m
+[31m-[m
+[31m-The tests jar file is executable and when executed the "basic" vlcj media player[m
+[31m-test case will start.[m
+[31m-[m
+[31m-    $java -jar vlcj-2.2.0-tests.jar[m
+[31m-    [m
+[31m-The tests jar contains manifest classpath entries to set up the proper run-time[m
+[31m-classpath automatically.[m
+[31m-[m
+[31m-This will work so long as you keep all of the jar files in the same directory.[m
+[31m-[m
+[31m-4. Sources[m
+[31m-[m
+[31m-The vlcj distribution contains all of the sources for the project (sources for[m
+[31m-main and test classes are included). You are encouraged to link the sources to[m
+[31m-your libraries in your IDE.[m
+[1mdiff --git a/bin/vlcj-3.0.1/doc/README.LICENSE b/bin/vlcj-3.0.1/doc/README.LICENSE[m
+[1mdeleted file mode 100644[m
+[1mindex 490f74e..0000000[m
+[1m--- a/bin/vlcj-3.0.1/doc/README.LICENSE[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-VLCJ is free software: you can redistribute it and/or modify[m
+[31m-it under the terms of the GNU General Public License as published by[m
+[31m-the Free Software Foundation, either version 3 of the License, or[m
+[31m-(at your option) any later version.[m
+[31m-[m
+[31m-VLCJ is distributed in the hope that it will be useful,[m
+[31m-but WITHOUT ANY WARRANTY; without even the implied warranty of[m
+[31m-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the[m
+[31m-GNU General Public License for more details.[m
+[31m-[m
+[31m-You should have received a copy of the GNU General Public License[m
+[31m-along with VLCJ.  If not, see <http://www.gnu.org/licenses/>.[m
+[31m- [m
+[31m-Copyright 2009, 2010, 2011, 2012, 2013 Caprica Software Limited.[m
+[31m-[m
+[31m-VLCJ makes use of JNA (https://jna.dev.java.net/). JNA is licensed under LGPL.[m
+[1mdiff --git a/bin/vlcj-3.0.1/doc/README.icons b/bin/vlcj-3.0.1/doc/README.icons[m
+[1mdeleted file mode 100644[m
+[1mindex 5632c46..0000000[m
+[1m--- a/bin/vlcj-3.0.1/doc/README.icons[m
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-The icons for the demo media player application came from here:[m
+[31m-[m
+[31m-http://www.fatcow.com/free-icons/[m
+[31m-[m
+[31m-The license is here:[m
+[31m-[m
+[31m-http://creativecommons.org/licenses/by/3.0/us/[m
+[31m-[m
+[31m-These icons seem to be basically new versions of the Silk icons:[m
+[31m-[m
+[31m-http://www.famfamfam.com/lab/icons/silk/[m
+[1mdiff --git a/bin/vlcj-3.0.1/doc/RELEASE-NOTES.txt b/bin/vlcj-3.0.1/doc/RELEASE-NOTES.txt[m
+[1mdeleted file mode 100644[m
+[1mindex abebe9b..0000000[m
+[1m--- a/bin/vlcj-3.0.1/doc/RELEASE-NOTES.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-[m
+[31m-                            vlcj Release Notes[m
+[31m-                            ==================[m
+[31m-[m
+[31m-2.3.0[m
+[31m-=====[m
+[31m-[m
+[31m-A small backwardly incompatible API change was made for this release. If you[m
+[31m-previously used the SpuTrackInfo class, you must now use TextTrackInfo instead.[m
+[31m-[m
+[31m-Incorporate latest enhancements to the native logging API.[m
+[31m-[m
+[31m-2.2.0[m
+[31m-=====[m
+[31m-[m
+[31m-There is new API to access the native log - this requires vlc 2.1.0 or later.[m
+[1mdiff --git a/bin/vlcj-3.0.1/doc/gpl.txt b/bin/vlcj-3.0.1/doc/gpl.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 94a9ed0..0000000[m
+[1m--- a/bin/vlcj-3.0.1/doc/gpl.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,674 +0,0 @@[m
+[31m-                    GNU GENERAL PUBLIC LICENSE[m
+[31m-                       Version 3, 29 June 2007[m
+[31m-[m
+[31m- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>[m
+[31m- Everyone is permitted to copy and distribute verbatim copies[m
+[31m- of this license document, but changing it is not allowed.[m
+[31m-[m
+[31m-                            Preamble[m
+[31m-[m
+[31m-  The GNU General Public License is a free, copyleft license for[m
+[31m-software and other kinds of works.[m
+[31m-[m
+[31m-  The licenses for most software and other practical works are designed[m
+[31m-to take away your freedom to share and change the works.  By contrast,[m
+[31m-the GNU General Public License is intended to guarantee your freedom to[m
+[31m-share and change all versions of a program--to make sure it remains free[m
+[31m-software for all its users.  We, the Free Software Foundation, use the[m
+[31m-GNU General Public License for most of our software; it applies also to[m
+[31m-any other work released this way by its authors.  You can apply it to[m
+[31m-your programs, too.[m
+[31m-[m
+[31m-  When we speak of free software, we are referring to freedom, not[m
+[31m-price.  Our General Public Licenses are designed to make sure that you[m
+[31m-have the freedom to distribute copies of free software (and charge for[m
+[31m-them if you wish), that you receive source code or can get it if you[m
+[31m-want it, that you can change the software or use pieces of it in new[m
+[31m-free programs, and that you know you can do these things.[m
+[31m-[m
+[31m-  To protect your rights, we need to prevent others from denying you[m
+[31m-these rights or asking you to surrender the rights.  Therefore, you have[m
+[31m-certain responsibilities if you distribute copies of the software, or if[m
+[31m-you modify it: responsibilities to respect the freedom of others.[m
+[31m-[m
+[31m-  For example, if you distribute copies of such a program, whether[m
+[31m-gratis or for a fee, you must pass on to the recipients the same[m
+[31m-freedoms that you received.  You must make sure that they, too, receive[m
+[31m-or can get the source code.  And you must show them these terms so they[m
+[31m-know their rights.[m
+[31m-[m
+[31m-  Developers that use the GNU GPL protect your rights with two steps:[m
+[31m-(1) assert copyright on the software, and (2) offer you this License[m
+[31m-giving you legal permission to copy, distribute and/or modify it.[m
+[31m-[m
+[31m-  For the developers' and authors' protection, the GPL clearly explains[m
+[31m-that there is no warranty for this free software.  For both users' and[m
+[31m-authors' sake, the GPL requires that modified versions be marked as[m
+[31m-changed, so that their problems will not be attributed erroneously to[m
+[31m-authors of previous versions.[m
+[31m-[m
+[31m-  Some devices are designed to deny users access to install or run[m
+[31m-modified versions of the software inside them, although the manufacturer[m
+[31m-can do so.  This is fundamentally incompatible with the aim of[m
+[31m-protecting users' freedom to change the software.  The systematic[m
+[31m-pattern of such abuse occurs in the area of products for individuals to[m
+[31m-use, which is precisely where it is most unacceptable.  Therefore, we[m
+[31m-have designed this version of the GPL to prohibit the practice for those[m
+[31m-products.  If such problems arise substantially in other domains, we[m
+[31m-stand ready to extend this provision to those domains in future versions[m
+[31m-of the GPL, as needed to protect the freedom of users.[m
+[31m-[m
+[31m-  Finally, every program is threatened constantly by software patents.[m
+[31m-States should not allow patents to restrict development and use of[m
+[31m-software on general-purpose computers, but in those that do, we wish to[m
+[31m-avoid the special danger that patents applied to a free program could[m
+[31m-make it effectively proprietary.  To prevent this, the GPL assures that[m
+[31m-patents cannot be used to render the program non-free.[m
+[31m-[m
+[31m-  The precise terms and conditions for copying, distribution and[m
+[31m-modification follow.[m
+[31m-[m
+[31m-                       TERMS AND CONDITIONS[m
+[31m-[m
+[31m-  0. Definitions.[m
+[31m-[m
+[31m-  "This License" refers to version 3 of the GNU General Public License.[m
+[31m-[m
+[31m-  "Copyright" also means copyright-like laws that apply to other kinds of[m
+[31m-works, such as semiconductor masks.[m
+[31m-[m
+[31m-  "The Program" refers to any copyrightable work licensed under this[m
+[31m-License.  Each licensee is addressed as "you".  "Licensees" and[m
+[31m-"recipients" may be individuals or organizations.[m
+[31m-[m
+[31m-  To "modify" a work means to copy from or adapt all or part of the work[m
+[31m-in a fashion requiring copyright permission, other than the making of an[m
+[31m-exact copy.  The resulting work is called a "modified version" of the[m
+[31m-earlier work or a work "based on" the earlier work.[m
+[31m-[m
+[31m-  A "covered work" means either the unmodified Program or a work based[m
+[31m-on the Program.[m
+[31m-[m
+[31m-  To "propagate" a work means to do anything with it that, without[m
+[31m-permission, would make you directly or secondarily liable for[m
+[31m-infringement under applicable copyright law, except executing it on a[m
+[31m-computer or modifying a private copy.  Propagation includes copying,[m
+[31m-distribution (with or without modification), making available to the[m
+[31m-public, and in some countries other activities as well.[m
+[31m-[m
+[31m-  To "convey" a work means any kind of propagation that enables other[m
+[31m-parties to make or receive copies.  Mere interaction with a user through[m
+[31m-a computer network, with no transfer of a copy, is not conveying.[m
+[31m-[m
+[31m-  An interactive user interface displays "Appropriate Legal Notices"[m
+[31m-to the extent that it includes a convenient and prominently visible[m
+[31m-feature that (1) displays an appropriate copyright notice, and (2)[m
+[31m-tells the user that there is no warranty for the work (except to the[m
+[31m-extent that warranties are provided), that licensees may convey the[m
+[31m-work under this License, and how to view a copy of this License.  If[m
+[31m-the interface presents a list of user commands or options, such as a[m
+[31m-menu, a prominent item in the list meets this criterion.[m
+[31m-[m
+[31m-  1. Source Code.[m
+[31m-[m
+[31m-  The "source code" for a work means the preferred form of the work[m
+[31m-for making modifications to it.  "Object code" means any non-source[m
+[31m-form of a work.[m
+[31m-[m
+[31m-  A "Standard Interface" means an interface that either is an official[m
+[31m-standard defined by a recognized standards body, or, in the case of[m
+[31m-interfaces specified for a particular programming language, one that[m
+[31m-is widely used among developers working in that language.[m
+[31m-[m
+[31m-  The "System Libraries" of an executable work include anything, other[m
+[31m-than the work as a whole, that (a) is included in the normal form of[m
+[31m-packaging a Major Component, but which is not part of that Major[m
+[31m-Component, and (b) serves only to enable use of the work with that[m
+[31m-Major Component, or to implement a Standard Interface for which an[m
+[31m-implementation is available to the public in source code form.  A[m
+[31m-"Major Component", in this context, means a major essential component[m
+[31m-(kernel, window system, and so on) of the specific operating system[m
+[31m-(if any) on which the executable work runs, or a compiler used to[m
+[31m-produce the work, or an object code interpreter used to run it.[m
+[31m-[m
+[31m-  The "Corresponding Source" for a work in object code form means all[m
+[31m-the source code needed to generate, install, and (for an executable[m
+[31m-work) run the object code and to modify the work, including scripts to[m
+[31m-control those activities.  However, it does not include the work's[m
+[31m-System Libraries, or general-purpose tools or generally available free[m
+[31m-programs which are used unmodified in performing those activities but[m
+[31m-which are not part of the work.  For example, Corresponding Source[m
+[31m-includes interface definition files associated with source files for[m
+[31m-the work, and the source code for shared libraries and dynamically[m
+[31m-linked subprograms that the work is specifically designed to require,[m
+[31m-such as by intimate data communication or control flow between those[m
+[31m-subprograms and other parts of the work.[m
+[31m-[m
+[31m-  The Corresponding Source need not include anything that users[m
+[31m-can regenerate automatically from other parts of the Corresponding[m
+[31m-Source.[m
+[31m-[m
+[31m-  The Corresponding Source for a work in source code form is that[m
+[31m-same work.[m
+[31m-[m
+[31m-  2. Basic Permissions.[m
+[31m-[m
+[31m-  All rights granted under this License are granted for the term of[m
+[31m-copyright on the Program, and are irrevocable provided the stated[m
+[31m-conditions are met.  This License explicitly affirms your unlimited[m
+[31m-permission to run the unmodified Program.  The output from running a[m
+[31m-covered work is covered by this License only if the output, given its[m
+[31m-content, constitutes a covered work.  This License acknowledges your[m
+[31m-rights of fair use or other equivalent, as provided by copyright law.[m
+[31m-[m
+[31m-  You may make, run and propagate covered works that you do not[m
+[31m-convey, without conditions so long as your license otherwise remains[m
+[31m-in force.  You may convey covered works to others for the sole purpose[m
+[31m-of having them make modifications exclusively for you, or provide you[m
+[31m-with facilities for running those works, provided that you comply with[m
+[31m-the terms of this License in conveying all material for which you do[m
+[31m-not control copyright.  Those thus making or running the covered works[m
+[31m-for you must do so exclusively on your behalf, under your direction[m
+[31m-and control, on terms that prohibit them from making any copies of[m
+[31m-your copyrighted material outside their relationship with you.[m
+[31m-[m
+[31m-  Conveying under any other circumstances is permitted solely under[m
+[31m-the conditions stated below.  Sublicensing is not allowed; section 10[m
+[31m-makes it unnecessary.[m
+[31m-[m
+[31m-  3. Protecting Users' Legal Rights From Anti-Circumvention Law.[m
+[31m-[m
+[31m-  No covered work shall be deemed part of an effective technological[m
+[31m-measure under any applicable law fulfilling obligations under article[m
+[31m-11 of the WIPO copyright treaty adopted on 20 December 1996, or[m
+[31m-similar laws prohibiting or restricting circumvention of such[m
+[31m-measures.[m
+[31m-[m
+[31m-  When you convey a covered work, you waive any legal power to forbid[m
+[31m-circumvention of technological measures to the extent such circumvention[m
+[31m-is effected by exercising rights under this License with respect to[m
+[31m-the covered work, and you disclaim any intention to limit operation or[m
+[31m-modification of the work as a means of enforcing, against the work's[m
+[31m-users, your or third parties' legal rights to forbid circumvention of[m
+[31m-technological measures.[m
+[31m-[m
+[31m-  4. Conveying Verbatim Copies.[m
+[31m-[m
+[31m-  You may convey verbatim copies of the Program's source code as you[m
+[31m-receive it, in any medium, provided that you conspicuously and[m
+[31m-appropriately publish on each copy an appropriate copyright notice;[m
+[31m-keep intact all notices stating that this License and any[m
+[31m-non-permissive terms added in accord with section 7 apply to the code;[m
+[31m-keep intact all notices of the absence of any warranty; and give all[m
+[31m-recipients a copy of this License along with the Program.[m
+[31m-[m
+[31m-  You may charge any price or no price for each copy that you convey,[m
+[31m-and you may offer support or warranty protection for a fee.[m
+[31m-[m
+[31m-  5. Conveying Modified Source Versions.[m
+[31m-[m
+[31m-  You may convey a work based on the Program, or the modifications to[m
+[31m-produce it from the Program, in the form of source code under the[m
+[31m-terms of section 4, provided that you also meet all of these conditions:[m
+[31m-[m
+[31m-    a) The work must carry prominent notices stating that you modified[m
+[31m-    it, and giving a relevant date.[m
+[31m-[m
+[31m-    b) The work must carry prominent notices stating that it is[m
+[31m-    released under this License and any conditions added under section[m
+[31m-    7.  This requirement modifies the requirement in section 4 to[m
+[31m-    "keep intact all notices".[m
+[31m-[m
+[31m-    c) You must license the entire work, as a whole, under this[m
+[31m-    License to anyone who comes into possession of a copy.  This[m
+[31m-    License will therefore apply, along with any applicable section 7[m
+[31m-    additional terms, to the whole of the work, and all its parts,[m
+[31m-    regardless of how they are packaged.  This License gives no[m
+[31m-    permission to license the work in any other way, but it does not[m
+[31m-    invalidate such permission if you have separately received it.[m
+[31m-[m
+[31m-    d) If the work has interactive user interfaces, each must display[m
+[31m-    Appropriate Legal Notices; however, if the Program has interactive[m
+[31m-    interfaces that do not display Appropriate Legal Notices, your[m
+[31m-    work need not make them do so.[m
+[31m-[m
+[31m-  A compilation of a covered work with other separate and independent[m
+[31m-works, which are not by their nature extensions of the covered work,[m
+[31m-and which are not combined with it such as to form a larger program,[m
+[31m-in or on a volume of a storage or distribution medium, is called an[m
+[31m-"aggregate" if the compilation and its resulting copyright are not[m
+[31m-used to limit the access or legal rights of the compilation's users[m
+[31m-beyond what the individual works permit.  Inclusion of a covered work[m
+[31m-in an aggregate does not cause this License to apply to the other[m
+[31m-parts of the aggregate.[m
+[31m-[m
+[31m-  6. Conveying Non-Source Forms.[m
+[31m-[m
+[31m-  You may convey a covered work in object code form under the terms[m
+[31m-of sections 4 and 5, provided that you also convey the[m
+[31m-machine-readable Corresponding Source under the terms of this License,[m
+[31m-in one of these ways:[m
+[31m-[m
+[31m-    a) Convey the object code in, or embodied in, a physical product[m
+[31m-    (including a physical distribution medium), accompanied by the[m
+[31m-    Corresponding Source fixed on a durable physical medium[m
+[31m-    customarily used for software interchange.[m
+[31m-[m
+[31m-    b) Convey the object code in, or embodied in, a physical product[m
+[31m-    (including a physical distribution medium), accompanied by a[m
+[31m-    written offer, valid for at least three years and valid for as[m
+[31m-    long as you offer spare parts or customer support for that product[m
+[31m-    model, to give anyone who possesses the object code either (1) a[m
+[31m-    copy of the Corresponding Source for all the software in the[m
+[31m-    product that is covered by this License, on a durable physical[m
+[31m-    medium customarily used for software interchange, for a price no[m
+[31m-    more than your reasonable cost of physically performing this[m
+[31m-    conveying of source, or (2) access to copy the[m
+[31m-    Corresponding Source from a network server at no charge.[m
+[31m-[m
+[31m-    c) Convey individual copies of the object code with a copy of the[m
+[31m-    written offer to provide the Corresponding Source.  This[m
+[31m-    alternative is allowed only occasionally and noncommercially, and[m
+[31m-    only if you received the object code with such an offer, in accord[m
+[31m-    with subsection 6b.[m
+[31m-[m
+[31m-    d) Convey the object code by offering access from a designated[m
+[31m-    place (gratis or for a charge), and offer equivalent access to the[m
+[31m-    Corresponding Source in the same way through the same place at no[m
+[31m-    further charge.  You need not require recipients to copy the[m
+[31m-    Corresponding Source along with the object code.  If the place to[m
+[31m-    copy the object code is a network server, the Corresponding Source[m
+[31m-    may be on a different server (operated by you or a third party)[m
+[31m-    that supports equivalent copying facilities, provided you maintain[m
+[31m-    clear directions next to the object code saying where to find the[m
+[31m-    Corresponding Source.  Regardless of what server hosts the[m
+[31m-    Corresponding Source, you remain obligated to ensure that it is[m
+[31m-    available for as long as needed to satisfy these requirements.[m
+[31m-[m
+[31m-    e) Convey the object code using peer-to-peer transmission, provided[m
+[31m-    you inform other peers where the object code and Corresponding[m
+[31m-    Source of the work are being offered to the general public at no[m
+[31m-    charge under subsection 6d.[m
+[31m-[m
+[31m-  A separable portion of the object code, whose source code is excluded[m
+[31m-from the Corresponding Source as a System Library, need not be[m
+[31m-included in conveying the object code work.[m
+[31m-[m
+[31m-  A "User Product" is either (1) a "consumer product", which means any[m
+[31m-tangible personal property which is normally used for personal, family,[m
+[31m-or household purposes, or (2) anything designed or sold for incorporation[m
+[31m-into a dwelling.  In determining whether a product is a consumer product,[m
+[31m-doubtful cases shall be resolved in favor of coverage.  For a particular[m
+[31m-product received by a particular user, "normally used" refers to a[m
+[31m-typical or common use of that class of product, regardless of the status[m
+[31m-of the particular user or of the way in which the particular user[m
+[31m-actually uses, or expects or is expected to use, the product.  A product[m
+[31m-is a consumer product regardless of whether the product has substantial[m
+[31m-commercial, industrial or non-consumer uses, unless such uses represent[m
+[31m-the only significant mode of use of the product.[m
+[31m-[m
+[31m-  "Installation Information" for a User Product means any methods,[m
+[31m-procedures, authorization keys, or other information required to install[m
+[31m-and execute modified versions of a covered work in that User Product from[m
+[31m-a modified version of its Corresponding Source.  The information must[m
+[31m-suffice to ensure that the continued functioning of the modified object[m
+[31m-code is in no case prevented or interfered with solely because[m
+[31m-modification has been made.[m
+[31m-[m
+[31m-  If you convey an object code work under this section in, or with, or[m
+[31m-specifically for use in, a User Product, and the conveying occurs as[m
+[31m-part of a transaction in which the right of possession and use of the[m
+[31m-User Product is transferred to the recipient in perpetuity or for a[m
+[31m-fixed term (regardless of how the transaction is characterized), the[m
+[31m-Corresponding Source conveyed under this section must be accompanied[m
+[31m-by the Installation Information.  But this requirement does not apply[m
+[31m-if neither you nor any third party retains the ability to install[m
+[31m-modified object code on the User Product (for example, the work has[m
+[31m-been installed in ROM).[m
+[31m-[m
+[31m-  The requirement to provide Installation Information does not include a[m
+[31m-requirement to continue to provide support service, warranty, or updates[m
+[31m-for a work that has been modified or installed by the recipient, or for[m
+[31m-the User Product in which it has been modified or installed.  Access to a[m
+[31m-network may be denied when the modification itself materially and[m
+[31m-adversely affects the operation of the network or violates the rules and[m
+[31m-protocols for communication across the network.[m
+[31m-[m
+[31m-  Corresponding Source conveyed, and Installation Information provided,[m
+[31m-in accord with this section must be in a format that is publicly[m
+[31m-documented (and with an implementation available to the public in[m
+[31m-source code form), and must require no special password or key for[m
+[31m-unpacking, reading or copying.[m
+[31m-[m
+[31m-  7. Additional Terms.[m
+[31m-[m
+[31m-  "Additional permissions" are terms that supplement the terms of this[m
+[31m-License by making exceptions from one or more of its conditions.[m
+[31m-Additional permissions that are applicable to the entire Program shall[m
+[31m-be treated as though they were included in this License, to the extent[m
+[31m-that they are valid under applicable law.  If additional permissions[m
+[31m-apply only to part of the Program, that part may be used separately[m
+[31m-under those permissions, but the entire Program remains governed by[m
+[31m-this License without regard to the additional permissions.[m
+[31m-[m
+[31m-  When you convey a copy of a covered work, you may at your option[m
+[31m-remove any additional permissions from that copy, or from any part of[m
+[31m-it.  (Additional permissions may be written to require their own[m
+[31m-removal in certain cases when you modify the work.)  You may place[m
+[31m-additional permissions on material, added by you to a covered work,[m
+[31m-for which you have or can give appropriate copyright permission.[m
+[31m-[m
+[31m-  Notwithstanding any other provision of this License, for material you[m
+[31m-add to a covered work, you may (if authorized by the copyright holders of[m
+[31m-that material) supplement the terms of this License with terms:[m
+[31m-[m
+[31m-    a) Disclaiming warranty or limiting liability differently from the[m
+[31m-    terms of sections 15 and 16 of this License; or[m
+[31m-[m
+[31m-    b) Requiring preservation of specified reasonable legal notices or[m
+[31m-    author attributions in that material or in the Appropriate Legal[m
+[31m-    Notices displayed by works containing it; or[m
+[31m-[m
+[31m-    c) Prohibiting misrepresentation of the origin of that material, or[m
+[31m-    requiring that modified versions of such material be marked in[m
+[31m-    reasonable ways as different from the original version; or[m
+[31m-[m
+[31m-    d) Limiting the use for publicity purposes of names of licensors or[m
+[31m-    authors of the material; or[m
+[31m-[m
+[31m-    e) Declining to grant rights under trademark law for use of some[m
+[31m-    trade names, trademarks, or service marks; or[m
+[31m-[m
+[31m-    f) Requiring indemnification of licensors and authors of that[m
+[31m-    material by anyone who conveys the material (or modified versions of[m
+[31m-    it) with contractual assumptions of liability to the recipient, for[m
+[31m-    any liability that these contractual assumptions directly impose on[m
+[31m-    those licensors and authors.[m
+[31m-[m
+[31m-  All other non-permissive additional terms are considered "further[m
+[31m-restrictions" within the meaning of section 10.  If the Program as you[m
+[31m-received it, or any part of it, contains a notice stating that it is[m
+[31m-governed by this License along with a term that is a further[m
+[31m-restriction, you may remove that term.  If a license document contains[m
+[31m-a further restriction but permits relicensing or conveying under this[m
+[31m-License, you may add to a covered work material governed by the terms[m
+[31m-of that license document, provided that the further restriction does[m
+[31m-not survive such relicensing or conveying.[m
+[31m-[m
+[31m-  If you add terms to a covered work in accord with this section, you[m
+[31m-must place, in the relevant source files, a statement of the[m
+[31m-additional terms that apply to those files, or a notice indicating[m
+[31m-where to find the applicable terms.[m
+[31m-[m
+[31m-  Additional terms, permissive or non-permissive, may be stated in the[m
+[31m-form of a separately written license, or stated as exceptions;[m
+[31m-the above requirements apply either way.[m
+[31m-[m
+[31m-  8. Termination.[m
+[31m-[m
+[31m-  You may not propagate or modify a covered work except as expressly[m
+[31m-provided under this License.  Any attempt otherwise to propagate or[m
+[31m-modify it is void, and will automatically terminate your rights under[m
+[31m-this License (including any patent licenses granted under the third[m
+[31m-paragraph of section 11).[m
+[31m-[m
+[31m-  However, if you cease all violation of this License, then your[m
+[31m-license from a particular copyright holder is reinstated (a)[m
+[31m-provisionally, unless and until the copyright holder explicitly and[m
+[31m-finally terminates your license, and (b) permanently, if the copyright[m
+[31m-holder fails to notify you of the violation by some reasonable means[m
+[31m-prior to 60 days after the cessation.[m
+[31m-[m
+[31m-  Moreover, your license from a particular copyright holder is[m
+[31m-reinstated permanently if the copyright holder notifies you of the[m
+[31m-violation by some reasonable means, this is the first time you have[m
+[31m-received notice of violation of this License (for any work) from that[m
+[31m-copyright holder, and you cure the violation prior to 30 days after[m
+[31m-your receipt of the notice.[m
+[31m-[m
+[31m-  Termination of your rights under this section does not terminate the[m
+[31m-licenses of parties who have received copies or rights from you under[m
+[31m-this License.  If your rights have been terminated and not permanently[m
+[31m-reinstated, you do not qualify to receive new licenses for the same[m
+[31m-material under section 10.[m
+[31m-[m
+[31m-  9. Acceptance Not Required for Having Copies.[m
+[31m-[m
+[31m-  You are not required to accept this License in order to receive or[m
+[31m-run a copy of the Program.  Ancillary propagation of a covered work[m
+[31m-occurring solely as a consequence of using peer-to-peer transmission[m
+[31m-to receive a copy likewise does not require acceptance.  However,[m
+[31m-nothing other than this License grants you permission to propagate or[m
+[31m-modify any covered work.  These actions infringe copyright if you do[m
+[31m-not accept this License.  Therefore, by modifying or propagating a[m
+[31m-covered work, you indicate your acceptance of this License to do so.[m
+[31m-[m
+[31m-  10. Automatic Licensing of Downstream Recipients.[m
+[31m-[m
+[31m-  Each time you convey a covered work, the recipient automatically[m
+[31m-receives a license from the original licensors, to run, modify and[m
+[31m-propagate that work, subject to this License.  You are not responsible[m
+[31m-for enforcing compliance by third parties with this License.[m
+[31m-[m
+[31m-  An "entity transaction" is a transaction transferring control of an[m
+[31m-organization, or substantially all assets of one, or subdividing an[m
+[31m-organization, or merging organizations.  If propagation of a covered[m
+[31m-work results from an entity transaction, each party to that[m
+[31m-transaction who receives a copy of the work also receives whatever[m
+[31m-licenses to the work the party's predecessor in interest had or could[m
+[31m-give under the previous paragraph, plus a right to possession of the[m
+[31m-Corresponding Source of the work from the predecessor in interest, if[m
+[31m-the predecessor has it or can get it with reasonable efforts.[m
+[31m-[m
+[31m-  You may not impose any further restrictions on the exercise of the[m
+[31m-rights granted or affirmed under this License.  For example, you may[m
+[31m-not impose a license fee, royalty, or other charge for exercise of[m
+[31m-rights granted under this License, and you may not initiate litigation[m
+[31m-(including a cross-claim or counterclaim in a lawsuit) alleging that[m
+[31m-any patent claim is infringed by making, using, selling, offering for[m
+[31m-sale, or importing the Program or any portion of it.[m
+[31m-[m
+[31m-  11. Patents.[m
+[31m-[m
+[31m-  A "contributor" is a copyright holder who authorizes use under this[m
+[31m-License of the Program or a work on which the Program is based.  The[m
+[31m-work thus licensed is called the contributor's "contributor version".[m
+[31m-[m
+[31m-  A contributor's "essential patent claims" are all patent claims[m
+[31m-owned or controlled by the contributor, whether already acquired or[m
+[31m-hereafter acquired, that would be infringed by some manner, permitted[m
+[31m-by this License, of making, using, or selling its contributor version,[m
+[31m-but do not include claims that would be infringed only as a[m
+[31m-consequence of further modification of the contributor version.  For[m
+[31m-purposes of this definition, "control" includes the right to grant[m
+[31m-patent sublicenses in a manner consistent with the requirements of[m
+[31m-this License.[m
+[31m-[m
+[31m-  Each contributor grants you a non-exclusive, worldwide, royalty-free[m
+[31m-patent license under the contributor's essential patent claims, to[m
+[31m-make, use, sell, offer for sale, import and otherwise run, modify and[m
+[31m-propagate the contents of its contributor version.[m
+[31m-[m
+[31m-  In the following three paragraphs, a "patent license" is any express[m
+[31m-agreement or commitment, however denominated, not to enforce a patent[m
+[31m-(such as an express permission to practice a patent or covenant not to[m
+[31m-sue for patent infringement).  To "grant" such a patent license to a[m
+[31m-party means to make such an agreement or commitment not to enforce a[m
+[31m-patent against the party.[m
+[31m-[m
+[31m-  If you convey a covered work, knowingly relying on a patent license,[m
+[31m-and the Corresponding Source of the work is not available for anyone[m
+[31m-to copy, free of charge and under the terms of this License, through a[m
+[31m-publicly available network server or other readily accessible means,[m
+[31m-then you must either (1) cause the Corresponding Source to be so[m
+[31m-available, or (2) arrange to deprive yourself of the benefit of the[m
+[31m-patent license for this particular work, or (3) arrange, in a manner[m
+[31m-consistent with the requirements of this License, to extend the patent[m
+[31m-license to downstream recipients.  "Knowingly relying" means you have[m
+[31m-actual knowledge that, but for the patent license, your conveying the[m
+[31m-covered work in a country, or your recipient's use of the covered work[m
+[31m-in a country, would infringe one or more identifiable patents in that[m
+[31m-country that you have reason to believe are valid.[m
+[31m-[m
+[31m-  If, pursuant to or in connection with a single transaction or[m
+[31m-arrangement, you convey, or propagate by procuring conveyance of, a[m
+[31m-covered work, and grant a patent license to some of the parties[m
+[31m-receiving the covered work authorizing them to use, propagate, modify[m
+[31m-or convey a specific copy of the covered work, then the patent license[m
+[31m-you grant is automatically extended to all recipients of the covered[m
+[31m-work and works based on it.[m
+[31m-[m
+[31m-  A patent license is "discriminatory" if it does not include within[m
+[31m-the scope of its coverage, prohibits the exercise of, or is[m
+[31m-conditioned on the non-exercise of one or more of the rights that are[m
+[31m-specifically granted under this License.  You may not convey a covered[m
+[31m-work if you are a party to an arrangement with a third party that is[m
+[31m-in the business of distributing software, under which you make payment[m
+[31m-to the third party based on the extent of your activity of conveying[m
+[31m-the work, and under which the third party grants, to any of the[m
+[31m-parties who would receive the covered work from you, a discriminatory[m
+[31m-patent license (a) in connection with copies of the covered work[m
+[31m-conveyed by you (or copies made from those copies), or (b) primarily[m
+[31m-for and in connection with specific products or compilations that[m
+[31m-contain the covered work, unless you entered into that arrangement,[m
+[31m-or that patent license was granted, prior to 28 March 2007.[m
+[31m-[m
+[31m-  Nothing in this License shall be construed as excluding or limiting[m
+[31m-any implied license or other defenses to infringement that may[m
+[31m-otherwise be available to you under applicable patent law.[m
+[31m-[m
+[31m-  12. No Surrender of Others' Freedom.[m
+[31m-[m
+[31m-  If conditions are imposed on you (whether by court order, agreement or[m
+[31m-otherwise) that contradict the conditions of this License, they do not[m
+[31m-excuse you from the conditions of this License.  If you cannot convey a[m
+[31m-covered work so as to satisfy simultaneously your obligations under this[m
+[31m-License and any other pertinent obligations, then as a consequence you may[m
+[31m-not convey it at all.  For example, if you agree to terms that obligate you[m
+[31m-to collect a royalty for further conveying from those to whom you convey[m
+[31m-the Program, the only way you could satisfy both those terms and this[m
+[31m-License would be to refrain entirely from conveying the Program.[m
+[31m-[m
+[31m-  13. Use with the GNU Affero General Public License.[m
+[31m-[m
+[31m-  Notwithstanding any other provision of this License, you have[m
+[31m-permission to link or combine any covered work with a work licensed[m
+[31m-under version 3 of the GNU Affero General Public License into a single[m
+[31m-combined work, and to convey the resulting work.  The terms of this[m
+[31m-License will continue to apply to the part which is the covered work,[m
+[31m-but the special requirements of the GNU Affero General Public License,[m
+[31m-section 13, concerning interaction through a network will apply to the[m
+[31m-combination as such.[m
+[31m-[m
+[31m-  14. Revised Versions of this License.[m
+[31m-[m
+[31m-  The Free Software Foundation may publish revised and/or new versions of[m
+[31m-the GNU General Public License from time to time.  Such new versions will[m
+[31m-be similar in spirit to the present version, but may differ in detail to[m
+[31m-address new problems or concerns.[m
+[31m-[m
+[31m-  Each version is given a distinguishing version number.  If the[m
+[31m-Program specifies that a certain numbered version of the GNU General[m
+[31m-Public License "or any later version" applies to it, you have the[m
+[31m-option of following the terms and conditions either of that numbered[m
+[31m-version or of any later version published by the Free Software[m
+[31m-Foundation.  If the Program does not specify a version number of the[m
+[31m-GNU General Public License, you may choose any version ever published[m
+[31m-by the Free Software Foundation.[m
+[31m-[m
+[31m-  If the Program specifies that a proxy can decide which future[m
+[31m-versions of the GNU General Public License can be used, that proxy's[m
+[31m-public statement of acceptance of a version permanently authorizes you[m
+[31m-to choose that version for the Program.[m
+[31m-[m
+[31m-  Later license versions may give you additional or different[m
+[31m-permissions.  However, no additional obligations are imposed on any[m
+[31m-author or copyright holder as a result of your choosing to follow a[m
+[31m-later version.[m
+[31m-[m
+[31m-  15. Disclaimer of Warranty.[m
+[31m-[m
+[31m-  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY[m
+[31m-APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT[m
+[31m-HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY[m
+[31m-OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,[m
+[31m-THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR[m
+[31m-PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM[m
+[31m-IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF[m
+[31m-ALL NECESSARY SERVICING, REPAIR OR CORRECTION.[m
+[31m-[m
+[31m-  16. Limitation of Liability.[m
+[31m-[m
+[31m-  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING[m
+[31m-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS[m
+[31m-THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY[m
+[31m-GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE[m
+[31m-USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF[m
+[31m-DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD[m
+[31m-PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),[m
+[31m-EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF[m
+[31m-SUCH DAMAGES.[m
+[31m-[m
+[31m-  17. Interpretation of Sections 15 and 16.[m
+[31m-[m
+[31m-  If the disclaimer of warranty and limitation of liability provided[m
+[31m-above cannot be given local legal effect according to their terms,[m
+[31m-reviewing courts shall apply local law that most closely approximates[m
+[31m-an absolute waiver of all civil liability in connection with the[m
+[31m-Program, unless a warranty or assumption of liability accompanies a[m
+[31m-copy of the Program in return for a fee.[m
+[31m-[m
+[31m-                     END OF TERMS AND CONDITIONS[m
+[31m-[m
+[31m-            How to Apply These Terms to Your New Programs[m
+[31m-[m
+[31m-  If you develop a new program, and you want it to be of the greatest[m
+[31m-possible use to the public, the best way to achieve this is to make it[m
+[31m-free software which everyone can redistribute and change under these terms.[m
+[31m-[m
+[31m-  To do so, attach the following notices to the program.  It is safest[m
+[31m-to attach them to the start of each source file to most effectively[m
+[31m-state the exclusion of warranty; and each file should have at least[m
+[31m-the "copyright" line and a pointer to where the full notice is found.[m
+[31m-[m
+[31m-    <one line to give the program's name and a brief idea of what it does.>[m
+[31m-    Copyright (C) <year>  <name of author>[m
+[31m-[m
+[31m-    This program is free software: you can redistribute it and/or modify[m
+[31m-    it under the terms of the GNU General Public License as published by[m
+[31m-    the Free Software Foundation, either version 3 of the License, or[m
+[31m-    (at your option) any later version.[m
+[31m-[m
+[31m-    This program is distributed in the hope that it will be useful,[m
+[31m-    but WITHOUT ANY WARRANTY; without even the implied warranty of[m
+[31m-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the[m
+[31m-    GNU General Public License for more details.[m
+[31m-[m
+[31m-    You should have received a copy of the GNU General Public License[m
+[31m-    along with this program.  If not, see <http://www.gnu.org/licenses/>.[m
+[31m-[m
+[31m-Also add information on how to contact you by electronic and paper mail.[m
+[31m-[m
+[31m-  If the program does terminal interaction, make it output a short[m
+[31m-notice like this when it starts in an interactive mode:[m
+[31m-[m
+[31m-    <program>  Copyright (C) <year>  <name of author>[m
+[31m-    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.[m
+[31m-    This is free software, and you are welcome to redistribute it[m
+[31m-    under certain conditions; type `show c' for details.[m
+[31m-[m
+[31m-The hypothetical commands `show w' and `show c' should show the appropriate[m
+[31m-parts of the General Public License.  Of course, your program's commands[m
+[31m-might be different; for a GUI interface, you would use an "about box".[m
+[31m-[m
+[31m-  You should also get your employer (if you work as a programmer) or school,[m
+[31m-if any, to sign a "copyright disclaimer" for the program, if necessary.[m
+[31m-For more information on this, and how to apply and follow the GNU GPL, see[m
+[31m-<http://www.gnu.org/licenses/>.[m
+[31m-[m
+[31m-  The GNU General Public License does not permit incorporating your program[m
+[31m-into proprietary programs.  If your program is a subroutine library, you[m
+[31m-may consider it more useful to permit linking proprietary applications with[m
+[31m-the library.  If this is what you want to do, use the GNU Lesser General[m
+[31m-Public License instead of this License.  But first, please read[m
+[31m-<http://www.gnu.org/philosophy/why-not-lgpl.html>.[m
+[1mdiff --git a/bin/vlcj-3.0.1/doc/lgpl-3.0.txt b/bin/vlcj-3.0.1/doc/lgpl-3.0.txt[m
+[1mdeleted file mode 100644[m
+[1mindex cca7fc2..0000000[m
+[1m--- a/bin/vlcj-3.0.1/doc/lgpl-3.0.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,165 +0,0 @@[m
+[31m-		   GNU LESSER GENERAL PUBLIC LICENSE[m
+[31m-                       Version 3, 29 June 2007[m
+[31m-[m
+[31m- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>[m
+[31m- Everyone is permitted to copy and distribute verbatim copies[m
+[31m- of this license document, but changing it is not allowed.[m
+[31m-[m
+[31m-[m
+[31m-  This version of the GNU Lesser General Public License incorporates[m
+[31m-the terms and conditions of version 3 of the GNU General Public[m
+[31m-License, supplemented by the additional permissions listed below.[m
+[31m-[m
+[31m-  0. Additional Definitions.[m
+[31m-[m
+[31m-  As used herein, "this License" refers to version 3 of the GNU Lesser[m
+[31m-General Public License, and the "GNU GPL" refers to version 3 of the GNU[m
+[31m-General Public License.[m
+[31m-[m
+[31m-  "The Library" refers to a covered work governed by this License,[m
+[31m-other than an Application or a Combined Work as defined below.[m
+[31m-[m
+[31m-  An "Application" is any work that makes use of an interface provided[m
+[31m-by the Library, but which is not otherwise based on the Library.[m
+[31m-Defining a subclass of a class defined by the Library is deemed a mode[m
+[31m-of using an interface provided by the Library.[m
+[31m-[m
+[31m-  A "Combined Work" is a work produced by combining or linking an[m
+[31m-Application with the Library.  The particular version of the Library[m
+[31m-with which the Combined Work was made is also called the "Linked[m
+[31m-Version".[m
+[31m-[m
+[31m-  The "Minimal Corresponding Source" for a Combined Work means the[m
+[31m-Corresponding Source for the Combined Work, excluding any source code[m
+[31m-for portions of the Combined Work that, considered in isolation, are[m
+[31m-based on the Application, and not on the Linked Version.[m
+[31m-[m
+[31m-  The "Corresponding Application Code" for a Combined Work means the[m
+[31m-object code and/or source code for the Application, including any data[m
+[31m-and utility programs needed for reproducing the Combined Work from the[m
+[31m-Application, but excluding the System Libraries of the Combined Work.[m
+[31m-[m
+[31m-  1. Exception to Section 3 of the GNU GPL.[m
+[31m-[m
+[31m-  You may convey a covered work under sections 3 and 4 of this License[m
+[31m-without being bound by section 3 of the GNU GPL.[m
+[31m-[m
+[31m-  2. Conveying Modified Versions.[m
+[31m-[m
+[31m-  If you modify a copy of the Library, and, in your modifications, a[m
+[31m-facility refers to a function or data to be supplied by an Application[m
+[31m-that uses the facility (other than as an argument passed when the[m
+[31m-facility is invoked), then you may convey a copy of the modified[m
+[31m-version:[m
+[31m-[m
+[31m-   a) under this License, provided that you make a good faith effort to[m
+[31m-   ensure that, in the event an Application does not supply the[m
+[31m-   function or data, the facility still operates, and performs[m
+[31m-   whatever part of its purpose remains meaningful, or[m
+[31m-[m
+[31m-   b) under the GNU GPL, with none of the additional permissions of[m
+[31m-   this License applicable to that copy.[m
+[31m-[m
+[31m-  3. Object Code Incorporating Material from Library Header Files.[m
+[31m-[m
+[31m-  The object code form of an Application may incorporate material from[m
+[31m-a header file that is part of the Library.  You may convey such object[m
+[31m-code under terms of your choice, provided that, if the incorporated[m
+[31m-material is not limited to numerical parameters, data structure[m
+[31m-layouts and accessors, or small macros, inline functions and templates[m
+[31m-(ten or fewer lines in length), you do both of the following:[m
+[31m-[m
+[31m-   a) Give prominent notice with each copy of the object code that the[m
+[31m-   Library is used in it and that the Library and its use are[m
+[31m-   covered by this License.[m
+[31m-[m
+[31m-   b) Accompany the object code with a copy of the GNU GPL and this license[m
+[31m-   document.[m
+[31m-[m
+[31m-  4. Combined Works.[m
+[31m-[m
+[31m-  You may convey a Combined Work under terms of your choice that,[m
+[31m-taken together, effectively do not restrict modification of the[m
+[31m-portions of the Library contained in the Combined Work and reverse[m
+[31m-engineering for debugging such modifications, if you also do each of[m
+[31m-the following:[m
+[31m-[m
+[31m-   a) Give prominent notice with each copy of the Combined Work that[m
+[31m-   the Library is used in it and that the Library and its use are[m
+[31m-   covered by this License.[m
+[31m-[m
+[31m-   b) Accompany the Combined Work with a copy of the GNU GPL and this license[m
+[31m-   document.[m
+[31m-[m
+[31m-   c) For a Combined Work that displays copyright notices during[m
+[31m-   execution, include the copyright notice for the Library among[m
+[31m-   these notices, as well as a reference directing the user to the[m
+[31m-   copies of the GNU GPL and this license document.[m
+[31m-[m
+[31m-   d) Do one of the following:[m
+[31m-[m
+[31m-       0) Convey the Minimal Corresponding Source under the terms of this[m
+[31m-       License, and the Corresponding Application Code in a form[m
+[31m-       suitable for, and under terms that permit, the user to[m
+[31m-       recombine or relink the Application with a modified version of[m
+[31m-       the Linked Version to produce a modified Combined Work, in the[m
+[31m-       manner specified by section 6 of the GNU GPL for conveying[m
+[31m-       Corresponding Source.[m
+[31m-[m
+[31m-       1) Use a suitable shared library mechanism for linking with the[m
+[31m-       Library.  A suitable mechanism is one that (a) uses at run time[m
+[31m-       a copy of the Library already present on the user's computer[m
+[31m-       system, and (b) will operate properly with a modified version[m
+[31m-       of the Library that is interface-compatible with the Linked[m
+[31m-       Version.[m
+[31m-[m
+[31m-   e) Provide Installation Information, but only if you would otherwise[m
+[31m-   be required to provide such information under section 6 of the[m
+[31m-   GNU GPL, and only to the extent that such information is[m
+[31m-   necessary to install and execute a modified version of the[m
+[31m-   Combined Work produced by recombining or relinking the[m
+[31m-   Application with a modified version of the Linked Version. (If[m
+[31m-   you use option 4d0, the Installation Information must accompany[m
+[31m-   the Minimal Corresponding Source and Corresponding Application[m
+[31m-   Code. If you use option 4d1, you must provide the Installation[m
+[31m-   Information in the manner specified by section 6 of the GNU GPL[m
+[31m-   for conveying Corresponding Source.)[m
+[31m-[m
+[31m-  5. Combined Libraries.[m
+[31m-[m
+[31m-  You may place library facilities that are a work based on the[m
+[31m-Library side by side in a single library together with other library[m
+[31m-facilities that are not Applications and are not covered by this[m
+[31m-License, and convey such a combined library under terms of your[m
+[31m-choice, if you do both of the following:[m
+[31m-[m
+[31m-   a) Accompany the combined library with a copy of the same work based[m
+[31m-   on the Library, uncombined with any other library facilities,[m
+[31m-   conveyed under the terms of this License.[m
+[31m-[m
+[31m-   b) Give prominent notice with the combined library that part of it[m
+[31m-   is a work based on the Library, and explaining where to find the[m
+[31m-   accompanying uncombined form of the same work.[m
+[31m-[m
+[31m-  6. Revised Versions of the GNU Lesser General Public License.[m
+[31m-[m
+[31m-  The Free Software Foundation may publish revised and/or new versions[m
+[31m-of the GNU Lesser General Public License from time to time. Such new[m
+[31m-versions will be similar in spirit to the present version, but may[m
+[31m-differ in detail to address new problems or concerns.[m
+[31m-[m
+[31m-  Each version is given a distinguishing version number. If the[m
+[31m-Library as you received it specifies that a certain numbered version[m
+[31m-of the GNU Lesser General Public License "or any later version"[m
+[31m-applies to it, you have the option of following the terms and[m
+[31m-conditions either of that published version or of any later version[m
+[31m-published by the Free Software Foundation. If the Library as you[m
+[31m-received it does not specify a version number of the GNU Lesser[m
+[31m-General Public License, you may choose any version of the GNU Lesser[m
+[31m-General Public License ever published by the Free Software Foundation.[m
+[31m-[m
+[31m-  If the Library as you received it specifies that a proxy can decide[m
+[31m-whether future versions of the GNU Lesser General Public License shall[m
+[31m-apply, that proxy's public statement of acceptance of any version is[m
+[31m-permanent authorization for you to choose that version for the[m
+[31m-Library.[m
+[1mdiff --git a/bin/vlcj-3.0.1/jna-3.5.2.jar b/bin/vlcj-3.0.1/jna-3.5.2.jar[m
+[1mdeleted file mode 100644[m
+[1mindex ed8a456..0000000[m
+Binary files a/bin/vlcj-3.0.1/jna-3.5.2.jar and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/platform-3.5.2.jar b/bin/vlcj-3.0.1/platform-3.5.2.jar[m
+[1mdeleted file mode 100644[m
+[1mindex 35432b0..0000000[m
+Binary files a/bin/vlcj-3.0.1/platform-3.5.2.jar and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/pom.xml b/bin/vlcj-3.0.1/pom.xml[m
+[1mdeleted file mode 100644[m
+[1mindex 21595bc..0000000[m
+[1m--- a/bin/vlcj-3.0.1/pom.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,248 +0,0 @@[m
+[31m-<!--[m
+[31m-    vlcj pom.[m
+[31m-[m
+[31m-    Add the following content to your own project pom.xml file:[m
+[31m-[m
+[31m-    <dependencies>[m
+[31m-        <dependency>[m
+[31m-            <groupId>uk.co.caprica</groupId>[m
+[31m-            <artifactId>vlcj</artifactId>[m
+[31m-            <version>3.0.1</version>[m
+[31m-        </dependency>[m
+[31m-    </dependencies> [m
+[31m--->[m
+[31m-[m
+[31m-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">[m
+[31m-[m
+[31m-    <modelVersion>4.0.0</modelVersion>[m
+[31m-[m
+[31m-    <parent>[m
+[31m-        <groupId>org.sonatype.oss</groupId>[m
+[31m-        <artifactId>oss-parent</artifactId>[m
+[31m-        <version>7</version>[m
+[31m-    </parent>[m
+[31m-[m
+[31m-    <groupId>uk.co.caprica</groupId>[m
+[31m-    <artifactId>vlcj</artifactId>[m
+[31m-    <version>3.0.1</version>[m
+[31m-[m
+[31m-    <name>vlcj</name>[m
+[31m-    <description>Java Framework for the vlc Media Player.</description>[m
+[31m-    <url>http://www.capricasoftware.co.uk/vlcj</url>[m
+[31m-    <inceptionYear>2009</inceptionYear>[m
+[31m-[m
+[31m-    <packaging>jar</packaging>[m
+[31m-[m
+[31m-    <licenses>[m
+[31m-        <license>[m
+[31m-            <name>GPL v3</name>[m
+[31m-            <url>http://www.gnu.org/licenses/gpl-3.0.html</url>[m
+[31m-            <distribution>repo</distribution>[m
+[31m-        </license>[m
+[31m-    </licenses>[m
+[31m-[m
+[31m-    <organization>[m
+[31m-        <name>Caprica Software Limited</name>[m
+[31m-        <url>http://www.capricasoftware.co.uk</url>[m
+[31m-    </organization>[m
+[31m-[m
+[31m-    <developers>[m
+[31m-        <developer>[m
+[31m-            <id>mark</id>[m
+[31m-            <name>Mark Lee</name>[m
+[31m-            <email>mark.lee@capricasoftware.co.uk</email>[m
+[31m-            <url>https://github.com/caprica/vlcj</url>[m
+[31m-            <organization>Caprica Software Limited</organization>[m
+[31m-            <organizationUrl>http://www.capricasoftware.co.uk</organizationUrl>[m
+[31m-            <roles>[m
+[31m-                <role>architect</role>[m
+[31m-                <role>developer</role>[m
+[31m-                <role>owner</role>[m
+[31m-            </roles>[m
+[31m-            <timezone>0</timezone>[m
+[31m-        </developer>[m
+[31m-    </developers>[m
+[31m-[m
+[31m-    <issueManagement>[m
+[31m-        <system>Github</system>[m
+[31m-        <url>https://github.com/caprica/vlcj/issues</url>[m
+[31m-    </issueManagement>[m
+[31m-[m
+[31m-    <scm>[m
+[31m-        <connection>scm:git:git@github.com:caprica/vlcj.git</connection>[m
+[31m-        <developerConnection>scm:git:git@github.com:caprica/vlcj.git</developerConnection>[m
+[31m-        <url>git@github.com:caprica/vlcj.git</url>[m
+[31m-    </scm>[m
+[31m-[m
+[31m-    <properties>[m
+[31m-        <jna.version>3.5.2</jna.version>[m
+[31m-        <sonar.exclusions>**/package-info.java,uk/co/caprica/vlcj/binding/**</sonar.exclusions>[m
+[31m-        <sonar.language>java</sonar.language>[m
+[31m-    </properties>[m
+[31m-[m
+[31m-    <dependencies>[m
+[31m-        <dependency>[m
+[31m-            <groupId>net.java.dev.jna</groupId>[m
+[31m-            <artifactId>jna</artifactId>[m
+[31m-            <version>${jna.version}</version>[m
+[31m-        </dependency>[m
+[31m-        <dependency>[m
+[31m-            <groupId>net.java.dev.jna</groupId>[m
+[31m-            <artifactId>platform</artifactId>[m
+[31m-            <version>${jna.version}</version>[m
+[31m-        </dependency>[m
+[31m-    </dependencies>[m
+[31m-[m
+[31m-    <build>[m
+[31m-        <pluginManagement>[m
+[31m-            <plugins>[m
+[31m-                <plugin>[m
+[31m-                    <groupId>org.eclipse.m2e</groupId>[m
+[31m-                    <artifactId>lifecycle-mapping</artifactId>[m
+[31m-                    <version>1.0.0</version>[m
+[31m-                    <configuration>[m
+[31m-                        <lifecycleMappingMetadata>[m
+[31m-                            <pluginExecutions>[m
+[31m-                                <pluginExecution>[m
+[31m-                                    <pluginExecutionFilter>[m
+[31m-                                        <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                                        <artifactId>maven-enforcer-plugin</artifactId>[m
+[31m-                                        <versionRange>[1.0.0,)</versionRange>[m
+[31m-                                        <goals>[m
+[31m-                                            <goal>enforce</goal>[m
+[31m-                                        </goals>[m
+[31m-                                    </pluginExecutionFilter>[m
+[31m-                                    <action>[m
+[31m-                                        <ignore />[m
+[31m-                                    </action>[m
+[31m-                                </pluginExecution>[m
+[31m-                            </pluginExecutions>[m
+[31m-                        </lifecycleMappingMetadata>[m
+[31m-                    </configuration>[m
+[31m-                </plugin>[m
+[31m-            </plugins>[m
+[31m-        </pluginManagement>[m
+[31m-        <plugins>[m
+[31m-            <plugin>[m
+[31m-                <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                <artifactId>maven-resources-plugin</artifactId>[m
+[31m-                <version>2.6</version>[m
+[31m-                <configuration>[m
+[31m-                    <encoding>UTF-8</encoding>[m
+[31m-                </configuration>[m
+[31m-            </plugin>[m
+[31m-            <plugin>[m
+[31m-                <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                <artifactId>maven-compiler-plugin</artifactId>[m
+[31m-                <version>3.1</version>[m
+[31m-                <configuration>[m
+[31m-                    <source>1.6</source>[m
+[31m-                    <target>1.6</target>[m
+[31m-                    <encoding>UTF-8</encoding>[m
+[31m-                </configuration>[m
+[31m-            </plugin>[m
+[31m-            <plugin>[m
+[31m-                <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                <artifactId>maven-jar-plugin</artifactId>[m
+[31m-                <version>2.4</version>[m
+[31m-                <configuration>[m
+[31m-                    <archive>[m
+[31m-                        <manifest>[m
+[31m-                            <addClasspath>true</addClasspath>[m
+[31m-                        </manifest>[m
+[31m-                    </archive>[m
+[31m-                </configuration>[m
+[31m-                <executions> [m
+[31m-                    <execution>[m
+[31m-                        <goals> [m
+[31m-                            <goal>test-jar</goal>[m
+[31m-                        </goals>[m
+[31m-                        <configuration>[m
+[31m-                            <useDefaultManifestFile>false</useDefaultManifestFile>[m
+[31m-                            <archive>[m
+[31m-                                <addMavenDescriptor>false</addMavenDescriptor>[m
+[31m-                                <manifest>[m
+[31m-                                    <mainClass>uk.co.caprica.vlcj.test.basic.TestPlayer</mainClass>[m
+[31m-                                    <addClasspath>true</addClasspath>[m
+[31m-                                </manifest>[m
+[31m-                                <manifestEntries>[m
+[31m-                                    <Class-Path>${project.artifactId}-${project.version}.jar</Class-Path>[m
+[31m-                                </manifestEntries>                                    [m
+[31m-                            </archive>[m
+[31m-                        </configuration>[m
+[31m-                    </execution>[m
+[31m-                </executions>[m
+[31m-            </plugin>[m
+[31m-            <plugin>[m
+[31m-                <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                <artifactId>maven-source-plugin</artifactId>[m
+[31m-                <version>2.2.1</version>[m
+[31m-                <executions>[m
+[31m-                    <execution>[m
+[31m-                        <id>attach-sources</id>[m
+[31m-                        <goals>[m
+[31m-                            <goal>jar-no-fork</goal>[m
+[31m-                            <goal>test-jar-no-fork</goal>[m
+[31m-                        </goals>[m
+[31m-                    </execution>[m
+[31m-                </executions>[m
+[31m-            </plugin>[m
+[31m-            <plugin>[m
+[31m-                <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                <artifactId>maven-javadoc-plugin</artifactId>[m
+[31m-                <version>2.9.1</version>[m
+[31m-                <configuration>[m
+[31m-                    <author>true</author>[m
+[31m-                    <charset>UTF-8</charset>[m
+[31m-                    <doctitle>${project.name} ${project.version} API Documentation</doctitle>[m
+[31m-                    <docfilessubdirs>true</docfilessubdirs>[m
+[31m-                    <encoding>UTF-8</encoding>[m
+[31m-                    <footer>(C)2014 Caprica Software Limited</footer>[m
+[31m-                    <show>public</show>[m
+[31m-                    <javadocVersion>1.7</javadocVersion>[m
+[31m-                    <quiet>true</quiet>[m
+[31m-                </configuration>[m
+[31m-                <executions>[m
+[31m-                    <execution>[m
+[31m-                        <id>attach-javadocs</id>[m
+[31m-                        <goals>[m
+[31m-                            <goal>jar</goal>[m
+[31m-                        </goals>[m
+[31m-                    </execution>[m
+[31m-                </executions>[m
+[31m-            </plugin>[m
+[31m-            <plugin>[m
+[31m-                <groupId>org.apache.maven.plugins</groupId>[m
+[31m-                <artifactId>maven-assembly-plugin</artifactId>[m
+[31m-                <version>2.4</version>[m
+[31m-                <configuration>[m
+[31m-                    <attach>false</attach>[m
+[31m-                </configuration>[m
+[31m-                <executions>[m
+[31m-                    <execution>[m
+[31m-                        <id>user_distribution</id>[m
+[31m-                        <phase>package</phase>[m
+[31m-                        <goals>[m
+[31m-                            <goal>attached</goal>[m
+[31m-                        </goals>[m
+[31m-                        <configuration>[m
+[31m-                            <descriptors>[m
+[31m-                                <descriptor>src/main/assembly/dist.xml</descriptor>[m
+[31m-                            </descriptors>[m
+[31m-                        </configuration>[m
+[31m-                    </execution>[m
+[31m-                </executions>[m
+[31m-            </plugin>[m
+[31m-        </plugins>[m
+[31m-        <resources>[m
+[31m-            <resource>[m
+[31m-                <directory>src/main/resources</directory>[m
+[31m-                <filtering>true</filtering>[m
+[31m-                <excludes>[m
+[31m-                    <exclude>.gitignore</exclude>[m
+[31m-                </excludes>[m
+[31m-            </resource>[m
+[31m-        </resources>[m
+[31m-    </build>[m
+[31m-[m
+[31m-</project>[m
+[1mdiff --git a/bin/vlcj-3.0.1/vlcj-3.0.1-javadoc.jar b/bin/vlcj-3.0.1/vlcj-3.0.1-javadoc.jar[m
+[1mdeleted file mode 100644[m
+[1mindex 5d97e23..0000000[m
+Binary files a/bin/vlcj-3.0.1/vlcj-3.0.1-javadoc.jar and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/vlcj-3.0.1-sources.jar b/bin/vlcj-3.0.1/vlcj-3.0.1-sources.jar[m
+[1mdeleted file mode 100644[m
+[1mindex ee805da..0000000[m
+Binary files a/bin/vlcj-3.0.1/vlcj-3.0.1-sources.jar and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/vlcj-3.0.1-test-sources.jar b/bin/vlcj-3.0.1/vlcj-3.0.1-test-sources.jar[m
+[1mdeleted file mode 100644[m
+[1mindex cf10679..0000000[m
+Binary files a/bin/vlcj-3.0.1/vlcj-3.0.1-test-sources.jar and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/vlcj-3.0.1-tests.jar b/bin/vlcj-3.0.1/vlcj-3.0.1-tests.jar[m
+[1mdeleted file mode 100644[m
+[1mindex cd5185a..0000000[m
+Binary files a/bin/vlcj-3.0.1/vlcj-3.0.1-tests.jar and /dev/null differ
+[1mdiff --git a/bin/vlcj-3.0.1/vlcj-3.0.1.jar b/bin/vlcj-3.0.1/vlcj-3.0.1.jar[m
+[1mdeleted file mode 100644[m
+[1mindex a959cda..0000000[m
+Binary files a/bin/vlcj-3.0.1/vlcj-3.0.1.jar and /dev/null differ
+[1mdiff --git a/lib/jayatana-1.2.4.jar-138.999.jar b/lib/jayatana-1.2.4.jar-138.999.jar[m
+[1mdeleted file mode 100644[m
+[1mindex e7ac9f3..0000000[m
+Binary files a/lib/jayatana-1.2.4.jar-138.999.jar and /dev/null differ
+[1mdiff --git a/lib/miglayout-4.0-swing.jar b/lib/miglayout-4.0-swing.jar[m
+[1mdeleted file mode 100644[m
+[1mindex 7b6a22c..0000000[m
+Binary files a/lib/miglayout-4.0-swing.jar and /dev/null differ
+[1mdiff --git a/lib/vlcj-3.0.1/README.md b/lib/vlcj-3.0.1/README.md[m
+[1mdeleted file mode 100644[m
+[1mindex 92ca0e1..0000000[m
+[1m--- a/lib/vlcj-3.0.1/README.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,94 +0,0 @@[m
+[31m-![vlcj](https://github.com/caprica/vlcj/raw/master/etc/vlcj-logo.png "vlcj")[m
+[31m-[m
+[31m-vlcj[m
+[31m-====[m
+[31m-[m
+[31m-The vlcj project provides a Java framework to allow an instance of a native[m
+[31m-[vlc](http://www.videolan.org/vlc "vlc") media player to be embedded in a Java[m
+[31m-AWT Window or Swing JFrame.[m
+[31m-[m
+[31m-You get more than just simple bindings, you also get a higher level framework[m
+[31m-that hides a lot of the complexities of working with LibVLC.[m
+[31m-[m
+[31m-vlcj is primarily developed and therefore extensively tested on Linux - it does[m
+[31m-also work just fine on Windows and MacOSX.[m
+[31m-[m
+[31m-At least JDK 1.6 is required, and it works without changes on JDK 1.7.[m
+[31m-[m
+[31m-This is the open source vlcj project page, see also the 'official'[m
+[31m-[hom
