@@ -164,7 +164,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	}
 	
 	private void setPlaybackPanel() {
-		playbackPanel.add(timePanel, "pushx, growx, wrap");
+		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
 		playbackPanel.add(buttonPanel, "pushx, growx");
 		
 		playbackPanel.add(downloadPanel, "south, pushx, growx");
@@ -393,13 +393,11 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == openButton) {
 			playFile();
 		} else if (e.getSource() == downloadButton){
-			
 			if (downloadPanel.isVisible()) {
 				downloadPanel.setVisible(false);
 			} else {
 				downloadPanel.setVisible(true);
 			}
-			
 		}
 	}
 	
@@ -409,6 +407,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		if (e.getSource() == volumeSlider) {
 			if(!source.getValueIsAdjusting()){
 				int volumeTemp = source.getValue();
+				System.out.println(volumeTemp);
 				mediaPlayer.setVolume(volumeTemp);
 				volumeSlider.setToolTipText("Adjust Volume " + "(" + volumeTemp + ")");
 			}
@@ -435,6 +434,14 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	
 	public EmbeddedMediaPlayer getMediaPlayer() {
 		return mediaPlayer;
+	}
+	
+	public void checkMediaState(){
+		if (mediaPlayer.isPlaying()) {
+			playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+		} else {
+			playButton.setIcon(MediaIcon.getIcon(Playback.PAUSE));
+		}
 	}
 	
 }

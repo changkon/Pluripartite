@@ -44,12 +44,14 @@ public class SkipWorker extends SwingWorker<Void, Integer> {
 	}
 
 	@Override
-	protected void process(List<Integer> chunks) {
-		for (Integer i : chunks) {
-			MediaPanel.getInstance().timeSlider.setValue(i);
+	protected void process(List<Integer> chunks){
+		
+		for(Integer i: chunks){
+			if(i == 0){
+				MediaPanel.getInstance().checkMediaState();
+			}else{
+				MediaPanel.getInstance().timeSlider.setValue(i);
+			}
 		}
-	}	
-	
-	
-	
+	}
 }

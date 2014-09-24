@@ -16,6 +16,8 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 	private String openingY;
 	private String closingX;
 	private String closingY;
+	private String openingORclosing;
+	
 	private FilterFont openingFont;
 	private FilterFont closingFont;
 	private int openingFontSize;
@@ -23,10 +25,11 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 	private FilterColor openingFontColor;
 	private FilterColor closingFontColor;
 	private int lengthOfVideo;
+
 	
-	public FilterPreviewWorker(String inputFilename, String openingText, String closingText, String openingX, String closingX, String openingY, String closingY, 
+	public FilterPreviewWorker(String openingORclosing, String inputFilename, String openingText, String closingText, String openingX, String closingX, String openingY, String closingY, 
 			FilterFont openingFont, FilterFont closingFont, int openingFontSize, int closingFontSize, FilterColor openingFontColor, FilterColor closingFontColor, int lengthOfVideo) {
-		
+		this.openingORclosing = openingORclosing;
 		this.inputFilename = inputFilename;
 		this.openingText = openingText;
 		this.closingText = closingText;
@@ -68,10 +71,27 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		StringBuilder command = new StringBuilder("avplay -i " + inputFilename + " -vf ");
+		
 		int filterOpeningLength = MediaSetting.getInstance().getOpeningFilterLength();
 		int filterClosingLength = MediaSetting.getInstance().getClosingFilterLength();
 		int lastSeconds = lengthOfVideo - filterClosingLength;
+				
+		StringBuilder command = null;
+		if(openingORclosing.equals("Opening")){
+			int filterOpeningSceneLen = filterOpeningLength + 2;
+			command = new StringBuilder("avplay -i " + inputFilename + " -t "+ filterOpeningSceneLen +" -vf ");
+		}else if(openingORclosing.equals("Closing")){
+			
+			int filterClosingSceneLen = (int) (MediaPanel.getInstance().mediaPlayer.getLength() - 1000*filterClosingLength - 1000*2);
+			
+			String filterClosingSceneString = MediaTimer.getFormattedTime(filterClosingSceneLen);
+			if(filterClosingSceneString.length() == 5){
+				filterClosingSceneString = "00:" + filterClosingSceneString;
+			}
+
+			command = new StringBuilder("avplay -i " + inputFilename + " -ss "+ filterClosingSceneString + " -vf ");
+		}
+		
 		
 		boolean hasOpeningText = !openingText.equals("");
 		boolean hasClosingText = !closingText.equals("");
@@ -93,7 +113,20 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		System.out.println(command.toString());
 		
 		Process process = builder.start();
-		process.waitFor();
+		//process.waitFor();
+		
+
+		if(openingORclosing.equals("Opening")){
+			Thread.sleep(filterOpeningLength * 1000);
+		}else if(openingORclosing.equals("Closing")){
+			if(filterClosingLength < 10){
+				Thread.sleep(10000);
+			}else{
+				Thread.sleep(filterClosingLength * 10000 + 2000);
+			}
+		}
+		Thread.sleep(1500);
+		process.destroy();
 		
 		return null;
 	}
