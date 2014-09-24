@@ -40,8 +40,8 @@ public class VamixFrame extends JFrame implements ActionListener {
 	public VamixFrame() {
 		super("VAMIX");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(1270, 925));
-		setPreferredSize(new Dimension(1270, 925));
+		setMinimumSize(new Dimension(1270, 950));
+		setPreferredSize(new Dimension(1270, 950));
 		
 		setMenuBar();
 		setJMenuBar(menuBar);

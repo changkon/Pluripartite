@@ -1,5 +1,6 @@
 package se206.a03;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 public class OverlayWorker extends SwingWorker<Void, Void> {
@@ -18,8 +19,8 @@ public class OverlayWorker extends SwingWorker<Void, Void> {
 	@Override
 	protected Void doInBackground() throws Exception {
 
-		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \"" + videoFileInput + "\" -i \"" + audioFileInput + "\" -map 0:v -map 0:a -map 1:a" +
-				"-c:v copy -c:a copy -y \"" + videoFileOutput + "\"");
+		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \"" + videoFileInput + "\" -i \"" + audioFileInput + "\" -filter_complex" +
+				" amix=inputs=2 -c:v copy -strict experimental -y \"" + videoFileOutput + "\"");
 		builder.redirectErrorStream(true);
 
 		Process process = builder.start();
@@ -29,4 +30,9 @@ public class OverlayWorker extends SwingWorker<Void, Void> {
 		return null;
 	}
 
+
+	@Override
+	protected void done() {
+		JOptionPane.showMessageDialog(null, "Overlay complete");
+	}
 }

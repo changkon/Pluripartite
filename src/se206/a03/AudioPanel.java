@@ -2,6 +2,7 @@ package se206.a03;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -32,10 +33,9 @@ public class AudioPanel extends JPanel implements ActionListener {
 	private EmbeddedMediaPlayer mediaPlayer = MediaPanel.getInstance().getMediaPlayer();
 	private TitledBorder title;
 
-	private final String defaultAudioReplaceText = "No file chosen";
-
 	private JPanel audioExtractionPanel = new JPanel(new MigLayout());
 	private JPanel audioReplacePanel = new JPanel(new MigLayout());
+	private JPanel audioOverlayPanel = new JPanel(new MigLayout());
 
 	private JLabel extractionLabel = new JLabel("Extraction");
 
@@ -54,8 +54,14 @@ public class AudioPanel extends JPanel implements ActionListener {
 	private JLabel replaceAudioLabel = new JLabel("Replace Audio");
 
 	private JButton selectAudioReplaceFileButton = new JButton("Choose File");
-	private JLabel selectedAudioReplaceFileLabel = new JLabel(defaultAudioReplaceText);
+	private JTextField selectedAudioReplaceFileTextField = new JTextField();
 	private JButton audioReplaceButton = new JButton("Replace");
+
+	private JLabel audioOverlayLabel = new JLabel("Overlay audio");
+
+	private JButton selectAudioOverlayFileButton = new JButton("Choose File");
+	private JTextField selectedAudioOverlayFileTextField = new JTextField();
+	private JButton audioOverlayButton = new JButton("Overlay");
 
 	public static AudioPanel getInstance() {
 		if (theInstance == null) {
@@ -73,11 +79,13 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		setAudioExtractionPanel();
 		setAudioReplacePanel();
+		setAudioOverlayPanel();
 
 		addListeners();
 
 		add(audioExtractionPanel, "wrap, pushx, growx");
 		add(audioReplacePanel, "wrap, pushx, growx");
+		add(audioOverlayPanel, "pushx, growx");
 	}
 
 	private void setAudioExtractionPanel() {
@@ -105,8 +113,19 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		audioReplacePanel.add(replaceAudioLabel, "wrap");
 		audioReplacePanel.add(selectAudioReplaceFileButton);
-		audioReplacePanel.add(selectedAudioReplaceFileLabel, "wrap");
+		audioReplacePanel.add(selectedAudioReplaceFileTextField, "pushx, growx, wrap");
 		audioReplacePanel.add(audioReplaceButton);
+	}
+
+	private void setAudioOverlayPanel() {
+		Font font = audioOverlayLabel.getFont().deriveFont(Font.ITALIC + Font.BOLD, 16f);
+
+		audioOverlayLabel.setFont(font);
+
+		audioOverlayPanel.add(audioOverlayLabel, "wrap");
+		audioOverlayPanel.add(selectAudioOverlayFileButton);
+		audioOverlayPanel.add(selectedAudioOverlayFileTextField, "pushx, growx, wrap");
+		audioOverlayPanel.add(audioOverlayButton);
 	}
 
 	private void addListeners() {
@@ -115,6 +134,9 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		selectAudioReplaceFileButton.addActionListener(this);
 		audioReplaceButton.addActionListener(this);
+
+		selectAudioOverlayFileButton.addActionListener(this);
+		audioOverlayButton.addActionListener(this);
 	}
 
 	@Override
@@ -122,7 +144,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 		if (e.getSource() == extractButton) {
 			try {
 				if (validateTime(startTimeInput.getText()) && validateTime(lengthInput.getText()) && validateMedia()) {
-					String outputFilename = getOutputFilename();
+					String outputFilename = getOutputAudioFilename();
 
 					if (outputFilename != null) {
 						executeExtract(MRLFilename.getFilename(mediaPlayer.mrl()), outputFilename, startTimeInput.getText(), lengthInput.getText());
@@ -135,7 +157,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 		} else if (e.getSource() == extractFullButton) {
 			try {
 				if (validateMedia()) {
-					String outputFilename = getOutputFilename();
+					String outputFilename = getOutputAudioFilename();
 
 					if (outputFilename != null) {
 
@@ -157,76 +179,67 @@ public class AudioPanel extends JPanel implements ActionListener {
 			String filename = getInputFilename();
 
 			if (filename != null) {
-				selectedAudioReplaceFileLabel.setText(filename);
+				selectedAudioReplaceFileTextField.setText(filename);
 			}
 
 		} else if (e.getSource() == audioReplaceButton) {
 
-			if (!selectedAudioReplaceFileLabel.getText().equals(defaultAudioReplaceText)) {
-				try {
-					if (validateMedia()) {
-						// This assumes that the audio selected is valid. No checking is done.
-						// http://stackoverflow.com/questions/3140992/read-out-time-length-duration-of-an-mp3-song-in-java
-						if (!selectedAudioReplaceFileLabel.getText().equals(defaultAudioReplaceText)) {
-							File audioFile = new File(selectedAudioReplaceFileLabel.getText());
-							
-							String audioPath = audioFile.getPath();
-							
-							JFileChooser chooser = new JFileChooser();
-							
-							// Removes the accept all filter.
-							chooser.setAcceptAllFileFilterUsed(false);
-							// Adds mp4 as filter.
-							chooser.addChoosableFileFilter(new FileNameExtensionFilter("MPEG-4", "mp4"));
-							
-							int selection = chooser.showSaveDialog(null);
-							
-							if (selection == JOptionPane.OK_OPTION) {
-								File saveFile = chooser.getSelectedFile();
-								String outputFilename = saveFile.getPath();
-								
-								String extensionType = chooser.getFileFilter().getDescription();
-								
-								/*
-								 * Even though the extension type is listed below, sometimes users still add .mp3 to the end of the file so this
-								 * makes sure that when I add extension type to the filename, I only add .mp3 if it's not already there.
-								 * 
-								 * At the moment, I only have .mp4 has possible extension.
-								 */
+			try {
+				if (validateMedia() && validateTextfield(selectedAudioReplaceFileTextField.getText())) {
+					// This assumes that the audio selected is valid. No checking is done.
+					// http://stackoverflow.com/questions/3140992/read-out-time-length-duration-of-an-mp3-song-in-java
+					File audioFile = new File(selectedAudioReplaceFileTextField.getText());
 
-								if (extensionType.contains("MPEG-4") && !saveFile.getPath().contains(".mp4")) {
-									outputFilename = outputFilename + ".mp4";
-								}
-								
-								// Checks to see if the filename the user wants to save already exists so it asks if it wants to overwrite or not.
-								if (Files.exists(Paths.get(outputFilename))) {
-									int overwriteSelection = JOptionPane.showConfirmDialog(null, "File already exists, do you want to overwrite?",
-											"Select an option", JOptionPane.YES_NO_OPTION);
-
-									// Overwrite if yes.
-									if (overwriteSelection == JOptionPane.OK_OPTION) {
-										executeReplace(MRLFilename.getFilename(mediaPlayer.mrl()), audioPath, outputFilename);
-									}
-								} else {
-									executeReplace(MRLFilename.getFilename(mediaPlayer.mrl()), audioPath, outputFilename);
-								}
-							}
-						}
+					String audioPath = audioFile.getPath();
+					
+					String videoPath = getOutputVideoFilename();
+					
+					if (videoPath != null) {
+						executeReplace(MRLFilename.getFilename(mediaPlayer.mrl()), audioPath, videoPath);
 					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
 				}
-			} else {
-				JOptionPane.showMessageDialog(null, "Please select audio file to replace");
+			} catch (HeadlessException | IOException e1) {
+				e1.printStackTrace();
+			}
+		} else if (e.getSource() ==  selectAudioOverlayFileButton) {
+			String filename = getInputFilename();
+
+			if (filename != null) {
+				selectedAudioOverlayFileTextField.setText(filename);
+			}
+
+		} else if (e.getSource() == audioOverlayButton) {
+			try {
+				if (validateMedia() && validateTextfield(selectedAudioOverlayFileTextField.getText())) {
+					// This assumes that the audio selected is valid. No checking is done.
+					// http://stackoverflow.com/questions/3140992/read-out-time-length-duration-of-an-mp3-song-in-java
+					File audioFile = new File(selectedAudioOverlayFileTextField.getText());
+
+					String audioPath = audioFile.getPath();
+					
+					String videoPath = getOutputVideoFilename();
+					
+					if (videoPath != null) {
+						executeOverlay(MRLFilename.getFilename(mediaPlayer.mrl()), audioPath, videoPath);
+					}
+				}
+			} catch (HeadlessException | IOException e1) {
+				e1.printStackTrace();
 			}
 		}
 	}
 
 	private void executeReplace(String videoInput, String audioInput, String videoOutput) {
-		
+
 		AudioReplaceWorker worker = new AudioReplaceWorker(videoInput, audioInput, videoOutput);
 		worker.execute();
 		JOptionPane.showMessageDialog(null, "Replacing audio has started");
+	}
+
+	private void executeOverlay(String videoInput, String audioInput, String videoOutput) {
+		OverlayWorker worker = new OverlayWorker(videoInput, audioInput, videoOutput);
+		worker.execute();
+		JOptionPane.showMessageDialog(null, "Overlaying audio has started");
 	}
 	
 	/**
@@ -249,18 +262,83 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 			String inputFilename = saveFile.getPath();
 
+			try {
+				String type = Files.probeContentType(Paths.get(inputFilename));
+
+				// Checks that the audio file is an audio file or else it displays an error message.
+				if (!type.equals("audio/mpeg")) {
+					JOptionPane.showMessageDialog(null, type + " does not refer to a valid audio file.");
+					return null;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 			return inputFilename;
 		}
 		return null;
 	}
 
 	/**
+	 * Returns the output filename of the mp4 audio. Asks user if overwrite is desired if same file exists.
+	 * @return
+	 * @throws IOException
+	 */
+	
+	private String getOutputVideoFilename() {
+
+
+		JFileChooser chooser = new JFileChooser();
+
+		// Removes the accept all filter.
+		chooser.setAcceptAllFileFilterUsed(false);
+		// Adds mp4 as filter.
+		chooser.addChoosableFileFilter(new FileNameExtensionFilter("MPEG-4", "mp4"));
+
+		int selection = chooser.showSaveDialog(null);
+
+		if (selection == JOptionPane.OK_OPTION) {
+			File saveFile = chooser.getSelectedFile();
+			String outputFilename = saveFile.getPath();
+
+			String extensionType = chooser.getFileFilter().getDescription();
+
+			/*
+			 * Even though the extension type is listed below, sometimes users still add .mp3 to the end of the file so this
+			 * makes sure that when I add extension type to the filename, I only add .mp3 if it's not already there.
+			 * 
+			 * At the moment, I only have .mp4 has possible extension.
+			 */
+
+			if (extensionType.contains("MPEG-4") && !saveFile.getPath().contains(".mp4")) {
+				outputFilename = outputFilename + ".mp4";
+			}
+
+			// Checks to see if the filename the user wants to save already exists so it asks if it wants to overwrite or not.
+			if (Files.exists(Paths.get(outputFilename))) {
+				int overwriteSelection = JOptionPane.showConfirmDialog(null, "File already exists, do you want to overwrite?",
+						"Select an option", JOptionPane.YES_NO_OPTION);
+
+				// Overwrite if yes.
+				if (overwriteSelection == JOptionPane.OK_OPTION) {
+					return outputFilename;
+				}
+			} else {
+				return outputFilename;
+			}
+		}
+		
+		return null;
+	}
+	
+	
+	/**
 	 * Returns the output filename of the mp3 audio. Asks user if overwrite is desired if same file exists.
 	 * @return
 	 * @throws IOException
 	 */
 
-	private String getOutputFilename() throws IOException {
+	private String getOutputAudioFilename() throws IOException {
 		JFileChooser chooser = new JFileChooser();
 
 		// Removes the accept all filter.
@@ -382,6 +460,23 @@ public class AudioPanel extends JPanel implements ActionListener {
 			return false;
 		}
 
+		return true;
+	}
+
+	private boolean validateTextfield(String path) throws IOException {
+		File f = new File(path);
+
+		if (!f.exists()) {
+			JOptionPane.showMessageDialog(null, path + " is not a valid path");
+			return false;
+		}
+
+		String type = Files.probeContentType(Paths.get(path));
+
+		if (!type.contains("audio/mpeg")) {
+			JOptionPane.showMessageDialog(null, path + " is not an audio file");
+			return false;
+		}
 		return true;
 	}
 
