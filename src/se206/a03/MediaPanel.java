@@ -1,7 +1,6 @@
 package se206.a03;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -42,6 +41,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	private JPanel timePanel = new JPanel(new MigLayout());
 	private JPanel buttonPanel = new JPanel(new MigLayout());
 	
+	private DownloadPanel downloadPanel = new DownloadPanel();
+	
 	public JButton playButton = new JButton(MediaIcon.getIcon(Playback.PLAY));
 	public JButton stopButton = new JButton(MediaIcon.getIcon(Playback.STOP));
 	public JButton fastforwardButton = new JButton(MediaIcon.getIcon(Playback.FASTFORWARD));
@@ -49,6 +50,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	public JButton muteButton = new JButton(MediaIcon.getIcon(Playback.UNMUTE));
 	public JButton maxVolumeButton = new JButton(MediaIcon.getIcon(Playback.MAXVOLUME));
 	public JButton openButton = new JButton(MediaIcon.getIcon(Playback.OPEN));
+	public JButton downloadButton = new JButton(MediaIcon.getIcon(Playback.DOWNLOAD));
 	
 	public JLabel startTimeLabel = new JLabel(initialTimeDisplay); // Initial labels
 	public JLabel finishTimeLabel = new JLabel(initialTimeDisplay);
@@ -60,8 +62,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	
 	public JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, minVolume, maxVolume, 100); // 100 is arbitrary value.
 	
-	private EmbeddedMediaPlayerComponent mediaPlayerComponent;
-	private EmbeddedMediaPlayer mediaPlayer;
+	public EmbeddedMediaPlayerComponent mediaPlayerComponent;
+	public EmbeddedMediaPlayer mediaPlayer;
 	
 	private SkipWorker skipWorker = new SkipWorker(Playback.FASTFORWARD); // arbitrary. value doesn't matter.
 	
@@ -95,10 +97,21 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		timeSlider.setValue(0);
 		
 		timeSlider.setToolTipText("Time Bar. Shows elapsed and total time");
-		
 		timePanel.add(startTimeLabel);
 		timePanel.add(timeSlider, "pushx, growx");
 		timePanel.add(finishTimeLabel);
+		
+		setButtonPanel();
+		
+		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
+		playbackPanel.add(buttonPanel, "pushx, growx");
+		playbackPanel.add(downloadPanel, "south, pushx, growx");
+		downloadPanel.setVisible(false);
+		
+		add(mediaPlayerComponent, BorderLayout.CENTER);
+		add(playbackPanel, BorderLayout.SOUTH);
+		
+		addListeners();
 	}
 	
 	// Places buttons onto the button panel.
@@ -154,6 +167,13 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		openButton.setContentAreaFilled(false);
 
 		buttonPanel.add(openButton, "align right, pushx");
+		
+		downloadButton.setToolTipText("Download media file");
+		downloadButton.setBorderPainted(false);
+		downloadButton.setFocusPainted(false);
+		downloadButton.setContentAreaFilled(false);
+
+		buttonPanel.add(downloadButton);
 	}
 	
 	private void setPlaybackPanel() {
@@ -171,6 +191,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		muteButton.addActionListener(this);
 		maxVolumeButton.addActionListener(this);
 		openButton.addActionListener(this);
+		downloadButton.addActionListener(this);
 		
 		// Jslider change listeners
 		volumeSlider.addChangeListener(this);
@@ -261,6 +282,18 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	        }
 	    });
 		
+		downloadButton.getModel().addChangeListener(new ChangeListener() {
+	        @Override
+	        public void stateChanged(ChangeEvent e) {
+	            ButtonModel model = (ButtonModel) e.getSource();
+	            if (model.isRollover()) {
+	            	downloadButton.setBorderPainted(true);
+	            } else {
+	            	downloadButton.setBorderPainted(false);
+	            }
+	        }
+	    });
+		
 		// video surface responds when double click.
 		mediaPlayerComponent.getVideoSurface().addMouseListener(new MouseAdapter() {
 
@@ -313,10 +346,12 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			}
 		} else if (e.getSource() == stopButton) {
 			mediaPlayer.stop();
+			timeSlider.setValue(0);
 		} else if (e.getSource() == fastforwardButton) {
 			// time in milliseconds
 			fastforwardButton.setSelected(true);
-			
+			playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+			mediaPlayer.pause();
 			if (mediaPlayer.isPlayable()) {
 				switch(skipWorker.getState()) {
 					case PENDING:
@@ -335,7 +370,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == rewindButton) {
 			// time in milliseconds
 			rewindButton.setSelected(true);
-			
+			playButton.setIcon(MediaIcon.getIcon(Playback.PLAY));
+			mediaPlayer.pause();
 			if (mediaPlayer.isPlayable()) {
 				switch(skipWorker.getState()) {
 					case PENDING:
@@ -365,6 +401,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 			mediaPlayer.setVolume(200);
 		} else if (e.getSource() == openButton) {
 			playFile();
+		} else if (e.getSource() == downloadButton){
+			downloadPanel.setVisible(true);
 		}
 	}
 	
@@ -394,6 +432,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		if (selection == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = chooser.getSelectedFile();
 			mediaPlayer.playMedia(selectedFile.getPath());
+			FilterPanel.getInstance().checkLog(selectedFile.toString());
 		}
 	}
 	

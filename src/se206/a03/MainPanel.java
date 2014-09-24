@@ -23,9 +23,6 @@ public class MainPanel extends JPanel {
 	private MainPanel() {
 		setLayout(new MigLayout());
 		
-//		mediaPanel.setBackground(Color.blue);
-//		audioPanel.setBackground(Color.RED);
-		
 		add(mediaPanel, "wrap");
 		add(audioPanel);
 	}

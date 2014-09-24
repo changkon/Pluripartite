@@ -27,6 +27,7 @@ public class MediaIcon {
 	private static ImageIcon unmute = new ImageIcon(path + "/res/unmute.png");
 	private static ImageIcon maxVolume = new ImageIcon(path + "/res/maxvolume.png");
 	private static ImageIcon open = new ImageIcon(path + "/res/open.png");
+	private static ImageIcon download = new ImageIcon(path + "/res/download.png");
 	
 	public static Icon getIcon(Playback option) {
 		ImageIcon icon = null;
@@ -58,6 +59,9 @@ public class MediaIcon {
 				break;
 			case OPEN:
 				icon = open;
+				break;
+			case DOWNLOAD:
+				icon = download;
 				break;
 		}
 		
