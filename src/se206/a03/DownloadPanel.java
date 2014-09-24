@@ -43,7 +43,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 		download = new JButton("Download");
 		cancel = new JButton("Cancel");
 		downloadLabel = new JLabel("Download URL: ");
-		urlInput = new JTextField("", 60);
+		urlInput = new JTextField("", 40);
 		
 		download.setBorderPainted(false);
 		download.setFocusPainted(false);

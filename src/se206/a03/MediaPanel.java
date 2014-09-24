@@ -1,6 +1,5 @@
 package se206.a03;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -100,18 +99,6 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		timePanel.add(startTimeLabel);
 		timePanel.add(timeSlider, "pushx, growx");
 		timePanel.add(finishTimeLabel);
-		
-		setButtonPanel();
-		
-		playbackPanel.add(timePanel, "north, pushx, growx, wrap 0px");
-		playbackPanel.add(buttonPanel, "pushx, growx");
-		playbackPanel.add(downloadPanel, "south, pushx, growx");
-		downloadPanel.setVisible(false);
-		
-		add(mediaPlayerComponent, BorderLayout.CENTER);
-		add(playbackPanel, BorderLayout.SOUTH);
-		
-		addListeners();
 	}
 	
 	// Places buttons onto the button panel.
@@ -179,6 +166,10 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	private void setPlaybackPanel() {
 		playbackPanel.add(timePanel, "pushx, growx, wrap");
 		playbackPanel.add(buttonPanel, "pushx, growx");
+		
+		playbackPanel.add(downloadPanel, "south, pushx, growx");
+		downloadPanel.setVisible(false);
+		
 	}
 	
 	// Adds any listeners onto component.
@@ -402,7 +393,13 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else if (e.getSource() == openButton) {
 			playFile();
 		} else if (e.getSource() == downloadButton){
-			downloadPanel.setVisible(true);
+			
+			if (downloadPanel.isVisible()) {
+				downloadPanel.setVisible(false);
+			} else {
+				downloadPanel.setVisible(true);
+			}
+			
 		}
 	}
 	

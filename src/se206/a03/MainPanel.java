@@ -1,7 +1,5 @@
 package se206.a03;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -12,6 +10,7 @@ public class MainPanel extends JPanel {
 	
 	private MediaPanel mediaPanel = MediaPanel.getInstance();
 	private AudioPanel audioPanel = AudioPanel.getInstance();
+	private FilterPanel filterPanel = FilterPanel.getInstance();
 	
 	public static MainPanel getInstance() {
 		if (theInstance == null) {
@@ -23,7 +22,8 @@ public class MainPanel extends JPanel {
 	private MainPanel() {
 		setLayout(new MigLayout());
 		
-		add(mediaPanel, "wrap");
+		add(mediaPanel);
+		add(filterPanel, "span 1 2, pushy, growy, wrap");
 		add(audioPanel);
 	}
 }

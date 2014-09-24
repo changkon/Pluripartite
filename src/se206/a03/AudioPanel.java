@@ -76,8 +76,8 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		addListeners();
 
-		add(audioExtractionPanel, "wrap");
-		add(audioReplacePanel);
+		add(audioExtractionPanel, "wrap, pushx, growx");
+		add(audioReplacePanel, "wrap, pushx, growx");
 	}
 
 	private void setAudioExtractionPanel() {

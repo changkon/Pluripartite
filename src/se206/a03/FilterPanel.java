@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -23,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ProgressMonitor;
+import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -42,10 +44,11 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 public class FilterPanel extends JPanel implements ActionListener {
 	private static FilterPanel theInstance = null;
 	private EmbeddedMediaPlayer mediaPlayer = MediaPanel.getInstance().getMediaPlayer();
+	private TitledBorder title;
 	
 	private static final int MAXWORDS = 20;
 	
-	private JLabel textLabel = new JLabel("Text (" + MAXWORDS + " words max for each selection). X and Y are co ordinates. This is optional");
+	private JLabel textLabel = new JLabel("<html>Text (" + MAXWORDS + " words max for each selection). X and Y <br /> co ordinates for the video is optional</html>");
 	
 	private JPanel openingTextPanel = new JPanel(new MigLayout());
 	private JPanel closingTextPanel = new JPanel(new MigLayout());
@@ -104,16 +107,24 @@ public class FilterPanel extends JPanel implements ActionListener {
 	
 	private FilterPanel() {
 		setLayout(new MigLayout("gap rel 0" , "grow"));
+		
+		title = BorderFactory.createTitledBorder("Text Editing");
+		setBorder(title);
+		
 		setOpeningTextPanel();
 		setClosingTextPanel();
 		addListeners();		
 		
+		// Sets new font for textLabel.
+		Font font = textLabel.getFont().deriveFont(Font.BOLD + Font.ITALIC, 14f);
+		textLabel.setFont(font);
+		
 		add(textLabel, "wrap");
 			
-		add(openingTextPanel, "left");
-		add(closingTextPanel, "right");
+		add(openingTextPanel, "wrap");
+		add(closingTextPanel, "wrap");
 
-		add(saveButton);
+		add(saveButton, "split 3");
 		add(previewButton);
 		add(saveWorkButton);
 	}

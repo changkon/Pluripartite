@@ -30,7 +30,6 @@ public class VamixFrame extends JFrame implements ActionListener {
 	
 	private JMenu panelMenu = new JMenu("Panel");
 	private JMenuItem mainPanelOption = new JMenuItem("Main"); 
-	private JMenuItem filterPanelOption = new JMenuItem("Filters");
 	
 	private JMenu mediaMenu = new JMenu("Media");
 	private JMenuItem openMenuOption = new JMenuItem("Open..");
@@ -38,24 +37,16 @@ public class VamixFrame extends JFrame implements ActionListener {
 	private MainPanel mainPanel = MainPanel.getInstance();
 	private final String MAIN = "Main";
 	
-	private FilterPanel filterPanel = FilterPanel.getInstance();
-	private final String FILTER = "Filter";
-	
-	private AudioPanel audioPanel = AudioPanel.getInstance();
-	private final String AUDIO = "Audio";
-	
 	public VamixFrame() {
 		super("VAMIX");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(1350, 765));
-		setPreferredSize(new Dimension(1350, 765));
+		setMinimumSize(new Dimension(1270, 925));
+		setPreferredSize(new Dimension(1270, 925));
 		
 		setMenuBar();
 		setJMenuBar(menuBar);
 		
-//		panels.add(audioPanel, AUDIO);
 		panels.add(mainPanel, MAIN);
-		panels.add(filterPanel, FILTER);
 		
 		add(panels);
 		
@@ -64,7 +55,6 @@ public class VamixFrame extends JFrame implements ActionListener {
 	
 	private void setMenuBar() {
 		panelMenu.add(mainPanelOption);
-		panelMenu.add(filterPanelOption);
 		
 		mediaMenu.add(openMenuOption);
 		
@@ -75,7 +65,6 @@ public class VamixFrame extends JFrame implements ActionListener {
 	private void addListeners() {
 		openMenuOption.addActionListener(this);
 		mainPanelOption.addActionListener(this);
-		filterPanelOption.addActionListener(this);
 		
 		// Makes sure when window closes, it releases the mediaPlayer.
 		addWindowListener(new WindowAdapter() {
@@ -96,9 +85,6 @@ public class VamixFrame extends JFrame implements ActionListener {
 		} else if (e.getSource() == mainPanelOption) {
 			CardLayout c = (CardLayout)panels.getLayout();
 			c.show(panels, MAIN);
-		} else if (e.getSource() == filterPanelOption) {
-			CardLayout c = (CardLayout)panels.getLayout();
-			c.show(panels, FILTER);
 		}
 	}
 	
