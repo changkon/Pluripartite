@@ -68,7 +68,7 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		StringBuilder command = new StringBuilder("avplay -i " + inputFilename + " -vf ");
+		StringBuilder command = new StringBuilder("avplay -i \"" + inputFilename + "\" -vf ");
 		int filterLength = MediaSetting.getInstance().getOpeningClosingFilterLength();
 		int lastSeconds = lengthOfVideo - filterLength;
 		

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -277,6 +278,21 @@ public class FilterPanel extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Please parse media");
 			return false;
 		}
+		
+		String inputFilename = MRLFilename.getFilename(mediaPlayer.mrl());
+		
+		try {
+			String type = Files.probeContentType(Paths.get(inputFilename));
+			
+			if (!type.contains("video")) {
+				JOptionPane.showMessageDialog(null, "This is not a video file");
+				return false;
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		String openingText = openingTextArea.getText();
 		String closingText = closingTextArea.getText();

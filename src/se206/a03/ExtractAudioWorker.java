@@ -21,21 +21,25 @@ import javax.swing.SwingWorker;
 public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	private String inputFile;
 	private String outputFile;
-	private int lengthOfVideo;
+	private String startTime;
+	private String lengthTime;
 	private ProgressMonitor monitor;
+	private int lengthOfAudio;
 	
-	public ExtractAudioWorker(String inputFile, String outputFile, int lengthOfVideo, ProgressMonitor monitor) {
+	public ExtractAudioWorker(String inputFile, String outputFile, String startTime, String lengthTime, int lengthOfAudio, ProgressMonitor monitor) {
 		this.inputFile = inputFile;
 		this.outputFile = outputFile;
-		this.lengthOfVideo = lengthOfVideo;
+		this.startTime = startTime;
+		this.lengthTime = lengthTime;
 		this.monitor = monitor;
+		this.lengthOfAudio = lengthOfAudio;
 	}
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i " + inputFile + " -vn -y " + outputFile);
+		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i " + inputFile + " -ss " + startTime + " -t " + lengthTime + " -vn -y " + outputFile);
 		builder.redirectErrorStream(true);
-		
+		System.out.println("avconv -i " + inputFile + " -ss " + startTime + " -t " + lengthTime + " -vn -y " + outputFile);
 		Process process = builder.start();
 		
 		InputStream stdout = process.getInputStream();
@@ -48,7 +52,6 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 		while ((line = buffer.readLine()) != null) {
 			if (monitor.isCanceled()) {
 				process.destroy();
-				this.cancel(true);
 				break;
 			}
 			m = p.matcher(line);
@@ -58,9 +61,10 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 				publish((int)Double.parseDouble(m.group().substring(5)));
 			}
 		}
-		
-		if (!isCancelled()) {
-			process.waitFor();
+		process.waitFor();
+
+		if (monitor.isCanceled()) {
+			this.cancel(true);
 		}
 		
 		return null;
@@ -70,7 +74,7 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	protected void process(List<Integer> chunks) {
 		if (!isDone()) {
 			for (Integer element : chunks) {
-				String format = String.format("Completed : %2d%%", (int)(((double)element / lengthOfVideo) * 100));
+				String format = String.format("Completed : %2d%%", (int)(((double)element / lengthOfAudio) * 100));
 				monitor.setNote(format);
 				monitor.setProgress(element);
 			}
@@ -80,6 +84,7 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	@Override
 	protected void done() {
 		try {
+			System.out.println("done");
 			monitor.close();
 			get();
 			JOptionPane.showMessageDialog(null, "Extraction complete");

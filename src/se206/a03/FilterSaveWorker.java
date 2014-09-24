@@ -83,7 +83,7 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		StringBuilder command = new StringBuilder("avconv -i " + inputFilename + " -c:a copy -vf ");
+		StringBuilder command = new StringBuilder("avconv -i \"" + inputFilename + "\" -c:a copy -vf ");
 		int filterLength = MediaSetting.getInstance().getOpeningClosingFilterLength();
 		int lastSeconds = lengthOfVideo - filterLength;
 		
@@ -118,7 +118,6 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 			
 			if (monitor.isCanceled()) {
 				process.destroy();
-				this.cancel(true);
 				break;
 			}
 			
@@ -130,8 +129,10 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 			}
 		}
 		
-		if (!isCancelled()) {
-			process.waitFor();
+		process.waitFor();
+		
+		if (monitor.isCanceled()) {
+			this.cancel(true);
 		}
 		
 		return null;
