@@ -38,7 +38,8 @@ TextFilter
     x and y values are optional. If left empty, the natural position of the text will be near the bottom centre of
     the video.
   
-  All adjustable. Can preview seperate openings and endings.
+  All adjustable. Can preview seperate openings and endings. Opening preview window closes 2 seconds after text 
+  has finished displaying. Closing preview window closes one second after video has finished playing.
   Can save the "session" for that video by pressing the "save session" button.
   Work on other videos then come back to the video you want to continue working on, which will load the settings from   when you saved the session.
   You can save the video as a new file.
