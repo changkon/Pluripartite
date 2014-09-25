@@ -1,6 +1,14 @@
 package se206.a03;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutionException;
+
 import javax.swing.JOptionPane;
+import javax.swing.ProgressMonitor;
 import javax.swing.SwingWorker;
 
 /**
@@ -12,11 +20,14 @@ public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 	private String videoFileInput;
 	private String audioFileInput;
 	private String videoFileOutput;
+	private ProgressMonitor monitor;
+	private int progressValue = 0;
 	
-	public AudioReplaceWorker(String videoFileInput, String audioFileInput, String videoFileOutput) {
+	public AudioReplaceWorker(String videoFileInput, String audioFileInput, String videoFileOutput, ProgressMonitor monitor) {
 		this.videoFileInput = videoFileInput;
 		this.audioFileInput = audioFileInput;
 		this.videoFileOutput = videoFileOutput;
+		this.monitor = monitor;
 	}
 	
 	@Override
@@ -28,14 +39,52 @@ public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 
 		Process process = builder.start();
 		
+		InputStream stdout = process.getInputStream();
+		BufferedReader buffer = new BufferedReader(new InputStreamReader(stdout));
+		
+		String line = "";
+		
+		while((line = buffer.readLine()) != null) {
+			if(monitor.isCanceled()) {
+				process.destroy();
+				break;
+			}
+			if (progressValue == 100) {
+				progressValue = 0;
+			}
+			publish(progressValue);
+			progressValue += 10;
+		}
+		
 		process.waitFor();
 		
+		if (monitor.isCanceled()) {
+			this.cancel(true);
+		}
+		
 		return null;
+	}
+	
+	@Override
+	protected void process(List<Integer> chunks) {
+		if (!isDone()) {
+			for (Integer i : chunks) {
+				monitor.setProgress(i);
+			}
+		}
 	}
 
 	@Override
 	protected void done() {
-		JOptionPane.showMessageDialog(null, "Replacing audio complete");
+		try {
+			monitor.close();
+			get();
+			JOptionPane.showMessageDialog(null, "Replacing audio complete");
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		} catch (CancellationException e) {
+			JOptionPane.showMessageDialog(null, "Replacing audio cancelled");
+		}
 	}
 
 }

@@ -248,7 +248,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 	/**
 	 * {@link se206.a03.AudioReplaceWorker} <br />
-	 * Calls AudioReplaceWorker. Opens JOptionPane dialog informing user process has started.
+	 * Calls AudioReplaceWorker. Opens ProgressMonitor.
 	 * 
 	 * @param videoInput
 	 * @param audioInput
@@ -256,15 +256,16 @@ public class AudioPanel extends JPanel implements ActionListener {
 	 */
 	
 	private void executeReplace(String videoInput, String audioInput, String videoOutput) {
-
-		AudioReplaceWorker worker = new AudioReplaceWorker(videoInput, audioInput, videoOutput);
+		ProgressMonitor monitor = new ProgressMonitor(null, "Replacing audio has started",
+				"In progress..", 0, 100);
+		
+		AudioReplaceWorker worker = new AudioReplaceWorker(videoInput, audioInput, videoOutput, monitor);
 		worker.execute();
-		JOptionPane.showMessageDialog(null, "Replacing audio has started");
 	}
 
 	/**
 	 * {@link se206.a03.OverlayWorker} <br />
-	 * Calls OverlayWorker. Opens JOptionPane dialog informing user process has started.
+	 * Calls OverlayWorker. Opens ProgressMonitor.
 	 * 
 	 * @param videoInput
 	 * @param audioInput
@@ -273,9 +274,11 @@ public class AudioPanel extends JPanel implements ActionListener {
 	
 	private void executeOverlay(String videoInput, String audioInput, String videoOutput) {
 		
-		OverlayWorker worker = new OverlayWorker(videoInput, audioInput, videoOutput);
+		ProgressMonitor monitor = new ProgressMonitor(null, "Overlaying audio has started",
+				"In progress..", 0, 100);
+		
+		OverlayWorker worker = new OverlayWorker(videoInput, audioInput, videoOutput, monitor);
 		worker.execute();
-		JOptionPane.showMessageDialog(null, "Overlaying audio has started");
 	}
 	
 	/**
