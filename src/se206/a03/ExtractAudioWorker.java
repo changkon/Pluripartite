@@ -35,7 +35,7 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \'" + inputFile + "\' -ss " + startTime + " -t " + lengthTime + " -vn -q:a 2 -y \'" + outputFile + "\'");
+		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \'" + inputFile + "\' -ss " + startTime + " -t " + lengthTime + " -vn -q:a 1 -y \'" + outputFile + "\'");
 		builder.redirectErrorStream(true);
 
 		Process process = builder.start();
