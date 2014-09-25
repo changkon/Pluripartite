@@ -91,8 +91,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 	private JTextField closingYTextField = new JTextField(5);
 	
 	private JButton saveButton = new JButton("Save Video");
-	private JButton previewButton1 = new JButton("Preview Opening");
-	private JButton previewButton2 = new JButton("Preview Closing");
+	private JButton previewButton1 = new JButton("Preview Opening Scene");
+	private JButton previewButton2 = new JButton("Preview Closing Scene");
 	private JButton saveWorkButton = new JButton("Save current work");
 	
 	//private MediaPanel mp = MediaPanel.getInstance();
@@ -146,7 +146,11 @@ public class FilterPanel extends JPanel implements ActionListener {
 	}
 
 	public void checkLog(String fileName) {
+		
+		boolean found = false;
+		
 		//set up the folder if it doesnt exist
+		
 		currentFileName = fileName;
 		File home = new File(System.getProperty("user.home"));
 		File vamixdir = new File(home + "/.vamix");
@@ -199,12 +203,29 @@ public class FilterPanel extends JPanel implements ActionListener {
 							System.out.println(openingFontColorCombo.getSelectedItem());
 							System.out.println(closingFontColorCombo.getSelectedItem());
 							*/
+							found = true;
 					  }
 					  line = in.readLine();
 					}
 				}catch(Exception eeeee){
 					eeeee.printStackTrace();
 				}
+		if(found == false){
+			openingTextArea.setText("Opening Scene Text");
+			closingTextArea.setText("Closing Scene Text");
+			openingXTextField.setText("");
+			closingXTextField.setText("");
+			openingYTextField.setText("");
+			closingYTextField.setText("");
+			openingFontCombo.setSelectedIndex(0);
+			closingFontCombo.setSelectedIndex(0);
+			openingFontSizeCombo.setSelectedItem(Integer.parseInt("16"));
+			closingFontSizeCombo.setSelectedItem(Integer.parseInt("16"));
+			openingFontColorCombo.setSelectedIndex(0);
+			closingFontColorCombo.setSelectedIndex(0);
+			openingTimeLength.setSelectedIndex(0);
+			closingTimeLength.setSelectedIndex(0);
+		}
 	}
 
 	private void setOpeningTextPanel() {

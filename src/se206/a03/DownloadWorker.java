@@ -46,7 +46,7 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 				
 		
 			//process the stdout to %			
-			while ((stdOutput = stdout.readLine()) != null && !isCancelled()) {
+			while ((stdOutput = stdout.readLine()) != null && !isCancelled() && !monitor.isCanceled()) {
 				line = stdOutput;
 				String[] teemp = stdOutput.split("%");
 				String temp = teemp[0];
@@ -81,23 +81,6 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 			if(get() == 0){
 				JOptionPane.showMessageDialog(null, "Successful Download! Please press okay!");
 				//PrintWriter writer = null;
-				try {
-					/**File home = new File(System.getProperty("user.home"));
-					File logFile = new File(home + "/.vamix/log.txt");
-					writer = new PrintWriter(new FileWriter(logFile, true));
-					Date now = new Date();
-					String format1 = new SimpleDateFormat("dd-MMMMM-yyyy HH:mm").format(now);
-					String txtline = MainGUI.countLines() + " Download " + format1;
-					writer.println(txtline);*/
-				} catch (Exception eee) {
-					eee.printStackTrace();
-				} finally {
-					try {
-						/*writer.close();
-						 */
-					} catch (Exception ssse) {
-					}
-				}
 			}
 			else{//if not successful, return the error code decomposition
 				if(get() == 1){

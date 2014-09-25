@@ -6,18 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.metal.MetalSliderUI;
 
 import net.miginfocom.swing.MigLayout;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
@@ -31,7 +38,7 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
  */
 
 @SuppressWarnings("serial")
-public class MediaPanel extends JPanel implements ActionListener, ChangeListener {
+public class MediaPanel extends JPanel implements ActionListener, ChangeListener{
 	private static MediaPanel theInstance = null;
 	
 	public static final String initialTimeDisplay = "--:--";
@@ -313,12 +320,44 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		
 		// Add media player event listener.
 		mediaPlayer.addMediaPlayerEventListener(new MediaPlayerListener(this));
+		
+		
+		//http://stackoverflow.com/questions/518471/jslider-question-position-after-leftclick
+		//click to change time on the time slider solution by ninesided on Feb 6, '09.
+		timeSlider.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+		        
+		        int value = timeSlider.getValue(); 
+
+		        if (timeSlider.getOrientation() == JSlider.HORIZONTAL) {
+		            value = this.valueForXPosition(timeSlider.getMousePosition().x);
+		        } else if (timeSlider.getOrientation() == JSlider.VERTICAL) {
+		            value = this.valueForYPosition(timeSlider.getMousePosition().y);
+		        }
+		        timeSlider.setValue(value);
+		    }
+		});
+		
+		volumeSlider.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+		        
+		        int value = volumeSlider.getValue(); 
+
+		        if (volumeSlider.getOrientation() == JSlider.HORIZONTAL) {
+		            value = this.valueForXPosition(volumeSlider.getMousePosition().x);
+		        } else if (volumeSlider.getOrientation() == JSlider.VERTICAL) {
+		            value = this.valueForYPosition(volumeSlider.getMousePosition().y);
+		        }
+		        volumeSlider.setValue(value);
+		    }
+			
+		});
+		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == playButton) {
-			
+		if (e.getSource() == playButton) {			
 			// Possible states: PENDING, STARTED, DONE
 			
 			switch(skipWorker.getState()) {
@@ -424,11 +463,34 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	public void playFile() {
 		JFileChooser chooser = new JFileChooser();
 		int selection = chooser.showOpenDialog(null);
+		boolean media = false;
 		
 		if (selection == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = chooser.getSelectedFile();
-			mediaPlayer.playMedia(selectedFile.getPath());
-			FilterPanel.getInstance().checkLog(selectedFile.toString());
+			try {
+				String cmd = "file -b " + selectedFile.toString();
+				ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", cmd);
+				builder.redirectErrorStream(true);
+				Process process = null;
+				process = builder.start();
+				InputStream stdout = process.getInputStream();
+				BufferedReader stdoutBuffered = new BufferedReader(new InputStreamReader(stdout));
+				String temp = stdoutBuffered.readLine();
+				while(temp != null && !(temp.length() == 0) && !(temp.equals(""))){
+					if(temp.contains("Audio") || temp.contains("MPEG")){
+						media = true;
+					}
+					temp = stdoutBuffered.readLine();
+				}
+			}catch(IOException e1) {
+				e1.printStackTrace();
+			}
+			if(media){	
+				mediaPlayer.playMedia(selectedFile.getPath());
+				FilterPanel.getInstance().checkLog(selectedFile.toString());
+			}else{
+				JOptionPane.showMessageDialog(null, "Not a valid media file! Please choose another file.");
+			}
 		}
 	}
 	
@@ -442,6 +504,5 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		} else {
 			playButton.setIcon(MediaIcon.getIcon(Playback.PAUSE));
 		}
-	}
-	
+	}	
 }
