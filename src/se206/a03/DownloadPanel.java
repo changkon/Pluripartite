@@ -2,6 +2,8 @@ package se206.a03;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +46,24 @@ public class DownloadPanel extends JPanel implements ActionListener {
 		cancel = new JButton("Cancel");
 		downloadLabel = new JLabel("Download URL: ");
 		urlInput = new JTextField("", 40);
+		
+		urlInput.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					e.consume();
+					executeDownload();
+				}
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {}
+
+			@Override
+			public void keyTyped(KeyEvent e) {}
+		});
 		
 		download.setBorderPainted(false);
 		download.setFocusPainted(false);
@@ -114,14 +134,9 @@ public class DownloadPanel extends JPanel implements ActionListener {
 					boolean valid = false;
 					try {
 						valid = validURLCheck();
-						Thread.sleep(5000);
 					} catch (IOException e) {
 						e.printStackTrace();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
-					
 					if(valid){
 						try{
 					  		ProgressMonitor monitor = new ProgressMonitor(null, "Download has started", "", 0, 100);
@@ -200,9 +215,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == download){
-			if (!(urlInput.getText().equals("")) && urlInput.getText() != null && urlInput.getText().length() != 0){
-				downloadExecute(urlInput.getText());
-			}			
+			executeDownload();		
 		}
 		else if (e.getSource() == cancel){
 			this.setVisible(false);
@@ -210,6 +223,13 @@ public class DownloadPanel extends JPanel implements ActionListener {
 			URL = "";
 		}
 	}
+	
+	private void executeDownload(){
+		if (!(urlInput.getText().equals("")) && urlInput.getText() != null && urlInput.getText().length() != 0){
+			downloadExecute(urlInput.getText());
+		}
+	}
+
 }	
 	
 

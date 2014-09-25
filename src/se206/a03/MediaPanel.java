@@ -333,6 +333,21 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		    }
 		});
 		
+		volumeSlider.setUI(new MetalSliderUI(){
+			protected void scrollDueToClickInTrack(int direction) {
+		        
+		        int value = volumeSlider.getValue(); 
+
+		        if (volumeSlider.getOrientation() == JSlider.HORIZONTAL) {
+		            value = this.valueForXPosition(volumeSlider.getMousePosition().x);
+		        } else if (volumeSlider.getOrientation() == JSlider.VERTICAL) {
+		            value = this.valueForYPosition(volumeSlider.getMousePosition().y);
+		        }
+		        volumeSlider.setValue(value);
+		    }
+			
+		});
+		
 	}
 	
 	@Override
