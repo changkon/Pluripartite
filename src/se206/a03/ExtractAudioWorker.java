@@ -24,15 +24,13 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	private String startTime;
 	private String lengthTime;
 	private ProgressMonitor monitor;
-	private int lengthOfAudio;
 	
-	public ExtractAudioWorker(String inputFile, String outputFile, String startTime, String lengthTime, int lengthOfAudio, ProgressMonitor monitor) {
+	public ExtractAudioWorker(String inputFile, String outputFile, String startTime, String lengthTime, ProgressMonitor monitor) {
 		this.inputFile = inputFile;
 		this.outputFile = outputFile;
 		this.startTime = startTime;
 		this.lengthTime = lengthTime;
 		this.monitor = monitor;
-		this.lengthOfAudio = lengthOfAudio;
 	}
 	
 	@Override
@@ -74,7 +72,7 @@ public class ExtractAudioWorker extends SwingWorker<Void, Integer> {
 	protected void process(List<Integer> chunks) {
 		if (!isDone()) {
 			for (Integer element : chunks) {
-				String format = String.format("Completed : %2d%%", (int)(((double)element / lengthOfAudio) * 100));
+				String format = String.format("Completed : %2d%%", (int)(((double)element / monitor.getMaximum()) * 100));
 				monitor.setNote(format);
 				monitor.setProgress(element);
 			}

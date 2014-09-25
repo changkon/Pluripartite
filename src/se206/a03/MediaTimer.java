@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class MediaTimer {
 	
 	/**
-	 * Returns a formatted string for the time to display correct time in media player.
+	 * Returns a formatted string for the time to display correct time in media player. hh:mm:ss
 	 * @param time
 	 * @return
 	 */
@@ -24,6 +24,12 @@ public class MediaTimer {
 		}
 		return String.format("%02d:%02d:%02d", hours, minutes, seconds);
 	}
+	
+	/**
+	 * Returns amount of seconds from hh:mm:ss format.
+	 * @param formattedTime
+	 * @return
+	 */
 	
 	public static int getSeconds(String formattedTime) {
 		

@@ -3,11 +3,14 @@ package se206.a03;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
-public class OverlayWorker extends SwingWorker<Void, Void> {
+/**
+ * Overlays video with existing audio and another video. Outputs a new video.
+ */
+
+public class OverlayWorker extends SwingWorker<Void, Integer> {
 	private String videoFileInput;
 	private String audioFileInput;
 	private String videoFileOutput;
-
 
 	public OverlayWorker(String videoFileInput, String audioFileInput, String videoFileOutput) {
 		this.videoFileInput = videoFileInput;
@@ -33,6 +36,6 @@ public class OverlayWorker extends SwingWorker<Void, Void> {
 
 	@Override
 	protected void done() {
-		JOptionPane.showMessageDialog(null, "Overlay complete");
+		JOptionPane.showMessageDialog(null, "Overlaying audio complete");
 	}
 }

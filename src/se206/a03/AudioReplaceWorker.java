@@ -3,6 +3,11 @@ package se206.a03;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
+/**
+ * Creates a new video and replaces that video's audio with a new audio.
+ *
+ */
+
 public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 	private String videoFileInput;
 	private String audioFileInput;

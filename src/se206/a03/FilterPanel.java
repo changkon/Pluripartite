@@ -280,13 +280,17 @@ public class FilterPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == openingFontCombo || e.getSource() == openingFontSizeCombo || e.getSource() == openingFontColorCombo) {
+			// Changes font and font size.
 			Font font = ((FilterFont)openingFontCombo.getSelectedItem()).getFont();
 			font = font.deriveFont((float)((Integer)openingFontSizeCombo.getSelectedItem()));
+			
 			openingTextArea.setFont(font);
 			openingTextArea.setForeground(((FilterColor)openingFontColorCombo.getSelectedItem()).getColor());
 		} else if (e.getSource() == closingFontCombo || e.getSource() == closingFontSizeCombo || e.getSource() == closingFontColorCombo) {
+			// Changes font and font size.
 			Font font = ((FilterFont)closingFontCombo.getSelectedItem()).getFont();
 			font = font.deriveFont((float)((Integer)closingFontSizeCombo.getSelectedItem()));
+			
 			closingTextArea.setFont(font);
 			closingTextArea.setForeground(((FilterColor)closingFontColorCombo.getSelectedItem()).getColor());
 		} else if (e.getSource() == saveButton) {
@@ -416,6 +420,13 @@ public class FilterPanel extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * {@link se206.a03.FilterSaveWorker} <br />
+	 * Executes FilterSaveWorker and shows progress monitor.
+	 * 
+	 * @param outputFilename
+	 */
+	
 	private void executeFilterSave(String outputFilename) {
 		
 		int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);
@@ -443,6 +454,11 @@ public class FilterPanel extends JPanel implements ActionListener {
 		
 		worker.execute();
 	}
+	
+	/**
+	 * Verifies media is parsed. Also makes sure media is a video type.
+	 * @return
+	 */
 	
 	private boolean verifyInput() {
 		

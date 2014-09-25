@@ -120,7 +120,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		// Custom coloured button
 		selectAudioReplaceFileButton.setForeground(Color.WHITE);
-		selectAudioReplaceFileButton.setBackground(new Color(99, 184, 255));
+		selectAudioReplaceFileButton.setBackground(new Color(99, 184, 255)); // blue
 		
 		audioReplaceButton.setForeground(Color.WHITE);
 		audioReplaceButton.setBackground(new Color(183, 183, 183));
@@ -137,7 +137,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 		audioOverlayLabel.setFont(font);
 
 		selectAudioOverlayFileButton.setForeground(Color.WHITE);
-		selectAudioOverlayFileButton.setBackground(new Color(99, 184, 255));
+		selectAudioOverlayFileButton.setBackground(new Color(99, 184, 255)); // blue
 		
 		audioOverlayButton.setForeground(Color.WHITE);
 		audioOverlayButton.setBackground(new Color(183, 183, 183));
@@ -205,13 +205,10 @@ public class AudioPanel extends JPanel implements ActionListener {
 		} else if (e.getSource() == audioReplaceButton) {
 
 			try {
-				if (validateMedia() && validateTextfield(selectedAudioReplaceFileTextField.getText())) {
-					// This assumes that the audio selected is valid. No checking is done.
-					// http://stackoverflow.com/questions/3140992/read-out-time-length-duration-of-an-mp3-song-in-java
+				if (validateMedia() && validateTextfieldHasAudio(selectedAudioReplaceFileTextField.getText())) {
 					File audioFile = new File(selectedAudioReplaceFileTextField.getText());
 
 					String audioPath = audioFile.getPath();
-					
 					String videoPath = getOutputVideoFilename();
 					
 					if (videoPath != null) {
@@ -230,7 +227,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		} else if (e.getSource() == audioOverlayButton) {
 			try {
-				if (validateMedia() && validateTextfield(selectedAudioOverlayFileTextField.getText())) {
+				if (validateMedia() && validateTextfieldHasAudio(selectedAudioOverlayFileTextField.getText())) {
 					// This assumes that the audio selected is valid. No checking is done.
 					// http://stackoverflow.com/questions/3140992/read-out-time-length-duration-of-an-mp3-song-in-java
 					File audioFile = new File(selectedAudioOverlayFileTextField.getText());
@@ -249,6 +246,15 @@ public class AudioPanel extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * {@link se206.a03.AudioReplaceWorker} <br />
+	 * Calls AudioReplaceWorker. Opens JOptionPane dialog informing user process has started.
+	 * 
+	 * @param videoInput
+	 * @param audioInput
+	 * @param videoOutput
+	 */
+	
 	private void executeReplace(String videoInput, String audioInput, String videoOutput) {
 
 		AudioReplaceWorker worker = new AudioReplaceWorker(videoInput, audioInput, videoOutput);
@@ -256,15 +262,25 @@ public class AudioPanel extends JPanel implements ActionListener {
 		JOptionPane.showMessageDialog(null, "Replacing audio has started");
 	}
 
+	/**
+	 * {@link se206.a03.OverlayWorker} <br />
+	 * Calls OverlayWorker. Opens JOptionPane dialog informing user process has started.
+	 * 
+	 * @param videoInput
+	 * @param audioInput
+	 * @param videoOutput
+	 */
+	
 	private void executeOverlay(String videoInput, String audioInput, String videoOutput) {
+		
 		OverlayWorker worker = new OverlayWorker(videoInput, audioInput, videoOutput);
 		worker.execute();
 		JOptionPane.showMessageDialog(null, "Overlaying audio has started");
 	}
 	
 	/**
-	 * Returns the selected mp3 file from JFileChooser.
-	 * @return
+	 * Returns the selected audio (mp3) file from JFileChooser.
+	 * @return String
 	 */
 
 	private String getInputFilename() {
@@ -300,14 +316,12 @@ public class AudioPanel extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * Returns the output filename of the mp4 audio. Asks user if overwrite is desired if same file exists.
-	 * @return
+	 * Returns the output filename of the video (mp4). Asks user if overwrite is desired if same file exists.
+	 * @return String
 	 * @throws IOException
 	 */
 	
 	private String getOutputVideoFilename() {
-
-
 		JFileChooser chooser = new JFileChooser();
 
 		// Removes the accept all filter.
@@ -324,8 +338,8 @@ public class AudioPanel extends JPanel implements ActionListener {
 			String extensionType = chooser.getFileFilter().getDescription();
 
 			/*
-			 * Even though the extension type is listed below, sometimes users still add .mp3 to the end of the file so this
-			 * makes sure that when I add extension type to the filename, I only add .mp3 if it's not already there.
+			 * Even though the extension type is listed below, sometimes users still add .mp4 to the end of the file so this
+			 * makes sure that when I add extension type to the filename, I only add .mp4 if it's not already there.
 			 * 
 			 * At the moment, I only have .mp4 has possible extension.
 			 */
@@ -353,8 +367,8 @@ public class AudioPanel extends JPanel implements ActionListener {
 	
 	
 	/**
-	 * Returns the output filename of the mp3 audio. Asks user if overwrite is desired if same file exists.
-	 * @return
+	 * Returns the output filename of the audio(mp3). Asks user if overwrite is desired if same file exists.
+	 * @return String
 	 * @throws IOException
 	 */
 
@@ -416,7 +430,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 
 		ProgressMonitor monitor = new ProgressMonitor(null, "Extraction has started", "", 0, lengthOfAudio);
 
-		ExtractAudioWorker worker = new ExtractAudioWorker(inputFilename, outputFilename, startTime, lengthTime, lengthOfAudio, monitor);
+		ExtractAudioWorker worker = new ExtractAudioWorker(inputFilename, outputFilename, startTime, lengthTime, monitor);
 		worker.execute();
 	}
 
@@ -483,7 +497,14 @@ public class AudioPanel extends JPanel implements ActionListener {
 		return true;
 	}
 
-	private boolean validateTextfield(String path) throws IOException {
+	/**
+	 * Validates that textfield contains a valid file. Furthermore, it contains an audio.
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 */
+	
+	private boolean validateTextfieldHasAudio(String path) throws IOException {
 		File f = new File(path);
 
 		if (!f.exists()) {
