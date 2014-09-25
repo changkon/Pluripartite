@@ -90,8 +90,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 	private JTextField closingYTextField = new JTextField(5);
 	
 	private JButton saveButton = new JButton("Save Video");
-	private JButton previewButton1 = new JButton("Preview Opening");
-	private JButton previewButton2 = new JButton("Preview Closing");
+	private JButton previewButton1 = new JButton("Preview Opening Scene");
+	private JButton previewButton2 = new JButton("Preview Closing Scene");
 	private JButton saveWorkButton = new JButton("Save current work");
 	
 	//private MediaPanel mp = MediaPanel.getInstance();
