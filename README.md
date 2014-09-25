@@ -1,6 +1,7 @@
 VAMIX Prototype
 ===============
 README
+------
 
 Media Player
 ------------
@@ -16,10 +17,9 @@ Maximise audio by pressing the speaker icon to the right of the volume slider.
 Adjust audio manually by dragging volume slider or clicking area in volume slider.
 Adjust media time by dragging time slider or clicking area in time slider.
 
-Functionality
--------------
 Download
-  
+--------
+
   Can be toggled on and off with the download icon. This is located next to open media file icon.
   Will check if the URL is a valid file with a remote media file.
   If it is not valid, it will not execute download.
@@ -32,17 +32,19 @@ Download
 	current file or resume the download.
 
 TextFilter
+----------
 
   Has a choice between text font, text size, text colour, text position and number of seconds.
     x and y values are optional. If left empty, the natural position of the text will be near the bottom centre of
     the video.
   
- 	All adjustable. Can preview seperate openings and endings.
-	Can save the "session" for that video by pressing the "save session" button.
-	Work on other videos then come back to the video you want to continue working on, which will load the settings from   when you saved the session.
-	You can save the video as a new file.
+  All adjustable. Can preview seperate openings and endings.
+  Can save the "session" for that video by pressing the "save session" button.
+  Work on other videos then come back to the video you want to continue working on, which will load the settings from   when you saved the session.
+  You can save the video as a new file.
 	    
 Extraction
+----------
 
   Extracts AUDIO from VIDEO file.
   Must parse video in media player first.
@@ -53,6 +55,7 @@ Extraction
     Click extract entire video which extracts the entire video file.
 
 Replace Audio
+-------------
 
   Must parse video in media player first.
   
@@ -61,6 +64,7 @@ Replace Audio
   Replace audio by pressing Replace button and choose output filename.
   
 Overlay Audio
+-------------
 
   Must parse video in media player first.
   
