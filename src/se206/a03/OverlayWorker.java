@@ -32,8 +32,8 @@ public class OverlayWorker extends SwingWorker<Void, Integer> {
 	@Override
 	protected Void doInBackground() throws Exception {
 
-		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \"" + videoFileInput + "\" -i \"" + audioFileInput + "\" -filter_complex" +
-				" \"[0:a][1:a]amix[out]\" -map \"[out]\" -map 0:v -c:v copy -strict experimental -y \"" + videoFileOutput + "\"");
+		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \'" + videoFileInput + "\' -i \"" + audioFileInput + "\" -filter_complex" +
+				" \"[0:a][1:a]amix[out]\" -map \"[out]\" -map 0:v -c:v copy -strict experimental -y \'" + videoFileOutput + "\'");
 		builder.redirectErrorStream(true);
 		
 		Process process = builder.start();

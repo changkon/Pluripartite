@@ -83,7 +83,7 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		StringBuilder command = new StringBuilder("avconv -i " + inputFilename + " -c:a copy -vf ");
+		StringBuilder command = new StringBuilder("avconv -i \'" + inputFilename + "\' -c:a copy -vf ");
 		int filterOpeningLength = MediaSetting.getInstance().getOpeningFilterLength();
 		int filterClosingLength = MediaSetting.getInstance().getClosingFilterLength();
 		int lastSeconds = lengthOfVideo - filterClosingLength;
@@ -94,14 +94,14 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 		if (hasOpeningText && hasClosingText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + ": y=" 
 					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
-					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" "
-					+ outputFilename);
+					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" \'"
+					+ outputFilename + "\'");
 		} else if (hasOpeningText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + 
-					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\'\" " + outputFilename);
+					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\'\" \'" + outputFilename + "\'");
 		} else {
 			command.append("drawtext=\"fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + ": fontcolor=" + closingFontColor.toString() + ": x=" + closingX + 
-					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" " + outputFilename);
+					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" \'" + outputFilename + "\'");
 		}
 		
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", command.toString());

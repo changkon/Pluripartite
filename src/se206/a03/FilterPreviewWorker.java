@@ -1,5 +1,11 @@
 package se206.a03;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.SwingWorker;
 
 /**
@@ -75,21 +81,23 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		int filterOpeningLength = MediaSetting.getInstance().getOpeningFilterLength();
 		int filterClosingLength = MediaSetting.getInstance().getClosingFilterLength();
 		int lastSeconds = lengthOfVideo - filterClosingLength;
-				
+		int filterOpeningSceneLen = 0;
+		int filterClosingSceneLen = 0;
+		
 		StringBuilder command = null;
 		if(openingORclosing.equals("Opening")){
-			int filterOpeningSceneLen = filterOpeningLength + 2;
-			command = new StringBuilder("avplay -i " + inputFilename + " -t "+ filterOpeningSceneLen +" -vf ");
+			filterOpeningSceneLen = filterOpeningLength + 2;
+			command = new StringBuilder("avplay -i \'" + inputFilename + "\' -t "+ filterOpeningSceneLen +" -vf ");
 		}else if(openingORclosing.equals("Closing")){
 			
-			int filterClosingSceneLen = (int) (MediaPanel.getInstance().mediaPlayer.getLength() - 1000*filterClosingLength - 1000*2);
-			
+			filterClosingSceneLen = (int) (MediaPanel.getInstance().mediaPlayer.getLength() - 1000*filterClosingLength - 1000*2);
+
 			String filterClosingSceneString = MediaTimer.getFormattedTime(filterClosingSceneLen);
 			if(filterClosingSceneString.length() == 5){
 				filterClosingSceneString = "00:" + filterClosingSceneString;
 			}
 
-			command = new StringBuilder("avplay -i " + inputFilename + " -ss "+ filterClosingSceneString + " -vf ");
+			command = new StringBuilder("avplay -i \'" + inputFilename + "\' -ss "+ filterClosingSceneString + " -vf ");
 		}
 		
 		
@@ -110,24 +118,46 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", command.toString());
 		
-		System.out.println(command.toString());
+		builder.redirectErrorStream(true);
 		
 		Process process = builder.start();
-		//process.waitFor();
 		
+		InputStream stdout = process.getInputStream();
+		BufferedReader buffer = new BufferedReader(new InputStreamReader(stdout));
+		
+		String line = "";
+		int currentTime = 0;
+		
+		Pattern p = Pattern.compile("\\d+[.]\\d\\d A-V");
+		Matcher m;
+		
+		while((line = buffer.readLine()) != null) {
+			m = p.matcher(line);
 
-		if(openingORclosing.equals("Opening")){
-			Thread.sleep(filterOpeningLength * 1000);
-		}else if(openingORclosing.equals("Closing")){
-			if(filterClosingLength < 10){
-				Thread.sleep(10000);
-			}else{
-				Thread.sleep(filterClosingLength * 10000 + 2000);
+			if (m.find()) {
+				String[] splitPattern = m.group().split("\\.");
+				
+				currentTime = Integer.parseInt(splitPattern[0]); // Only get the first number.
+				
+				if (openingORclosing.equals("Opening")) {
+					if (currentTime == filterOpeningSceneLen) {
+						process.destroy();
+						break;
+					}
+				} else {
+					if (currentTime == lengthOfVideo) {
+						
+						// Sleep for 1 second in case video is fraction of a second longer.
+						Thread.sleep(1000);
+						process.destroy();
+						break;
+					}
+				}
 			}
 		}
-		Thread.sleep(1500);
-		process.destroy();
 		
+		process.waitFor();
+
 		return null;
 	}
 
