@@ -92,15 +92,16 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 		boolean hasOpeningText = !openingText.equals("");
 		boolean hasClosingText = !closingText.equals("");
 		
+		//if there is opening and closing
 		if (hasOpeningText && hasClosingText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + ": y=" 
 					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
 					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" \'"
 					+ outputFilename + "\'");
-		} else if (hasOpeningText) {
+		} else if (hasOpeningText) { //if there only is opening
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + 
 					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\'\" \'" + outputFilename + "\'");
-		} else {
+		} else {//if there is only closing 
 			command.append("drawtext=\"fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + ": fontcolor=" + closingFontColor.toString() + ": x=" + closingX + 
 					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" \'" + outputFilename + "\'");
 		}

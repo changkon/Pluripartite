@@ -21,13 +21,14 @@ Download
 --------
 
   Can be toggled on and off with the download icon. This is located next to open media file icon.
+  Will prompt the user to select a folder they want to save the file into.
   Will check if the URL is a valid file with a remote media file.
   If it is not valid, it will not execute download.
   If it is valid, it will ask the user to check that it is open source. 
     Abort if not open source.
 	  If open source, commence download.
 	A bar showing progress will appear with the download percentage.
-  Should you cancel the download, you can resume it later if you put the same link to the one you cancelled the          download on.
+  Should you cancel the download, you can resume it later if you put the same link to the one you cancelled the download on.
 	If the file exists locally, you will be asked if you want to override the
 	current file or resume the download.
 
@@ -41,7 +42,7 @@ TextFilter
   All adjustable. Can preview seperate openings and endings. Opening preview window closes 2 seconds after text 
   has finished displaying. Closing preview window closes one second after video has finished playing.
   Can save the "session" for that video by pressing the "save session" button.
-  Work on other videos then come back to the video you want to continue working on, which will load the settings from   when you saved the session.
+  Work on other videos then come back to the video you want to continue working on, which will load the settings from when you saved the session.
   You can save the video as a new file.
 	    
 Extraction

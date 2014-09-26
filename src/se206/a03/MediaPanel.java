@@ -447,7 +447,6 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 		if (e.getSource() == volumeSlider) {
 			if(!source.getValueIsAdjusting()){
 				int volumeTemp = source.getValue();
-				System.out.println(volumeTemp);
 				mediaPlayer.setVolume(volumeTemp);
 				volumeSlider.setToolTipText("Adjust Volume " + "(" + volumeTemp + ")");
 			}

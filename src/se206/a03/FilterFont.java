@@ -11,6 +11,7 @@ import java.io.IOException;
  */
 
 public enum FilterFont {
+	FREESERIF(System.getProperty("user.dir") + "/res/FreeSerif.ttf"),
 	UBUNTU_LIGHT(System.getProperty("user.dir") + "/res/Ubuntu-L.ttf"),
 	UBUNTU_REGULAR(System.getProperty("user.dir") + "/res/Ubuntu-R.ttf"),
 	UBUNTU_MEDIUM(System.getProperty("user.dir") + "/res/Ubuntu-M.ttf"),
@@ -41,6 +42,8 @@ public enum FilterFont {
 	@Override
 	public String toString() {
 		switch(this) {
+			case FREESERIF:
+				return "FreeSerif";
 			case UBUNTU_LIGHT:
 				return "Ubuntu Light";
 			case UBUNTU_REGULAR:
@@ -56,6 +59,8 @@ public enum FilterFont {
 	
 	public static FilterFont toFilterFont(String str){
 		switch(str) {
+		case "FreeSerif":
+			return FilterFont.FREESERIF;
 		case "Ubuntu Light":
 			return FilterFont.UBUNTU_LIGHT;
 		case "Ubuntu Regular":

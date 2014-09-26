@@ -107,6 +107,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 		return theInstance;
 	}
 	
+	//initialise the filter panel
 	private FilterPanel() {
 		setLayout(new MigLayout("gap rel 0" , "grow"));
 		
@@ -193,6 +194,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 							openingTimeLength.setSelectedItem(words[13]);
 							closingTimeLength.setSelectedItem(words[14]);
 							found = true;
+							//read the file and set it accordingly
 					  }
 					  line = in.readLine();
 					}
@@ -346,7 +348,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 				
 			}
 		} else if (e.getSource() == previewButton1) {
-			if (verifyInput()) {
+			if (verifyInput()) { //preview the opening scene
 				MediaSetting.getInstance().setClosingFilterLength((String)closingTimeLength.getSelectedItem());
 				MediaSetting.getInstance().setOpeningFilterLength((String)openingTimeLength.getSelectedItem());				
 				int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);
@@ -373,7 +375,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 				worker.execute();
 			}
 		}else if (e.getSource() == previewButton2) {
-				if (verifyInput()) {
+				if (verifyInput()) { //preview the closing scene
 					MediaSetting.getInstance().setClosingFilterLength((String)closingTimeLength.getSelectedItem());
 					MediaSetting.getInstance().setOpeningFilterLength((String)openingTimeLength.getSelectedItem());
 					int lengthOfVideo = (int)(mediaPlayer.getLength() / 1000);

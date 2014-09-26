@@ -32,7 +32,7 @@ public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
-		
+		//replace avconv command 
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "avconv -i \'" + videoFileInput + "\' -i \'" + audioFileInput + "\' -map 0:v -map 1:a " +
 												"-c:v copy -c:a copy -y \'" + videoFileOutput + "\'");
 		builder.redirectErrorStream(true);
@@ -44,6 +44,8 @@ public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 		
 		@SuppressWarnings("unused")
 		String line = "";
+		
+		//run the process until the monitor is cancelled
 		
 		while((line = buffer.readLine()) != null) {
 			if(monitor.isCanceled()) {
@@ -59,6 +61,7 @@ public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 		
 		process.waitFor();
 		
+		//if monitor is cancelled, cancel this swingworker
 		if (monitor.isCanceled()) {
 			this.cancel(true);
 		}

@@ -89,6 +89,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 		add(audioOverlayPanel, "pushx, growx");
 	}
 
+	//initialise panel for extraction and its layout
 	private void setAudioExtractionPanel() {
 		Font font = extractionLabel.getFont().deriveFont(Font.ITALIC + Font.BOLD, 16f); // Default is 12.
 
@@ -113,6 +114,7 @@ public class AudioPanel extends JPanel implements ActionListener {
 		audioExtractionPanel.add(extractFullButton, "gapleft 30, wrap");
 	}
 
+	//initialise panel for replace nad its layout
 	private void setAudioReplacePanel() {
 		Font font = replaceAudioLabel.getFont().deriveFont(Font.ITALIC + Font.BOLD, 16f); // Default is 12.
 
@@ -147,7 +149,8 @@ public class AudioPanel extends JPanel implements ActionListener {
 		audioOverlayPanel.add(selectedAudioOverlayFileTextField, "pushx, growx, wrap");
 		audioOverlayPanel.add(audioOverlayButton);
 	}
-
+	
+	//initialise listeners
 	private void addListeners() {
 		extractButton.addActionListener(this);
 		extractFullButton.addActionListener(this);

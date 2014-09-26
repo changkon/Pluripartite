@@ -40,6 +40,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 	JLabel downloadLabel;
 	JTextField urlInput;
 	
+	//initialise the download panel
 	public DownloadPanel(){
 		download = new JButton("Download");
 		cancel = new JButton("Cancel");
@@ -48,7 +49,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 		
 		urlInput.addKeyListener(new KeyListener(){
 
-			@Override
+			@Override// make enter initialise download also
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER){
 					e.consume();
@@ -64,6 +65,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 			public void keyTyped(KeyEvent e) {}
 		});
 		
+		//flat UI feel
 		download.setBorderPainted(false);
 		download.setFocusPainted(false);
 		download.setContentAreaFilled(false);
@@ -103,15 +105,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 		
 		download.addActionListener(this);
 		cancel.addActionListener(this);
-		//make directory is it doesn't exist!
-		File vamixDownload = new File(System.getProperty("user.dir") + "/Downloads");
-		if (!vamixDownload.exists()) {
-			try{
-				vamixDownload.mkdir();
-			}catch(SecurityException se){
-			
-			}
-		}
+		
 	}
 	/**
 	 * Sets up the download and executes the swingworker
@@ -181,7 +175,8 @@ public class DownloadPanel extends JPanel implements ActionListener {
 	}
 	
 	private boolean validURLCheck() throws IOException {
-				
+		//check if the URL is vlaid
+		//does not download only returns the URL informaiton
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash","-c","wget --spider -v " + URL);
 		Process process = builder.start();		
 		String stdOutput = null;
@@ -199,6 +194,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 			stdOutput = stdout.readLine();
 		}
 		
+		//if the last line is "Remote file exists." the file is a valid media file
 		if(lastOutput.equals("Remote file exists.")){
 			return true;
 		}else{

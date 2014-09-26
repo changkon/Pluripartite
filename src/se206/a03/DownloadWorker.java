@@ -25,18 +25,6 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 	private ProgressMonitor monitor;
 	
 	public DownloadWorker(String URL, ProgressMonitor monitor, String path){
-		
-		//check that the path exists (safety)
-		File vamixDownload = new File(path);
-		if (!vamixDownload.exists()) {
-			try{
-				vamixDownload.mkdir();
-			}catch(SecurityException se){
-			
-			}
-		}
-		
-		
 		builder = new ProcessBuilder("/bin/bash","-c","wget -c " + URL + " -P " + path);
 		this.monitor = monitor;
 				

@@ -83,13 +83,14 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		int lastSeconds = lengthOfVideo - filterClosingLength;
 		int filterOpeningSceneLen = 0;
 		int filterClosingSceneLen = 0;
-		
+		//set the time frame of playing AVPLAY
 		StringBuilder command = null;
+		//If opening, play from beginning
 		if(openingORclosing.equals("Opening")){
 			filterOpeningSceneLen = filterOpeningLength + 2;
 			command = new StringBuilder("avplay -i \'" + inputFilename + "\' -t "+ filterOpeningSceneLen +" -vf ");
 		}else if(openingORclosing.equals("Closing")){
-			
+			//If closing, play x number of seconds from the end
 			filterClosingSceneLen = (int) (MediaPanel.getInstance().mediaPlayer.getLength() - 1000*filterClosingLength - 1000*2);
 
 			String filterClosingSceneString = MediaTimer.getFormattedTime(filterClosingSceneLen);
@@ -104,14 +105,15 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		boolean hasOpeningText = !openingText.equals("");
 		boolean hasClosingText = !closingText.equals("");
 		
+		//if there is opening and closing
 		if (hasOpeningText && hasClosingText) {
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + ": y=" 
 					+ openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\':,drawtext=fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + 
 					": fontcolor=" + closingFontColor.toString() + ": x=" +	closingX + ": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\"");
-		} else if (hasOpeningText) {
+		} else if (hasOpeningText) { //if there is only opening
 			command.append("drawtext=\"fontfile=" + openingFont.getPath() + ": fontsize=" + openingFontSize + ": fontcolor=" + openingFontColor.toString() + ": x=" + openingX + 
 					": y=" + openingY + ": text=\'" + openingText + "\': draw=\'lt(t," + filterOpeningLength + ")\'\"");
-		} else {
+		} else {// if there is only closing
 			command.append("drawtext=\"fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + ": fontcolor=" + closingFontColor.toString() + ": x=" + closingX + 
 					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\"");
 		}
