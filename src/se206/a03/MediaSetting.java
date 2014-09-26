@@ -34,16 +34,23 @@ public class MediaSetting {
 		skipTime = time;
 	}
 	
+	/** Returns the length of the opening filter length
+	 * 
+	 * @return int
+	 */
 	public int getOpeningFilterLength(){
 		if(openingFilterLength < 1 || openingFilterLength > 10){
 			return DEFAULT_OPENING_CLOSING_LENGTH;
 		}
 		else{
-
-			System.out.println("HIIIIII");
 			return openingFilterLength;
 		}
 	}
+	/** Returns the length of the closing filter length
+	 * 
+	 * 
+	 * @return int
+	 */
 	
 	public int getClosingFilterLength(){
 		if(closingFilterLength < 1 || closingFilterLength > 10){
@@ -54,14 +61,26 @@ public class MediaSetting {
 		}
 	}
 	
+	/** Sets the length of the opening filter length
+	 * 
+	 * @param str
+	 */
 	public void setOpeningFilterLength(String str){
 		openingFilterLength = MediaSetting.stringToInt(str);
 	}
 	
+	/** Sets the length of the closing filter length
+	 * 
+	 * @param str
+	 */
 	public void setClosingFilterLength(String str){
 		closingFilterLength = MediaSetting.stringToInt(str);
 	}
 	
+	/** Converter
+	 * @return int
+	 * 
+	 */
 	private static int stringToInt(String temp){
 		int seconds = 0;
 		
@@ -100,6 +119,12 @@ public class MediaSetting {
 		return seconds;
 	}
 	
+	/** Converter
+	 * 
+	 * 
+	 * @param temp
+	 * @return string
+	 */
 	public static String intToString(int temp){
 		String seconds = "";
 		

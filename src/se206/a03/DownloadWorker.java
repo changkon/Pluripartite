@@ -1,6 +1,7 @@
 package se206.a03;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -10,9 +11,12 @@ import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
 
 import java.lang.Exception;
-//import java.io.PrintWriter;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
+
+/** Handles the download process and the threading
+ * 
+ */
 
 public class DownloadWorker extends SwingWorker<Integer,Integer>{
 	
@@ -20,8 +24,20 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 	private Process process;
 	private ProgressMonitor monitor;
 	
-	public DownloadWorker(String URL, ProgressMonitor monitor){
-		builder = new ProcessBuilder("/bin/bash","-c","wget -c " + URL);
+	public DownloadWorker(String URL, ProgressMonitor monitor, String path){
+		
+		//check that the path exists (safety)
+		File vamixDownload = new File(path);
+		if (!vamixDownload.exists()) {
+			try{
+				vamixDownload.mkdir();
+			}catch(SecurityException se){
+			
+			}
+		}
+		
+		
+		builder = new ProcessBuilder("/bin/bash","-c","wget -c " + URL + " -P " + path);
 		this.monitor = monitor;
 				
 	}
@@ -114,17 +130,9 @@ public class DownloadWorker extends SwingWorker<Integer,Integer>{
 		}
 	}
 	
-	/*process the progressbar(ED thread)						
-	@Override
-	protected void process(List<Integer> input){
-		for(int i=0; i<input.size(); i++){
-			if(input.get(i) == count || (input.get(i) > 1)) {
-				count = input.get(i);
-				bar.setValue(input.get(i));						
-			}
-		}
-	}*/
-	
+	/** Process the ProgressMonitor
+	 * 
+	 */
 	@Override
 	protected void process(List<Integer> chunks) {
 		if (!isDone()) {

@@ -170,6 +170,9 @@ public class FilterPanel extends JPanel implements ActionListener {
 					}catch(IOException e){
 				}
 		try{
+			//read the session for this video
+			//only loads if it is available
+			@SuppressWarnings("resource")
 			BufferedReader in = new BufferedReader(new FileReader(log));
 					String line = in.readLine();
 					while(line != null && line.length() != 0){
@@ -190,19 +193,6 @@ public class FilterPanel extends JPanel implements ActionListener {
 							openingTimeLength.setSelectedItem(words[13]);
 							closingTimeLength.setSelectedItem(words[14]);
 							
-							/*System.out.println(openingTextArea.getText());
-							System.out.println(closingTextArea.getText());
-							System.out.println(openingXTextField.getText());
-							System.out.println(closingXTextField.getText());
-							System.out.println(openingYTextField.getText());
-							System.out.println(closingYTextField.getText());
-							System.out.println(openingFontCombo.getSelectedItem());
-							System.out.println(closingFontCombo.getSelectedItem());
-							System.out.println(openingFontSizeCombo.getSelectedItem());
-							System.out.println(closingFontSizeCombo.getSelectedItem());
-							System.out.println(openingFontColorCombo.getSelectedItem());
-							System.out.println(closingFontColorCombo.getSelectedItem());
-							*/
 							found = true;
 					  }
 					  line = in.readLine();
@@ -411,12 +401,14 @@ public class FilterPanel extends JPanel implements ActionListener {
 					worker.execute();
 				}
 		}else if (e.getSource() == saveWorkButton){
+			//log the changes
 			if(verifyInput()){
 				PrintWriter writer = null;
 				try {
 					File home = new File(System.getProperty("user.home"));
 					File logFile = new File(home + "/.vamix/log.txt");
 					writer = new PrintWriter(new FileWriter(logFile, true));
+					//write to the file the details of this session
 					String txtline = currentFileName + "," + openingTextArea.getText() + "," +closingTextArea.getText() + "," +
 									 openingXTextField.getText() + "," + closingXTextField.getText()+ "," + openingYTextField.getText() + ","
 									 + closingYTextField.getText() + ","+ openingFontCombo.getSelectedItem() + "," + closingFontCombo.getSelectedItem() + ","

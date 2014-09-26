@@ -84,11 +84,16 @@ public class VamixFrame extends JFrame implements ActionListener {
 		if (e.getSource() == openMenuOption) {
 			MediaPanel.getInstance().playFile();
 		} else if (e.getSource() == mainPanelOption) {
+			//card layout for future design changes
 			CardLayout c = (CardLayout)panels.getLayout();
 			c.show(panels, MAIN);
 		}
 	}
 	
+	/** Initialise
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -96,7 +101,6 @@ public class VamixFrame extends JFrame implements ActionListener {
 			public void run() {
 				VamixFrame vamixFrame = new VamixFrame();
 				vamixFrame.setVisible(true);
-				//vamixFrame.setLocationRelativeTo(null);
 			}
 			
 		});

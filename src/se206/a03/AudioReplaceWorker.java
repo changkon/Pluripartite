@@ -42,6 +42,7 @@ public class AudioReplaceWorker extends SwingWorker<Void, Integer> {
 		InputStream stdout = process.getInputStream();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(stdout));
 		
+		@SuppressWarnings("unused")
 		String line = "";
 		
 		while((line = buffer.readLine()) != null) {

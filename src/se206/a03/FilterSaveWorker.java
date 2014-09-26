@@ -83,6 +83,7 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 	
 	@Override
 	protected Void doInBackground() throws Exception {
+		//detects the number of seconds to display for and what to display
 		StringBuilder command = new StringBuilder("avconv -i \'" + inputFilename + "\' -c:a copy -vf ");
 		int filterOpeningLength = MediaSetting.getInstance().getOpeningFilterLength();
 		int filterClosingLength = MediaSetting.getInstance().getClosingFilterLength();
@@ -103,16 +104,14 @@ public class FilterSaveWorker extends SwingWorker<Void, Integer> {
 			command.append("drawtext=\"fontfile=" + closingFont.getPath() + ": fontsize=" + closingFontSize + ": fontcolor=" + closingFontColor.toString() + ": x=" + closingX + 
 					": y=" + closingY + ": text=\'" + closingText + "\': draw=\'gt(t," + lastSeconds + ")\'\" \'" + outputFilename + "\'");
 		}
-		
+		//call the process
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", command.toString());
 		builder.redirectErrorStream(true);
 		Process process = builder.start();
 		
 		InputStream stdout = process.getInputStream();
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(stdout));
-		
-		System.out.println(command.toString());
-		
+				
 		Pattern p = Pattern.compile("\\btime=\\b\\d+.\\d+");
 		Matcher m;
 		String line = "";

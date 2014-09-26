@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -110,6 +109,8 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 	
 	// Places buttons onto the button panel.
 	private void setButtonPanel() {
+		//give button the flat UI feel
+		
 		playButton.setToolTipText("Play/Pause media file");
 		playButton.setBorderPainted(false);
 		playButton.setFocusPainted(false);

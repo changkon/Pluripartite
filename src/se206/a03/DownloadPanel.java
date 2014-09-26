@@ -9,17 +9,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.List;
 
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.ProgressMonitor;
-import javax.swing.SwingWorker;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -32,6 +30,7 @@ import javax.swing.event.ChangeListener;
 
 
 
+@SuppressWarnings("serial")
 public class DownloadPanel extends JPanel implements ActionListener {
 	
 	String URL;
@@ -104,18 +103,42 @@ public class DownloadPanel extends JPanel implements ActionListener {
 		
 		download.addActionListener(this);
 		cancel.addActionListener(this);
+		//make directory is it doesn't exist!
+		File vamixDownload = new File(System.getProperty("user.dir") + "/Downloads");
+		if (!vamixDownload.exists()) {
+			try{
+				vamixDownload.mkdir();
+			}catch(SecurityException se){
+			
+			}
+		}
 	}
-	
+	/**
+	 * Sets up the download and executes the swingworker
+	 * 
+	 * @param temp
+	 */
 	public void downloadExecute(String temp){
 		URL = temp;
+		//choose directory
+		JFileChooser chooser = new JFileChooser();
+		chooser.setCurrentDirectory(new java.io.File("~"));
+		chooser.setDialogTitle("Choose a directory");
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int selection = chooser.showOpenDialog(this);
+			
+		//if not approved quit set up
+		if (!(selection == JFileChooser.APPROVE_OPTION)) {
+			return;
+		}
 		
-		/*Boolean validInput = false;
-			URL = JOptionPane.showInputDialog("Enter the URL");
-			// If they entered a valid URL
-		*/
-			if(URL != null && !URL.isEmpty()){	
+
+		File saveFile = chooser.getSelectedFile();
+		String downloadFilepath = saveFile.getPath();
+		
+		if(URL != null && !URL.isEmpty()){	
 				File basename = new File(URL);
-				File fullName = new File(System.getProperty("user.dir") + "/" + basename.getName());
+				File fullName = new File(downloadFilepath + "/" + basename.getName());
 				int reply;
 				//if the file exists
 				if(fullName.exists()){
@@ -138,13 +161,13 @@ public class DownloadPanel extends JPanel implements ActionListener {
 						e.printStackTrace();
 					}
 					if(valid){
-						try{
-					  		ProgressMonitor monitor = new ProgressMonitor(null, "Download has started", "", 0, 100);
-					  		//if open source, execute the download through DownloadWorker
-							dw = new DownloadWorker(URL, monitor);
-							dw.execute();
-						}catch(Exception eeee){
-						}
+						
+								ProgressMonitor monitor = new ProgressMonitor(null, "Download has started", "", 0, 100);
+						  		//if open source, execute the download through DownloadWorker
+								dw = new DownloadWorker(URL, monitor,downloadFilepath);
+								dw.execute();
+							
+						
 					}else{
 						JOptionPane.showMessageDialog(null, "URL is not valid. Please enter a valid URL");
 					}
@@ -158,27 +181,7 @@ public class DownloadPanel extends JPanel implements ActionListener {
 	}
 	
 	private boolean validURLCheck() throws IOException {
-		/*
-		SwingWorker<String, String> temp = new SwingWorker<String, String>(){
-
-			@Override
-			protected String doInBackground() throws Exception {
-				publish("");
-				return null;
-			}
-			
-			@Override
-			protected void process(List<String> chunks){
-				JOptionPane.showMessageDialog(null, "Checking if URL is valid..");
-			}
-			
-			@Override
-			protected void done(){
-			}
-			
-		}; temp.execute();
-		*/
-		
+				
 		ProcessBuilder builder = new ProcessBuilder("/bin/bash","-c","wget --spider -v " + URL);
 		Process process = builder.start();		
 		String stdOutput = null;
@@ -224,9 +227,12 @@ public class DownloadPanel extends JPanel implements ActionListener {
 		}
 	}
 	
+	/** Checks the input and calls downloadExecute()
+	 * 
+	 */
 	private void executeDownload(){
 		if (!(urlInput.getText().equals("")) && urlInput.getText() != null && urlInput.getText().length() != 0){
-			downloadExecute(urlInput.getText());
+				downloadExecute(urlInput.getText());
 		}
 	}
 
