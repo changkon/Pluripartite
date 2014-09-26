@@ -176,8 +176,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 			BufferedReader in = new BufferedReader(new FileReader(log));
 					String line = in.readLine();
 					while(line != null && line.length() != 0){
-					  String[] words = line.split(",");
-					  if(words[0].equals(fileName)){							
+					  String[] words = line.split(",::,");
+					  if(words[0].equals(fileName)){	
 							openingTextArea.setText(words[1]);
 							closingTextArea.setText(words[2]);
 							openingXTextField.setText(words[3]);
@@ -192,7 +192,6 @@ public class FilterPanel extends JPanel implements ActionListener {
 							closingFontColorCombo.setSelectedItem(FilterColor.toFilterColor(words[12]));
 							openingTimeLength.setSelectedItem(words[13]);
 							closingTimeLength.setSelectedItem(words[14]);
-							
 							found = true;
 					  }
 					  line = in.readLine();
@@ -209,8 +208,8 @@ public class FilterPanel extends JPanel implements ActionListener {
 			closingYTextField.setText("");
 			openingFontCombo.setSelectedIndex(0);
 			closingFontCombo.setSelectedIndex(0);
-			openingFontSizeCombo.setSelectedItem(Integer.parseInt("16"));
-			closingFontSizeCombo.setSelectedItem(Integer.parseInt("16"));
+			openingFontSizeCombo.setSelectedIndex(3);
+			closingFontSizeCombo.setSelectedIndex(3);
 			openingFontColorCombo.setSelectedIndex(0);
 			closingFontColorCombo.setSelectedIndex(0);
 			openingTimeLength.setSelectedIndex(0);
@@ -409,12 +408,14 @@ public class FilterPanel extends JPanel implements ActionListener {
 					File logFile = new File(home + "/.vamix/log.txt");
 					writer = new PrintWriter(new FileWriter(logFile, true));
 					//write to the file the details of this session
-					String txtline = currentFileName + "," + openingTextArea.getText() + "," +closingTextArea.getText() + "," +
-									 openingXTextField.getText() + "," + closingXTextField.getText()+ "," + openingYTextField.getText() + ","
-									 + closingYTextField.getText() + ","+ openingFontCombo.getSelectedItem() + "," + closingFontCombo.getSelectedItem() + ","
-									 + openingFontSizeCombo.getSelectedItem()+ "," + closingFontSizeCombo.getSelectedItem() + "," +
-									 openingFontColorCombo.getSelectedItem()+ "," + closingFontColorCombo.getSelectedItem() + "," + 
-									 openingTimeLength.getSelectedItem() + "," + closingTimeLength.getSelectedItem();
+
+					//didnt use comma seperators due to the possibility of commas being used in the actual text for opening and closing scenes
+					String txtline = currentFileName + ",::," + openingTextArea.getText() + ",::," +closingTextArea.getText() + ",::," +
+									 openingXTextField.getText() + ",::," + closingXTextField.getText()+ ",::," + openingYTextField.getText() + ",::,"
+									 + closingYTextField.getText() + ",::,"+ openingFontCombo.getSelectedItem() + ",::," + closingFontCombo.getSelectedItem() + ",::,"
+									 + openingFontSizeCombo.getSelectedItem()+ ",::," + closingFontSizeCombo.getSelectedItem() + ",::," +
+									 openingFontColorCombo.getSelectedItem()+ ",::," + closingFontColorCombo.getSelectedItem() + ",::," + 
+									 openingTimeLength.getSelectedItem() + ",::," + closingTimeLength.getSelectedItem();
 					writer.println(txtline);
 					JOptionPane.showMessageDialog(null, "Saved session for this video. Press okay!");
 				} catch (Exception eee) {

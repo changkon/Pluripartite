@@ -478,7 +478,7 @@ public class MediaPanel extends JPanel implements ActionListener, ChangeListener
 				BufferedReader stdoutBuffered = new BufferedReader(new InputStreamReader(stdout));
 				String temp = stdoutBuffered.readLine();
 				while(temp != null && !(temp.length() == 0) && !(temp.equals(""))){
-					if(temp.contains("Audio") || temp.contains("MPEG")){
+					if(temp.contains("Audio") || temp.contains("MPEG") || temp.contains("video")){
 						media = true;
 					}
 					temp = stdoutBuffered.readLine();

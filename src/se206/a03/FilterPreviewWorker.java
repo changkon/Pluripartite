@@ -128,6 +128,7 @@ public class FilterPreviewWorker extends SwingWorker<Void, Void> {
 		String line = "";
 		int currentTime = 0;
 		
+		// Get strings which have this format which contains the current time and extract only seconds.
 		Pattern p = Pattern.compile("\\d+[.]\\d\\d A-V");
 		Matcher m;
 		
